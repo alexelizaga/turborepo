@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "target": "journal",
     "public": "dist",
     "ignore": [
       "firebase.json",

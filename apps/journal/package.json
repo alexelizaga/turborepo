@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --port 3001",
-    "build": "tsc && vite build",
+    "build-prod": "tsc && vite build",
     "build-dev": "tsc && vite build -m development",
-    "deploy": "tsc && vite build && firebase use prod && firebase deploy",
+    "deploy-prod": "tsc && vite build && firebase use prod && firebase deploy",
     "deploy-dev": "tsc && vite build -m development && firebase use dev && firebase deploy",
     "preview": "vite preview",
     "test": "jest --watchAll",

@@ -5,6 +5,21 @@
     "prod": "brocodeappsprod",
     "test": "brocodeappstest"
   },
-  "targets": {},
+  "targets": {
+    "brocodeappsdev": {
+      "hosting": {
+        "calendar": [
+          "brocodecalendardev"
+        ]
+      }
+    },
+    "brocodeappsprod": {
+      "hosting": {
+        "calendar": [
+          "brocodecalendarprod"
+        ]
+      }
+    }
+  },
   "etags": {}
 }
