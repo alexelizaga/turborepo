@@ -1,0 +1,10 @@
+{
+  "projects": {
+    "default": "brocodeappsprod",
+    "dev": "brocodeappsdev",
+    "prod": "brocodeappsprod",
+    "test": "brocodeappstest"
+  },
+  "targets": {},
+  "etags": {}
+}
