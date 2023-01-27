@@ -1,15 +1,19 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { Button } from '../components';
+import { Sidebar } from '../components';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'INPUTS/Button',
-  component: Button
-} as ComponentMeta<typeof  Button>;
+  title: 'NAVIGATION/Sidbar',
+  component: Sidebar
+} as ComponentMeta<typeof  Sidebar>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof  Button> = () => < Button />;
+const Template: ComponentStory<typeof  Sidebar> = (args) => < Sidebar {...args}/>;
 
-export const Primary = Template.bind({});
+export const Basic = Template.bind({});
 
+Basic.args = {
+  open: true,
+  width: 250
+};

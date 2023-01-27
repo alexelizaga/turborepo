@@ -1,13 +1,25 @@
-import { AppBar, Toolbar, IconButton } from '@mui/material';
+import { AppBar, Toolbar, IconButton, Typography } from '@mui/material';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
+import { FC } from 'react';
 
-export const Navbar = () => {
+type Props = {
+  title?: string;
+  openSideMenu?: () => void;
+}
+
+export const Navbar: FC<Props> = ({ title = '', openSideMenu}) => {
   return (
     <AppBar position='sticky' elevation={0}>
       <Toolbar>
-        <IconButton>
+        { openSideMenu && <IconButton
+          color='inherit'
+          size='large'
+          edge='start'
+          onClick={openSideMenu}
+        >
           <MenuOutlinedIcon />
-        </IconButton>
+        </IconButton>}
+        <Typography variant='h6'>{ title }</Typography>
       </Toolbar>
     </AppBar>
   )
