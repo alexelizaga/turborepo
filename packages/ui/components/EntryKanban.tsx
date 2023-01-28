@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { Card, CardHeader, Grid } from '@mui/material'
+import { EntryType } from '../interfaces'
 
 type Props = {
   boards?: {

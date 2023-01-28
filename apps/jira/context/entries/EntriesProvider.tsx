@@ -9,26 +9,7 @@ export type EntriesState = {
 }
 
 const ENTRIES_INITIAL_STATE: EntriesState = {
-  entries: [
-    {
-      _id: uuidv4(),
-      description: 'To Do:Sunt nostrud adipisicing non veniam incididunt qui dolore pariatur id qui esse reprehenderit.',
-      status: 'to-do',
-      createdAt: Date.now()
-    },
-    {
-      _id: uuidv4(),
-      description: 'In Progress: Anim voluptate amet officia in.',
-      status: 'in-progress',
-      createdAt: Date.now() - 1000000
-    },
-    {
-      _id: uuidv4(),
-      description: 'Done: Anim deserunt consequat cupidatat ipsum cupidatat.',
-      status: 'done',
-      createdAt: Date.now() - 100000000
-    }
-  ]
+  entries: []
 }
 
 type EntriesProviderProps = {
@@ -49,10 +30,15 @@ export const EntriesProvider: FC<EntriesProviderProps> = ({ children }) => {
     dispatch({ type: '[Entry] - Add-Entry', payload: newEntry })
   }
 
+  const updateEntry = (entry: EntryType) => {
+    dispatch({ type: '[Entry] - Update-Entry', payload: entry });
+  }
+
   return (
     <EntriesContext.Provider value={{
       ...state,
-      addNewEntry
+      addNewEntry,
+      updateEntry
     }}>
       { children }
     </EntriesContext.Provider>

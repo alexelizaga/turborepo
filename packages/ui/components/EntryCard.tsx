@@ -1,16 +1,30 @@
-import { FC } from 'react';
+import { DragEvent, FC } from 'react';
 import { Card, CardActionArea, CardActions, CardContent, Typography } from '@mui/material';
 
 import { EntryType } from '../';
 
 type Props = {
-  entry: EntryType
+  entry: EntryType;
+  setIsDragging: (isDragging: boolean) => void;
 }
 
-export const EntryCard: FC<Props> = ({entry}) => {
+export const EntryCard: FC<Props> = ({entry, setIsDragging}) => {
+
+  const onDragStart = (event: DragEvent<HTMLDivElement>) => {
+    event.dataTransfer.setData('text', entry._id)
+    setIsDragging(true);
+  }
+
+  const onDragEnd = () => {
+    setIsDragging(false);
+  }
+
   return (
     <Card
       sx={{ mb: 1 }}
+      draggable
+      onDragStart={onDragStart}
+      onDragEnd={onDragEnd}
     >
       <CardActionArea>
         <CardContent>
