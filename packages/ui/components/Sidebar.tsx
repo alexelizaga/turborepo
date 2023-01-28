@@ -1,52 +1,66 @@
 import { FC } from 'react';
-import { Box, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, Typography } from "@mui/material";
-import InboxOutlinedIcon from '@mui/icons-material/InboxOutlined';
-import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import { Box, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material";
 
-const menuItems = [ "Inbox", "Starred", "Send Email", "Drafts" ]
+export type MenuItem = {
+  icon?: JSX.Element,
+  text: string
+}
 
 type Props = {
+  anchor?:  "left" | "top" | "right" | "bottom";
+  menuActions?: MenuItem[];
+  menuItems?: MenuItem[];
   open?: boolean;
   width?: number;
   onClose?: () => void
 }
 
-export const Sidebar: FC<Props> = ({ width = 250, open = true, onClose }) => {
+export const Sidebar: FC<Props> = ({ anchor = 'left',  menuActions, menuItems, width = 250, open = true, onClose }) => {
 
   return (
     <Drawer
-      anchor="left"
+      anchor={ anchor }
       open={ open }
       onClose={ onClose }
     >
-      <Box sx={{ width }}>
+      <Box sx={{ width: anchor === 'left' || anchor === 'right' ? width : '100%' }}>
         <Box sx={{ p: '5px 10px' }}>
           <Typography variant="h4" >Menu</Typography>
         </Box>
 
         <List>
           {
-            menuItems.map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  { index % 2 ? <InboxOutlinedIcon /> : <EmailOutlinedIcon /> }
-                </ListItemIcon>
-                <ListItemText primary={ text } />
+            menuItems?.map(({text, icon}, index) => (
+              <ListItem disablePadding key={text}>
+                <ListItemButton>
+                  { icon && (
+                    <ListItemIcon>
+                      { icon }
+                    </ListItemIcon>
+                    )
+                  }
+                  <ListItemText primary={ text } />
+                </ListItemButton>
               </ListItem>
             ))
           }
         </List>
 
-        <Divider />
+        { menuActions && <Divider /> }
 
         <List>
           {
-            menuItems.map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  { index % 2 ? <InboxOutlinedIcon /> : <EmailOutlinedIcon /> }
-                </ListItemIcon>
-                <ListItemText primary={ text } />
+             menuActions?.map(({text, icon}, index) => (
+              <ListItem disablePadding key={text}>
+                <ListItemButton>
+                  { icon && (
+                    <ListItemIcon>
+                      { icon }
+                    </ListItemIcon>
+                    )
+                  }
+                  <ListItemText primary={ text } />
+                </ListItemButton>
               </ListItem>
             ))
           }

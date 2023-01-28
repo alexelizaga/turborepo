@@ -1,6 +1,6 @@
+import { FC } from 'react';
 import { AppBar, Toolbar, IconButton, Typography } from '@mui/material';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
-import { FC } from 'react';
 
 type Props = {
   title?: string;
