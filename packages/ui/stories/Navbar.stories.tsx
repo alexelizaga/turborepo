@@ -1,5 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ThemeProvider } from '@mui/material';
 
+import { darkTheme, lightTheme } from '../';
 import { Navbar } from '../components';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -8,12 +10,19 @@ export default {
   component: Navbar
 } as ComponentMeta<typeof  Navbar>;
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof  Navbar> = (args) => < Navbar {...args}/>;
+export const Light: ComponentStory<typeof Navbar> = (args) => (
+  <ThemeProvider theme={lightTheme}>
+    <Navbar {...args}/>
+  </ThemeProvider>
+);
 
-export const Basic = Template.bind({});
+export const Dark: ComponentStory<typeof Navbar> = (args) => (
+  <ThemeProvider theme={darkTheme}>
+    <Navbar {...args}/>
+  </ThemeProvider>
+);
 
-Basic.args = {
+Light.args = Dark.args = {
   title: 'BroCode',
   openSideMenu: () => {}
 };

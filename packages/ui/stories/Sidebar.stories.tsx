@@ -1,8 +1,11 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-
-import { Sidebar } from '../components';
+import { ThemeProvider } from '@mui/material';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import InboxOutlinedIcon from '@mui/icons-material/InboxOutlined';
+
+import { darkTheme, lightTheme } from '../';
+import { Sidebar } from '../components';
+
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -10,12 +13,19 @@ export default {
   component: Sidebar
 } as ComponentMeta<typeof  Sidebar>;
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof  Sidebar> = (args) => < Sidebar {...args}/>;
+export const Light: ComponentStory<typeof Sidebar> = (args) => (
+  <ThemeProvider theme={lightTheme}>
+    < Sidebar {...args}/>
+  </ThemeProvider>
+);
 
-export const Basic = Template.bind({});
+export const Dark: ComponentStory<typeof Sidebar> = (args) => (
+  <ThemeProvider theme={darkTheme}>
+    < Sidebar {...args}/>
+  </ThemeProvider>
+);
 
-Basic.args = {
+Light.args = Dark.args = {
   anchor: 'left',
   open: true,
   width: 250,

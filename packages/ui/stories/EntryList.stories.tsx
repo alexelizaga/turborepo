@@ -1,6 +1,8 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ThemeProvider } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
 
+import { darkTheme, lightTheme } from '../';
 import { EntryList } from '../components';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -9,12 +11,19 @@ export default {
   component:  EntryList
 } as ComponentMeta<typeof EntryList>;
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof EntryList> = (args) => <EntryList {...args}/>;
+export const Light: ComponentStory<typeof EntryList> = (args) => (
+  <ThemeProvider theme={lightTheme}>
+    <EntryList {...args}/>
+  </ThemeProvider>
+);
 
-export const Basic = Template.bind({});
+export const Dark: ComponentStory<typeof EntryList> = (args) => (
+  <ThemeProvider theme={darkTheme}>
+    <EntryList {...args}/>
+  </ThemeProvider>
+);
 
-Basic.args = {
+Light.args = Dark.args = {
   status: "to-do",
   entries: [
     {
