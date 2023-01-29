@@ -1,5 +1,14 @@
 import { FC } from 'react';
-import { AppBar, Toolbar, IconButton, Typography, Box, Grid, SxProps, Theme } from '@mui/material';
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  Box,
+  Grid,
+  SxProps,
+  Theme
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/MenuOutlined';
 import ViewKanbanIcon from '@mui/icons-material/ViewKanbanOutlined';
 import SettingsIcon from '@mui/icons-material/SettingsTwoTone';
@@ -48,7 +57,7 @@ export const Navbar: FC<Props> = ({
               <Box width={'64px'} />
             )
           }
-          <Menu app={'Kanban'}>
+          <Menu app={title}>
             <ViewKanbanIcon sx={{ mr: 1 }} />
             <Typography variant='h6'>{ title }</Typography>
           </Menu>

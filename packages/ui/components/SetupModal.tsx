@@ -1,5 +1,11 @@
-import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { FC } from 'react';
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent
+} from '@mui/material';
 
 type Props = {
   t?: any;
@@ -10,7 +16,7 @@ type Props = {
 }
 
 export const SetupModal: FC<Props> = ({
-  t,
+  t = (text: string) => text,
   language,
   themeColor,
   handleLanguageChange,

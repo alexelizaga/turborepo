@@ -11,7 +11,7 @@ import ViewKanbanIcon from '@mui/icons-material/ViewKanban';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 
 type Props = {
-  app: 'Calendar' | 'Journal' | 'Kanban';
+  app: string;
   children?: JSX.Element | JSX.Element[];
 }
 

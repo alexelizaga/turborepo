@@ -1,5 +1,12 @@
 import { FC } from 'react';
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box } from '@mui/material';
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+  Box
+} from '@mui/material';
 
 type Props = {
   t?: any;
@@ -14,7 +21,7 @@ type Props = {
 }
 
 export const Modal: FC<Props> = ({
-  t,
+  t = (text: string) => text,
   open = true,
   header,
   onClose,
