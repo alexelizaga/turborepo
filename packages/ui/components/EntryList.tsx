@@ -32,8 +32,20 @@ export const EntryList: FC<Props> = ({ status, entries, isDragging, setIsDraggin
       onDrop={onDropEntry}
       onDragOver={allowDrop}
       className={isDragging ? 'dragging' : ''}
+      style={{
+        flex: 1,
+        display: 'flex',
+        overflow: 'scroll'
+        // backgroundColor: 'pink'
+      }}
     >
-      <Paper sx={{ height: 'calc(100vh - 180px)', overflow: 'scroll', backgroundColor: 'transparent', p: '3px 5px' }}>
+      <Paper sx={{
+        flex: 1,
+        // height: 'calc(100vh - 180px)',
+        overflow: 'scroll',
+        backgroundColor: 'transparent',
+        p: '3px 5px'
+      }}>
         <List sx={{ opacity: isDragging ? 0.2 : 1, transition: 'all .3s' }}>
           {
             entriesByStatus.map(entry => (
