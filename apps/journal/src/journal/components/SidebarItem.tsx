@@ -1,8 +1,15 @@
-import { useMemo } from "react";
-import { getAnalytics, logEvent } from "firebase/analytics";
+import { useMemo } from 'react';
+import { getAnalytics, logEvent } from 'firebase/analytics';
 
-import { BcGrid, BcListItem, BcListItemButton, BcListItemIcon, BcListItemText, BcTurnedInNot } from "../../shared";
-import { Note } from "../../interfaces";
+import {
+  BcGrid,
+  BcListItem,
+  BcListItemButton,
+  BcListItemIcon,
+  BcListItemText,
+  BcTurnedInNot
+} from '../../shared';
+import { NoteType } from '../../interfaces';
 import { useAppDispatch } from '../../store/hooks';
 import { onSetActiveNote } from "../../store/journal";
 
@@ -13,7 +20,7 @@ export const SidebarItem = ({
   id = '',
   date = 0,
   imageUrls = []
-}: Note) => {
+}: NoteType) => {
   const analytics = getAnalytics();
   const dispatch = useAppDispatch();
 
@@ -27,7 +34,6 @@ export const SidebarItem = ({
       imageUrls
     };
     dispatch( onSetActiveNote( selectedNote ) );
-    
   }
 
   const newTitle = useMemo( () => {

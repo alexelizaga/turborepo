@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Note } from '../../interfaces';
+import { NoteType } from '../../interfaces';
 
 interface JournalState {
     isSaving: boolean;
     messageSaved: string;
     notes: Array<Record<string, any>>;
-    active: null | Note
+    active: null | NoteType
 }
 
 const initialState: JournalState = {
@@ -22,22 +22,22 @@ export const journalSlice = createSlice({
       onSavingNewNote: (state) => {
         state.isSaving = true;
       },
-      onAddNewEmptyNote: (state, { payload }: PayloadAction<Note>) => {
+      onAddNewEmptyNote: (state, { payload }: PayloadAction<NoteType>) => {
         state.notes.push( payload );
         state.isSaving = false;
       },
-      onSetActiveNote: (state, { payload }: PayloadAction<Note>) => {
+      onSetActiveNote: (state, { payload }: PayloadAction<NoteType>) => {
         state.active = payload;
         state.messageSaved = '';
       },
-      onSetNotes: (state, { payload }: PayloadAction<Note[]>) => {
+      onSetNotes: (state, { payload }: PayloadAction<NoteType[]>) => {
         state.notes = payload;
       },
       onSetSaving: (state) => {
         state.isSaving = true;
         state.messageSaved = '';
       },
-      onNoteUpdated: (state, { payload }: PayloadAction<Note>) => {
+      onNoteUpdated: (state, { payload }: PayloadAction<NoteType>) => {
         state.isSaving = false;
         state.notes = state.notes.map( note => {
           if ( note.id === payload.id ) {

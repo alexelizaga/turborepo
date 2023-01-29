@@ -1,7 +1,7 @@
-export interface Note {
+export interface NoteType {
   id?: string,
-  title?: string,
   body?: string,
   date?: number,
-  imageUrls?: Array<string>
+  imageUrls?: Array<string>,
+  title?: string
 }

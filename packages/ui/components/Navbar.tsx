@@ -11,6 +11,7 @@ type Props = {
   title?: string;
   openSideMenu?: () => void;
   openModalMenu?: () => void;
+  onLogout?: () => void;
   sx?: SxProps<Theme>;
 }
 
@@ -18,9 +19,9 @@ export const Navbar: FC<Props> = ({
   title = '',
   openSideMenu,
   openModalMenu,
+  onLogout,
   sx
 }) => {
-  const onLogout = () => {}
   return (
     <AppBar
       position='fixed'
@@ -34,16 +35,19 @@ export const Navbar: FC<Props> = ({
             justifyContent="space-between"
             alignItems="center"
         >
-          { openSideMenu && (
-            <IconButton
-              color='inherit'
-              size='large'
-              edge='start'
-              onClick={openSideMenu}
-            >
-              <MenuIcon />
-            </IconButton>
-          )}
+          { openSideMenu ? (
+              <IconButton
+                color='inherit'
+                size='large'
+                edge='start'
+                onClick={openSideMenu}
+              >
+                <MenuIcon />
+              </IconButton>
+            ):(
+              <Box width={'64px'} />
+            )
+          }
           <Menu app={'Kanban'}>
             <ViewKanbanIcon sx={{ mr: 1 }} />
             <Typography variant='h6'>{ title }</Typography>
@@ -55,9 +59,11 @@ export const Navbar: FC<Props> = ({
                 </IconButton>
               )
             }
-            <IconButton color="inherit" onClick={onLogout}>
-              <LoginOutlined />
-            </IconButton>
+            { onLogout && (
+              <IconButton color="inherit" onClick={onLogout}>
+                <LoginOutlined />
+              </IconButton>
+            )}
           </Box>
         </Grid>
       </Toolbar>

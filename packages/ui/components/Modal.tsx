@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box } from '@mui/material';
 
 type Props = {
+  t?: any;
   open?: boolean;
   header?: {
     title?: string,
@@ -13,6 +14,7 @@ type Props = {
 }
 
 export const Modal: FC<Props> = ({
+  t,
   open = true,
   header,
   onClose,
@@ -36,8 +38,8 @@ export const Modal: FC<Props> = ({
       </DialogContent>
       { (onClose || onClick) && (
         <DialogActions>
-          { onClose && <Button onClick={onClose}>{'Cancel'}</Button> }
-          { onClick && <Button onClick={onClick}>{'Ok'}</Button> }
+          { onClose && <Button onClick={onClose}>{t && t('Cancel')}</Button> }
+          { onClick && <Button onClick={onClick}>{t && t('Ok')}</Button> }
         </DialogActions>
       )}
     </Dialog>

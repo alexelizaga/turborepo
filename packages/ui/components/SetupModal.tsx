@@ -2,6 +2,7 @@ import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@m
 import { FC } from 'react';
 
 type Props = {
+  t?: any;
   language?: string;
   themeColor?: string;
   handleLanguageChange?: (e: SelectChangeEvent) => void;
@@ -9,6 +10,7 @@ type Props = {
 }
 
 export const SetupModal: FC<Props> = ({
+  t,
   language,
   themeColor,
   handleLanguageChange,
@@ -17,13 +19,13 @@ export const SetupModal: FC<Props> = ({
   return (
     <>
       <FormControl sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel variant="standard" id="language-select-small">{"Language"}</InputLabel>
+        <InputLabel variant="standard" id="language-select-small">{t("Language")}</InputLabel>
         <Select
           variant="standard"
           labelId="language-select-small"
           id="language-select-small"
           value={language}
-          label={"Language"}
+          label={t("Language")}
           onChange={handleLanguageChange}
         >
           <MenuItem value={"en"}>English</MenuItem>
@@ -31,17 +33,17 @@ export const SetupModal: FC<Props> = ({
         </Select>
       </FormControl>
       <FormControl sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel variant="standard" id="theme-select-small">{"Theme"}</InputLabel>
+        <InputLabel variant="standard" id="theme-select-small">{t("Theme")}</InputLabel>
         <Select
           variant="standard"
           labelId="theme-select-small"
           id="theme-select-small"
           value={themeColor}
-          label={"Theme"}
+          label={t("Theme")}
           onChange={handleThemeChange}
         >
-          <MenuItem value={"dark"}>{'Dark'}</MenuItem>
-          <MenuItem value={"light"}>{'Light'}</MenuItem>
+          <MenuItem value={t("dark")}>{'Dark'}</MenuItem>
+          <MenuItem value={t("light")}>{'Light'}</MenuItem>
         </Select>
       </FormControl>
     </>

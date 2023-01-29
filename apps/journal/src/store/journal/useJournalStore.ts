@@ -2,7 +2,7 @@ import { collection, deleteDoc, doc, setDoc } from 'firebase/firestore/lite';
 
 import { FirebaseDB } from '../../firebase/config';
 import { filesDelete, fileUpload } from '../../helper';
-import { Note } from '../../interfaces';
+import { NoteType } from '../../interfaces';
 import { loadNotes } from '../../journal';
 import {
   useAppDispatch,
@@ -27,7 +27,7 @@ export const useJournalStore = () => {
   const startNewNote = async () => {
     savingNewNote();
 
-    const newNote: Note = {
+    const newNote: NoteType = {
       title: '',
       body: '',
       date: new Date().getTime(),
@@ -94,15 +94,15 @@ export const useJournalStore = () => {
     dispatch(onSavingNewNote());
   }
 
-  const addNewEmptyNote = (note: Note) => {
+  const addNewEmptyNote = (note: NoteType) => {
     dispatch(onAddNewEmptyNote(note));
   }
 
-  const setActiveNote = (note: Note) => {
+  const setActiveNote = (note: NoteType) => {
     dispatch(onSetActiveNote(note));
   }
 
-  const setNotes = (notes: Note[]) => {
+  const setNotes = (notes: NoteType[]) => {
     dispatch(onSetNotes(notes));
   }
 
@@ -110,7 +110,7 @@ export const useJournalStore = () => {
     dispatch(onSetSaving());
   }
 
-  const noteUpdated = (note: Note) => {
+  const noteUpdated = (note: NoteType) => {
     dispatch(onNoteUpdated(note));
   }
 

@@ -7,3 +7,4 @@ export * from './Navbar';
 export * from './NewEntry';
 export * from './SetupModal';
 export * from './Sidebar';
+export * from './SidebarItem';
