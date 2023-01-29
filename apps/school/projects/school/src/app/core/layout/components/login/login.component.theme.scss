@@ -1,0 +1,22 @@
+@import '~@angular/material/theming';
+
+@mixin login-component-theme($theme) {
+	$foreground: map-get($theme, foreground);
+	$primary: map-get($theme, primary);
+	$accent: map-get($theme, accent);
+	$warn: map-get($theme, warn);
+	$is-dark: map-get($theme, is-dark);
+
+	my-login > *[color='primary'] {
+		color: mat-color($primary);
+	}
+	my-login > *[color='accent'] {
+		color: mat-color($accent);
+	}
+	my-login > *[color='warn'] {
+		color: mat-color($warn);
+	}
+	my-login > p {
+		color: mat-color($foreground, text);
+	}
+}

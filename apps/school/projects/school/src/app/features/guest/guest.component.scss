@@ -1,0 +1,139 @@
+.container {
+	padding: 10px 20px 10px 20px;
+}
+
+.spotlight {
+	background-image: url('/assets/bg/1.png');
+	background-size: cover;
+	height: 500px;
+	text-align: center;
+	margin: -20px -20px 20px -20px;
+}
+
+.glass {
+	background: rgba(255, 255, 255, 0.25);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+	border-radius: 4px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	padding: 2em;
+	max-width: 800px;
+
+	& :nth-child(1) {
+		margin-bottom: 1em;
+	}
+
+	& > :is(h1, h2, h3, h4, p) {
+		text-shadow: 2px 2px 3px #333;
+	}
+}
+
+section {
+	padding: 0px 0px 10px 0px;
+}
+
+mat-divider {
+	margin: 0 auto;
+	width: 50%;
+	max-width: 800px;
+}
+
+.logo {
+	background-size: cover;
+	border-radius: 0 !important;
+	width: 4rem;
+	height: 4rem;
+}
+
+.logo-light {
+	background-image: url('/assets/logo/logo-light.svg');
+}
+
+.logo-dark {
+	background-image: url('/assets/logo/logo-dark.svg');
+}
+
+.course-buttons {
+	display: flex;
+	gap: 1em;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.course-buttons > button {
+	flex: 0 1 10em;
+}
+
+.article-sec {
+	margin: 3rem 0;
+	padding: 1rem 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	img {
+		height: 270px;
+		margin: 2em;
+	}
+
+	.text {
+		max-width: 50ch;
+		margin: 2em;
+	}
+}
+
+.try-now-banner {
+	width: 60%;
+	max-width: 900px;
+	margin: 20px auto;
+
+	mat-card {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 2em;
+		flex-wrap: wrap;
+	}
+}
+
+footer {
+	background-color: black;
+	color: whitesmoke;
+	padding: 2rem 0px;
+
+	mat-divider {
+		background-color: whitesmoke;
+		margin: 2em auto;
+		width: 80%;
+		max-width: 800px;
+	}
+
+	button:hover {
+		filter: brightness(50%);
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	.text {
+		order: 1;
+	}
+	.img {
+		order: 2;
+	}
+	.article-sec {
+		flex-direction: column;
+		& > :nth-child(1) {
+			justify-content: center;
+		}
+
+		// right element
+		& > :nth-child(2) {
+			justify-content: center;
+		}
+		img {
+			width: 200px;
+			margin: 0;
+		}
+	}
+}

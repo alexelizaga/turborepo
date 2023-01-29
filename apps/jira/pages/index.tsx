@@ -60,7 +60,7 @@ const HomePage: NextPage = () => {
   ]
 
   return (
-    <Layout title="Home - Jira">
+    <Layout title="Kanban">
       <EntryKanban boards={boards} />
     </Layout>
   )

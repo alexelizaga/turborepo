@@ -1,0 +1,47 @@
+<div *ngIf="authService?.user as user; else showLogin">
+	<button mat-icon-button [matMenuTriggerFor]="userMenu">
+		<img
+			class="round header-image"
+			src="{{
+				user?.photoURL || './../../../../../../assets/logo/profile.png'
+			}}"
+		/>
+	</button>
+	<mat-menu #userMenu="matMenu">
+		<!-- <div class="profile"> -->
+		<div class="profile-picture">
+			<img
+				class="round"
+				src="{{
+					user?.photoURL ||
+						'./../../../../../../assets/logo/profile.png'
+				}}"
+			/>
+		</div>
+		<p>{{ user?.displayName }}</p>
+		<p>{{ user?.email }}</p>
+		<p color="warn" *ngIf="!user?.emailVerified">Email sin verificar</p>
+		<button mat-flat-button color="accent" (click)="logout()">
+			Cerrar sesión
+		</button>
+	</mat-menu>
+</div>
+
+<ng-template #showLogin>
+	<button mat-button [matMenuTriggerFor]="loginMenu">Iniciar sesión</button>
+	<mat-menu #loginMenu="matMenu" xPosition="before">
+		<button
+			mat-menu-item
+			class="profile-btn text-left"
+			(click)="openDialog()"
+		>
+			<i class="far fa-envelope"></i> Email
+		</button>
+		<button mat-menu-item class="profile-btn text-left" (click)="Glogin()">
+			<i class="fab fa-google"></i> Google
+		</button>
+		<button mat-menu-item class="profile-btn text-left" (click)="Flogin()">
+			<i class="fab fa-facebook-f"></i> Facebook
+		</button>
+	</mat-menu>
+</ng-template>

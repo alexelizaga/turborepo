@@ -1,0 +1,45 @@
+@import '~@angular/material/theming';
+
+@mixin guest-component-theme($theme) {
+	$accent: map-get($theme, accent);
+	$is-dark: map-get($theme, is-dark);
+
+	my-guest {
+		h1,
+		h2,
+		h3,
+		h4 {
+			color: mat-color($accent);
+		}
+	}
+
+	@if $is-dark {
+		my-guest {
+			.spotlight {
+				h1,
+				h2 {
+					color: #f3f2f3;
+					text-shadow: 2px 2px 4px #2e2e2e;
+				}
+			}
+			.glass {
+				background: rgba(0, 0, 0, 0.25);
+				border: 1px solid rgba(0, 0, 0, 0.18);
+			}
+		}
+	} @else {
+		my-guest {
+			.spotlight {
+				h1,
+				h2 {
+					color: #f3f2f3;
+					text-shadow: 2px 2px 4px #2e2e2e;
+				}
+			}
+			.glass {
+				background: rgba(200, 200, 200, 0.25);
+				border: 1px solid rgba(200, 200, 200, 0.18);
+			}
+		}
+	}
+}

@@ -1,0 +1,31 @@
+<div *ngFor="let tech of techs" class="course-group">
+	<div
+		*ngIf="techs.length > 1"
+		fxLayout="row"
+		fxLayoutAlign="space-between center"
+		style="padding: 10px; border: 1px solid; margin-bottom: 10px"
+	>
+		<h3 style="margin: 0">
+			{{ tech.label | uppercase }}
+		</h3>
+		<fa-layers *ngIf="tech.icon" size="2x" [class]="tech.label + '-color'">
+			<fa-icon [icon]="tech.icon"></fa-icon>
+		</fa-layers>
+	</div>
+
+	<div fxLayout="row wrap" fxLayoutGap="16px grid">
+		<div
+			fxFlex="25%"
+			fxFlex.md="33%"
+			fxFlex.sm="50%"
+			fxFlex.xs="100%"
+			*ngFor="let course of coursesByTech[tech.label]"
+		>
+			<my-course-card [course]="course"></my-course-card>
+		</div>
+	</div>
+
+	<div *ngIf="!coursesByTech[tech.label]">
+		<h1>Próximamente ...</h1>
+	</div>
+</div>

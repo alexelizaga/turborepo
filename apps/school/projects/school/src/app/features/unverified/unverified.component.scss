@@ -1,0 +1,22 @@
+.content {
+  padding: 16px;
+}
+.content > mat-card {
+  width: 200px;
+}
+.logo {
+	background-size: cover;
+	border-radius: 0 !important;
+}
+
+.logo-light {
+	background-image: url('/assets/logo/logo-light.svg');
+}
+
+.logo-dark {
+	background-image: url('/assets/logo/logo-dark.svg');
+}
+
+button {
+  width: 100%;
+}

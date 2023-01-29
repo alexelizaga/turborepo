@@ -1,0 +1,143 @@
+<div fxLayout="column" class="container">
+	<div class="spotlight" fxLayout="column" fxLayoutAlign="center center">
+		<div class="glass">
+			<h1>
+				Una nueva forma de aprender desarrollo web a nivel profesional
+				desde cero
+			</h1>
+			<h3>Crea tu cuenta gratis para ver nuestros cursos</h3>
+		</div>
+	</div>
+	<section>
+		<div class="course-buttons">
+			<button
+				mat-stroked-button
+				[routerLink]="'/courses/angular'"
+				style="height: 60px; width: 100%"
+			>
+				Angular
+			</button>
+
+			<button
+				mat-stroked-button
+				[routerLink]="'/courses/react'"
+				style="height: 60px; width: 100%"
+			>
+				React
+			</button>
+
+			<button
+				mat-stroked-button
+				[routerLink]="'/courses/vue'"
+				style="height: 60px; width: 100%"
+			>
+				Vue
+			</button>
+
+			<button
+				mat-stroked-button
+				[routerLink]="'/courses/flutter'"
+				style="height: 60px; width: 100%"
+			>
+				Flutter
+			</button>
+
+			<button
+				mat-stroked-button
+				[routerLink]="'/courses'"
+				style="height: 60px; width: 100%"
+			>
+				Todos
+			</button>
+		</div>
+	</section>
+	<article>
+		<div class="article-sec">
+			<div class="text">
+				<h2>Más rápido que los vídeos</h2>
+				<p>
+					El ritmo lo marcas tú, copia y pega, repasa conceptos o ve
+					directamente al código.
+				</p>
+			</div>
+			<div class="img">
+				<img src="../../../assets/bg/2.svg" />
+			</div>
+		</div>
+		<mat-divider></mat-divider>
+		<div class="article-sec">
+			<div class="img">
+				<img src="../../../assets/bg/3.svg" />
+			</div>
+			<div class="text">
+				<h2>Código actualizado</h2>
+				<p>
+					Nos comprometemos a actualizar los cursos con frecuencia y
+					que el código siempre funcione.
+				</p>
+			</div>
+		</div>
+		<mat-divider></mat-divider>
+		<div class="article-sec">
+			<div class="text">
+				<h2>Dos formatos para tus cursos</h2>
+				<p>
+					Modo presentación y modo libro. La simplicidad de las
+					presentaciones o lo versatilidad de ver todo el contenido.
+				</p>
+			</div>
+			<div class="img">
+				<img src="../../../assets/bg/1.svg" />
+			</div>
+		</div>
+		<mat-divider></mat-divider>
+		<div class="article-sec">
+			<div class="img">
+				<img src="../../../assets/bg/4.svg" />
+			</div>
+			<div class="text">
+				<h2>Las tecnologías más utilizadas</h2>
+				<p>
+					Aprenderás a desarrollar con las tecnologías más potentes y
+					versátiles del mercado. Desde el prototipo hasta la
+					implementación global.
+				</p>
+			</div>
+		</div>
+
+		<div class="try-now-banner">
+			<mat-card>
+				<div mat-card-avatar class="logo logo-dark dark"></div>
+				<div mat-card-avatar class="logo logo-light light"></div>
+				<div>
+					<h2>Pruébalo ahora</h2>
+					<p>Aprende en español y por solo 5€/mes</p>
+				</div>
+			</mat-card>
+		</div>
+	</article>
+</div>
+
+<footer fxLayout="column" fxLayoutAlign="space-around stretch">
+	<div fxLayout="row" fxLayoutAlign="space-around center">
+		<div fxLayout="row wrap" fxLayoutAlign="space-around center">
+			<button mat-button [routerLink]="'/courses/angular'">
+				Angular
+			</button>
+			<button mat-button [routerLink]="'/courses/react'">React</button>
+			<button mat-button [routerLink]="'/courses/vue'">Vue</button>
+			<button mat-button [routerLink]="'/courses/flutter'">
+				Flutter
+			</button>
+		</div>
+		<div>
+			<button mat-button [routerLink]="'/subscribe'">Precios</button>
+		</div>
+	</div>
+	<mat-divider></mat-divider>
+	<div fxLayout="row" fxLayoutAlign="center">
+		<button mat-button [routerLink]="'/terms'">
+			Política de privacidad y Aviso legal
+		</button>
+	</div>
+</footer>

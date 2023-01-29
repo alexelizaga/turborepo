@@ -1,0 +1,28 @@
+.round {
+	border-radius: 50%;
+}
+.mat-menu-content {
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	button {
+		text-align: center;
+	}
+
+	// login icons: mail, google, facebook
+	.far,
+	.fab {
+		margin-right: 10px;
+	}
+}
+.profile-picture {
+	width: 100px;
+	height: 100px;
+}
+
+// user round image on navbar
+.header-image {
+	height: 35px;
+	width: 35px;
+}

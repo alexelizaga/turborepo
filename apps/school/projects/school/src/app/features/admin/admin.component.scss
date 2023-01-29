@@ -1,0 +1,33 @@
+.content {
+  position: absolute;
+  top: 58px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+table {
+  width: 100%;
+}
+th.mat-header-cell {
+  color: black;
+  font-weight: bold;
+  padding-right: 8px;
+}
+tr.mat-header-row {
+  height: 65px;
+}
+tr.mat-row {
+  height: 65px;
+}
+td.mat-column-cap {
+  width: 50px;
+}
+td.mat-column-id {
+  width: 230px;
+}
+td.mat-column-hide {
+  width: 80px;
+}
+td.mat-column-edit {
+  width: 20px;
+}

@@ -1,0 +1,15 @@
+<mat-accordion>
+	<mat-expansion-panel
+		*ngFor="let section of sections"
+		[id]="section.id"
+		[expanded]="section.id === expanded"
+	>
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				<mat-icon>{{ section.icon }}</mat-icon>
+				<h3>{{ section.title }}</h3>
+			</mat-panel-title>
+		</mat-expansion-panel-header>
+		<markdown [src]="section.md"></markdown>
+	</mat-expansion-panel>
+</mat-accordion>

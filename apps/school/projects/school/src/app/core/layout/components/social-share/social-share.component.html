@@ -1,0 +1,33 @@
+<button mat-icon-button [matMenuTriggerFor]="socialMenu" aria-label="share icon">
+  <mat-icon>share</mat-icon>
+</button>
+
+<mat-menu #socialMenu="matMenu" xPosition="before">
+  <mat-list>
+    <a mat-menu-item
+      href="https://www.instagram.com/br0codeapp" target="_blank">
+      <i class="fab fa-instagram"></i> Instagram
+    </a>
+
+    <a mat-menu-item
+      href="https://www.facebook.com/brocodeapp" target="_blank">
+      <i class="fab fa-facebook"></i> Facebook
+    </a>
+
+    <a mat-menu-item
+      href="https://twitter.com/brocodefriends" target="_blank">
+      <i class="fab fa-twitter"></i> Twitter
+    </a>
+
+    <a mat-menu-item
+      href="https://brocodeapp.tumblr.com/" target="_blank">
+      <i class="fab fa-tumblr"></i> Tumblr
+    </a>
+
+    <a mat-menu-item
+      href="https://teespring.com/es/stores/brocodeapp" target="_blank">
+      <i class="fas fa-gift"></i>&nbsp; Tienda
+    </a>
+
+  </mat-list>
+</mat-menu>

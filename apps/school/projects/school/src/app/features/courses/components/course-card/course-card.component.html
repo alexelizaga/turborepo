@@ -1,0 +1,76 @@
+<mat-card>
+	<div
+		class="course-img"
+		[style.background-image]="'url(' + course!.img + ')'"
+	>
+		<div class="course-title" *ngIf="course?.courseName as courseName;">
+			<div class="left-tag tag">{{ courseName }}</div>
+		</div>
+
+		<div class="cap" *ngIf="course?.cap as cap;">
+			<div class="tag">{{ cap }}</div>
+		</div>
+		<div
+			*ngIf="course!.comingSoon; else course_ready"
+			class="disabled-course"
+		>
+			<h3 class="comingSoon">Próximamente</h3>
+		</div>
+		<ng-template #course_ready>
+			<div>
+				<button
+					mat-flat-button
+					*ngIf="freeCourse() && !userLogged()"
+					class="disabled-course"
+					color="accent"
+					aria-label="Inicia sesión para acceder"
+				>
+					<h3>Inicia sesión</h3>
+				</button>
+				<button
+					color="accent"
+					mat-flat-button
+					*ngIf="freeCourse() && userLogged()"
+					routerLink="/courses/{{ course!.tech }}/{{ course!.id }}"
+					aria-label="Acceder al curso"
+				>
+					<h3>Entrar</h3>
+				</button>
+				<button
+					mat-fab
+					color="accent"
+					aria-label="Subscribe"
+					*ngIf="paidCourseLock()"
+					routerLink="/subscribe"
+					class="disabled-course"
+				>
+					<mat-icon>lock</mat-icon>
+				</button>
+			</div>
+		</ng-template>
+	</div>
+
+	<mat-card-content>
+		<mat-accordion>
+			<mat-expansion-panel [disabled]="!course?.description">
+				<mat-expansion-panel-header>
+					<mat-card-header>
+						<div
+							mat-card-avatar
+							class="logo logo-light light"
+						></div>
+						<div mat-card-avatar class="logo logo-dark dark"></div>
+						<mat-card-title>{{ course?.title }}</mat-card-title>
+						<mat-card-subtitle>{{
+							course?.tech | titlecase
+						}}</mat-card-subtitle>
+					</mat-card-header>
+				</mat-expansion-panel-header>
+				<markdown
+					ngPreserveWhitespaces
+					[data]="course?.description"
+				></markdown>
+			</mat-expansion-panel>
+		</mat-accordion>
+	</mat-card-content>
+</mat-card>

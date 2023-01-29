@@ -1,0 +1,147 @@
+<mat-drawer-container>
+	<!-- Material Toolbar -->
+	<mat-toolbar color="primary">
+		<mat-toolbar-row>
+			<div fxHide.gt-xs>
+				<button
+					mat-icon-button
+					aria-label="menu icon"
+					(click)="drawer.toggle()"
+				>
+					<mat-icon>menu</mat-icon>
+				</button>
+			</div>
+
+			<my-logo [small]="true" fxHide.gt-xs></my-logo>
+			<my-logo [small]="false" fxHide.lt-sm></my-logo>
+
+			<div fxHide.lt-sm>
+				<button
+					mat-stroked-button
+					[matMenuTriggerFor]="beforeMenu"
+					[ngClass]="selectedTech.value"
+				>
+					{{ selectedTech.viewValue }}
+					<mat-icon>keyboard_arrow_down</mat-icon>
+				</button>
+			</div>
+			<mat-menu #beforeMenu="matMenu" xPosition="after">
+				<!--
+				<button mat-menu-item [routerLink]="'/courses/'">
+					{{ allCourses.viewValue }}
+				</button>
+        -->
+				<button
+					*ngFor="let t of techs"
+					mat-menu-item
+					[routerLink]="'/courses/' + t.value"
+				>
+					{{ t.viewValue }}
+				</button>
+			</mat-menu>
+
+			<span fxFlex="1 1 100%"></span>
+			<div fxHide.lt-sm>
+				<button
+					style="margin-left: 10px; border-color: #43a047"
+					mat-stroked-button
+					*ngIf="authService?.user?.isSubscribed === false"
+					[routerLink]="'/subscribe'"
+				>
+					Subscríbete
+				</button>
+			</div>
+			<my-theme-switch></my-theme-switch>
+			<button
+				*ngIf="authService?.user"
+				(click)="openDialog()"
+				mat-icon-button
+				class="icon favorite-icon"
+				aria-label="heart icon"
+			>
+				<mat-icon>feedback</mat-icon>
+			</button>
+			<my-social-share></my-social-share>
+			<my-login></my-login>
+		</mat-toolbar-row>
+	</mat-toolbar>
+
+	<!-- Material Sidenav -->
+	<mat-drawer #drawer class="sidenav" mode="over" role="navigation">
+		<mat-toolbar color="primary">
+			<mat-toolbar-row>
+				<button
+					mat-icon-button
+					class="icon"
+					aria-label="menu icon"
+					(click)="drawer.toggle()"
+				>
+					<mat-icon>close</mat-icon>
+				</button>
+			</mat-toolbar-row>
+		</mat-toolbar>
+		<mat-nav-list>
+			<a
+				*ngFor="let tech of techs"
+				mat-list-item
+				[routerLink]="'/courses/' + tech.value"
+				routerLinkActive="active"
+				(click)="drawer.close()"
+			>
+				<span class="menu-list-item">{{ tech.viewValue }}</span>
+			</a>
+		</mat-nav-list>
+		<mat-nav-list style="position: absolute; bottom: 40px; width: 100%">
+			<a
+				mat-list-item
+				[routerLink]="'/subscribe'"
+				routerLinkActive="active"
+				(click)="drawer.close()"
+			>
+				<mat-icon>local_offer</mat-icon
+				><span class="menu-list-item">Precios</span>
+			</a>
+			<!-- TODO: Admin Page -->
+			<a
+				*ngIf="authService?.user?.isAdmin"
+				mat-list-item
+				[routerLink]="'/admin'"
+				routerLinkActive="active"
+			>
+				<mat-icon>admin_panel_settings</mat-icon
+				><span class="menu-list-item">Administración</span>
+			</a>
+			<!-- TODO: Terms and privacy Page -->
+			<a
+				mat-list-item
+				[routerLink]="'/terms'"
+				routerLinkActive="active"
+				(click)="drawer.close()"
+			>
+				<mat-icon>policy</mat-icon
+				><span class="menu-list-item">Términos y privacidad</span>
+			</a>
+		</mat-nav-list>
+	</mat-drawer>
+
+	<div class="content">
+		<router-outlet></router-outlet>
+	</div>
+</mat-drawer-container>
+
+<div class="grdp" role="alert" [hidden]="!cookieDialogVisible">
+	<h2>Tu privacidad nos importa</h2>
+	<p>
+		Utilizamos cookies propias y de terceros para mejorar nuestros servicios
+		y mostrarte publicidad relacionada con tus preferencias mediante el
+		análisis de tus hábitos de navegación.
+	</p>
+	<p>
+		Puede obtener más información en nuestra
+		<a href="/terms#cookies_policy">Política de Cookies.</a>
+		Pulse el botón aceptar, para confirmar que ha leído y aceptado la
+		información presentada. Después de aceptar no volveremos a mostrar este
+		mensaje.
+	</p>
+	<button mat-flat-button (click)="onCookiesAccepted()">Aceptar</button>
+</div>

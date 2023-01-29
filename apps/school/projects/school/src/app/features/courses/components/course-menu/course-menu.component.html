@@ -1,0 +1,24 @@
+<mat-toolbar fxLayout="row" fxLayoutAlign="space-between center">
+	<button mat-icon-button [routerLink]="backRoute">
+		<i class="fas fa-chevron-left"></i>
+	</button>
+
+	<button mat-icon-button *ngIf="markdownMode" (click)="toggleMode()">
+		<i class="far fa-file-powerpoint"></i>
+	</button>
+
+	<button mat-icon-button *ngIf="!markdownMode" (click)="toggleMode()">
+		<i class="far fa-file-alt"></i>
+	</button>
+
+	<div class="font-selector">
+		<button mat-icon-button (click)="reduceFont()">
+			<i class="fas fa-font"></i>
+		</button>
+		<button mat-icon-button (click)="increaseFont()">
+			<i class="fas fa-font"></i>
+		</button>
+	</div>
+</mat-toolbar>
+<h4>{{ title }}</h4>
+<my-course-index [headings]="headings"></my-course-index>

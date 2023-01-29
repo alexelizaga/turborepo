@@ -1,0 +1,88 @@
+<div class="content" *ngIf="authService?.user as user">
+	<div
+		fxLayout="row wrap"
+		fxLayoutAlign="center center"
+		fxLayoutGap="16px grid"
+	>
+		<div
+			*ngIf="!user?.emailVerified"
+			fxFlex.xs="100%"
+			fxFlex.sm="100%"
+			fxFlex="100%"
+		>
+			<mat-card class="mat-elevation-z4">
+				<div class="container">
+					<mat-card-header>
+						<div
+							mat-card-avatar
+							class="logo logo-light light"
+						></div>
+						<div mat-card-avatar class="logo logo-dark dark"></div>
+						<h1 class="mat-display-2">Bienvenido</h1>
+					</mat-card-header>
+					<mat-card-content class="mat-body-1">
+						<p class="mat-body-1">
+							Hola <b>{{ user?.displayName || user?.email }}</b
+							>,
+						</p>
+						<p class="mat-body-1">
+							Te hemos mandado un email para que puedas verificar
+							tu correo y de esta forma completar el registro.
+						</p>
+						<p class="mat-body-1">
+							Es genial tenerte a bordo. Gracias por registrarte y
+							nos vemos dentro.
+						</p>
+						<div style="height: 20px; width: 100%"></div>
+						<p style="text-align: right" class="mat-body-1">
+							Atentamente,<br />el equipo BroCode
+						</p>
+					</mat-card-content>
+				</div>
+			</mat-card>
+		</div>
+		<div
+			*ngIf="user?.emailVerified"
+			fxFlex.xs="100%"
+			fxFlex.sm="100%"
+			fxFlex="100%"
+		>
+			<mat-card class="mat-elevation-z4">
+				<div class="container">
+					<mat-card-header>
+						<div
+							mat-card-avatar
+							class="logo logo-light light"
+						></div>
+						<div mat-card-avatar class="logo logo-dark dark"></div>
+						<h1 class="mat-display-2">Bienvenido</h1>
+					</mat-card-header>
+					<mat-card-content class="mat-body-1">
+						<p>
+							Hola <b>{{ user?.displayName || user?.email }}</b
+							>,
+						</p>
+						<p>
+							Tu dirección de email ha sido confirmada, esperamos
+							que te guste nuestro servicio.
+						</p>
+						<p>
+							Es genial tenerte a bordo. Gracias por validarte y
+							nos vemos dentro.
+						</p>
+						<div style="height: 20px; width: 100%"></div>
+					</mat-card-content>
+					<mat-card-actions>
+						<button
+							mat-raised-button
+							color="accent"
+							routerLink="/courses"
+						>
+							Empezar
+						</button>
+					</mat-card-actions>
+				</div>
+			</mat-card>
+		</div>
+	</div>
+</div>

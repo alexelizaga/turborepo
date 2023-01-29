@@ -1,0 +1,9 @@
+@import '~@angular/material/theming';
+
+@mixin course-card-component-theme($theme) {
+	$accent: map-get($theme, accent);
+	.comingSoon {
+		background-color: mat-color($accent);
+		color: whitesmoke;
+	}
+}

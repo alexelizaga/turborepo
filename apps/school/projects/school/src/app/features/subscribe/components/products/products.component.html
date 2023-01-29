@@ -1,0 +1,46 @@
+<div class="content">
+	<div
+		fxLayout="row wrap"
+		fxLayoutAlign="space-evenly center"
+		fxLayoutGap="16px grid"
+	>
+		<div fxFlex.xs="100%" fxFlex.sm="50%" fxFlex="50%">
+			<mat-card class="mat-elevation-z4">
+				<img
+					mat-card-image
+					src="/assets/bg/2.png"
+					alt="Membership photo"
+				/>
+				<mat-card-header>
+					<div mat-card-avatar class="logo logo-light light"></div>
+					<div mat-card-avatar class="logo logo-dark dark"></div>
+					<mat-card-title>Cuenta {{ product.name }}</mat-card-title>
+					<mat-card-subtitle
+						>{{
+							priceMonth | currency: 'EUR':true
+						}}/mes</mat-card-subtitle
+					>
+				</mat-card-header>
+				<mat-card-content>
+					<p>{{ product.description }}</p>
+				</mat-card-content>
+				<mat-card-actions>
+					<div *ngIf="!authService?.user">
+						<button mat-raised-button disabled color="primary">
+							Necesitas registrarte
+						</button>
+					</div>
+					<div *ngIf="authService?.user">
+						<button
+							mat-raised-button
+							color="primary"
+							(click)="checkout(product.prices[0])"
+						>
+							Suscribirse
+						</button>
+					</div>
+				</mat-card-actions>
+			</mat-card>
+		</div>
+	</div>
+</div>

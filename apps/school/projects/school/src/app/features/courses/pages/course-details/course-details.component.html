@@ -1,0 +1,39 @@
+<div
+	*ngIf="loading"
+	fxLayout="row"
+	fxLayoutAlign="center center"
+	style="height: 100%"
+>
+	<mat-spinner></mat-spinner>
+</div>
+
+<div
+	*ngIf="!loading && !iframe && courseUrl"
+	fxLayout="row"
+	style="height: 100%"
+>
+	<my-course-menu
+		*ngIf="!fullScreen"
+		[title]="courseTitle"
+		[headings]="headings"
+		[markdownMode]="markdownMode"
+		(toggleModeEvent)="onModeChange($event)"
+		(fontSizeEvent)="onFontSizeChange($event)"
+		class="menu"
+		fxLayout="column"
+		fxFlex="1 0 220px"
+		fxFlexAlign="flex-start"
+		fxHide.lt-sm
+	></my-course-menu>
+	<my-course-content
+		(titleEvent)="setTitle($event)"
+		(headingsEvent)="setHeadings($event)"
+		[markdownMode]="markdownMode"
+		[src]="courseUrl"
+		class="content"
+	></my-course-content>
+</div>
+
+<div *ngIf="!loading && iframe && courseUrl" class="viewer">
+	<iframe [src]="safeCourseUrl"></iframe>
+</div>
