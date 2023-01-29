@@ -1,22 +1,22 @@
 import { UIState } from './';
 
 type UIActionType =
-| { type: '[UI] - Open Sidebar' }
-| { type: '[UI] - Close Sidebar' }
+| { type: '[UI] - Set isModalOpen', payload: boolean }
+| { type: '[UI] - Set isSidebarOpen', payload: boolean }
 | { type: '[UI] - Set isAddingEntry', payload: boolean }
 | { type: '[UI] - Set isDraggingEntry', payload: boolean }
 
 export const uiReducer = ( state: UIState, action: UIActionType ): UIState => {
   switch (action.type) {
-    case '[UI] - Open Sidebar':
+    case '[UI] - Set isModalOpen':
       return {
         ...state,
-        sidemenuOpen: true
+        isModalOpen: action.payload
       }
-    case '[UI] - Close Sidebar':
+    case '[UI] - Set isSidebarOpen':
       return {
         ...state,
-        sidemenuOpen: false
+        isSidebarOpen: action.payload
       }
     case '[UI] - Set isAddingEntry':
       return {

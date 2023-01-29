@@ -24,5 +24,6 @@ export const Dark: ComponentStory<typeof Navbar> = (args) => (
 
 Light.args = Dark.args = {
   title: 'BroCode',
-  openSideMenu: () => {}
+  openSideMenu: () => {},
+  openModalMenu: () => {}
 };

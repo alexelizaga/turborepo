@@ -1,15 +1,12 @@
-import { useNavigate } from "react-router-dom";
 import { AppBar, Grid, IconButton, Toolbar, Typography, Box, Container } from '@mui/material';
 import { LoginOutlined } from "@mui/icons-material";
 import ListAltTwoToneIcon from '@mui/icons-material/ListAltTwoTone';
-import CalendarMonthTwoToneIcon from '@mui/icons-material/CalendarMonthTwoTone';
 
 import { useAuthStore } from '../../store';
 import { BcModalSetup } from "../../shared";
 
 
 export const Navbar = () => {
-  const navigate = useNavigate();
   const { displayName, startLogout } = useAuthStore();
 
   const onLogout = () => {
