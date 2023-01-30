@@ -9,7 +9,7 @@ export const ColorModeContext = createContext({
 });
 
 export const AppTheme = ({ children }: any) => {  
-  const [mode, setMode] = useState<PaletteMode>('dark');
+  const [mode, setMode] = useState<PaletteMode>('light');
 
   const colorMode = useMemo(
     () => ({
