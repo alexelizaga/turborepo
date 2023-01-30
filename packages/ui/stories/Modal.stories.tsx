@@ -5,6 +5,7 @@ import SettingsIcon from '@mui/icons-material/SettingsTwoTone';
 
 import { darkTheme, lightTheme } from '../';
 import { Modal } from '../components';
+import { DarkBackground } from '../helpers';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -19,9 +20,11 @@ export const Light: ComponentStory<typeof Modal> = (args) => (
 );
 
 export const Dark: ComponentStory<typeof Modal> = (args) => (
-  <ThemeProvider theme={darkTheme}>
-    <Modal {...args}/>
-  </ThemeProvider>
+  <DarkBackground>
+    <ThemeProvider theme={darkTheme}>
+      <Modal {...args}/>
+    </ThemeProvider>
+  </DarkBackground>
 );
 
 Light.args = Dark.args = {

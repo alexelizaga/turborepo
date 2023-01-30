@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { darkTheme, lightTheme } from '../';
 import { EntryList } from '../components';
+import { DarkBackground } from '../helpers';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -18,9 +19,11 @@ export const Light: ComponentStory<typeof EntryList> = (args) => (
 );
 
 export const Dark: ComponentStory<typeof EntryList> = (args) => (
-  <ThemeProvider theme={darkTheme}>
-    <EntryList {...args}/>
-  </ThemeProvider>
+  <DarkBackground>
+    <ThemeProvider theme={darkTheme}>
+      <EntryList {...args}/>
+    </ThemeProvider>
+  </DarkBackground>
 );
 
 Light.args = Dark.args = {

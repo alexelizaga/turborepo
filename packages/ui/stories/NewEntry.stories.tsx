@@ -3,6 +3,7 @@ import { ThemeProvider } from '@mui/material';
 
 import { darkTheme, lightTheme } from '../';
 import { NewEntry } from '../components';
+import { DarkBackground } from '../helpers';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -18,9 +19,11 @@ const LightTemplate: ComponentStory<typeof   NewEntry> = (args) => (
 );
 
 const DarkTemplate: ComponentStory<typeof   NewEntry> = (args) => (
-  <ThemeProvider theme={darkTheme}>
-    <NewEntry {...args}/>
-  </ThemeProvider>
+  <DarkBackground>
+    <ThemeProvider theme={darkTheme}>
+      <NewEntry {...args}/>
+    </ThemeProvider>
+  </DarkBackground>
 );
 
 export const Light = LightTemplate.bind({});

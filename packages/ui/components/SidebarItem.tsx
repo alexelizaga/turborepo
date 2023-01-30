@@ -1,18 +1,21 @@
-import { FC, useMemo } from "react";
+import { FC, useMemo } from 'react';
 import {
   Grid,
   ListItem,
   ListItemButton,
   ListItemIcon,
-  ListItemText
-} from "@mui/material";
+  ListItemText,
+  SxProps,
+  Theme
+} from '@mui/material';
 import TurnedInNotIcon from '@mui/icons-material/TurnedInNot';
 
-import { NoteType } from "../interfaces";
+import { NoteType } from '../interfaces';
 
 
 type Props = {
   onClickNote: (note: NoteType) => void;
+  sx?: SxProps<Theme>
 }
 
 export const SidebarItem: FC<NoteType & Props> = ({
@@ -21,7 +24,8 @@ export const SidebarItem: FC<NoteType & Props> = ({
   id = '',
   date = 0,
   imageUrls = [],
-  onClickNote
+  onClickNote,
+  sx
 }) => {
   const newTitle = useMemo( () => {
     return title.length > 20
@@ -30,7 +34,7 @@ export const SidebarItem: FC<NoteType & Props> = ({
   }, [title])
 
   return (
-    <ListItem disablePadding>
+    <ListItem disablePadding sx={sx}>
       <ListItemButton
         onClick={() => onClickNote({
           title,

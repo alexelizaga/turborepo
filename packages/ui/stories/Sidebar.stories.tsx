@@ -5,6 +5,7 @@ import InboxOutlinedIcon from '@mui/icons-material/InboxOutlined';
 
 import { darkTheme, lightTheme } from '../';
 import { Sidebar } from '../components';
+import { DarkBackground } from '../helpers';
 
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -15,30 +16,24 @@ export default {
 
 export const Light: ComponentStory<typeof Sidebar> = (args) => (
   <ThemeProvider theme={lightTheme}>
-    < Sidebar {...args}/>
+    < Sidebar {...args} />
   </ThemeProvider>
 );
 
 export const Dark: ComponentStory<typeof Sidebar> = (args) => (
-  <ThemeProvider theme={darkTheme}>
-    < Sidebar {...args}/>
-  </ThemeProvider>
+  <DarkBackground>
+    <ThemeProvider theme={darkTheme}>
+      < Sidebar {...args} />
+    </ThemeProvider>
+  </DarkBackground>
 );
 
 Light.args = Dark.args = {
+  header: {
+    title: 'Menu'
+  },
   anchor: 'left',
   open: true,
   width: 250,
-  menuItems: [
-    { text: "Inbox", icon: <EmailOutlinedIcon /> },
-    { text:  "Starred", icon: <InboxOutlinedIcon /> },
-    { text:  "Send Email", icon: <EmailOutlinedIcon /> },
-    { text:  "Drafts", icon: <InboxOutlinedIcon /> }
-  ],
-  menuActions: [
-    { text: "Inbox", icon: <EmailOutlinedIcon /> },
-    { text:  "Starred", icon: <InboxOutlinedIcon /> },
-    { text:  "Send Email", icon: <EmailOutlinedIcon /> },
-    { text:  "Drafts", icon: <InboxOutlinedIcon /> }
-  ]
+  
 };

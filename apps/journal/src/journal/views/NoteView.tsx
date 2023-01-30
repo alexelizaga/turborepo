@@ -5,7 +5,7 @@ import { Button, Grid, IconButton, TextField, Typography } from '@mui/material';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.css';
 
-import { useForm } from '../../hooks';
+import { useForm } from 'ui';
 import { ImageGallery } from '../components';
 import { useJournalStore } from '../../store';
 
