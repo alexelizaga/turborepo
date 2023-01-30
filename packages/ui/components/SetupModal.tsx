@@ -48,8 +48,8 @@ export const SetupModal: FC<Props> = ({
           label={t("Theme")}
           onChange={handleThemeChange}
         >
-          <MenuItem value={t("dark")}>{'Dark'}</MenuItem>
-          <MenuItem value={t("light")}>{'Light'}</MenuItem>
+          <MenuItem value={"light"}>{ t('Light') }</MenuItem>
+          <MenuItem value={"dark"}>{ t('Dark') }</MenuItem>
         </Select>
       </FormControl>
     </>

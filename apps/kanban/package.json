@@ -1,0 +1,53 @@
+{
+  "name": "kanban",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite --port 3003",
+    "build-prod": "tsc && vite build",
+    "build-dev": "tsc && vite build -m development",
+    "deploy-prod": "tsc && vite build && firebase use prod && firebase deploy",
+    "deploy-dev": "tsc && vite build -m development && firebase use dev && firebase deploy",
+    "preview": "vite preview",
+    "test": "jest --watchAll",
+    "server": "firebase emulators:start"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/icons-material": "^5.10.9",
+    "@mui/material": "^5.10.10",
+    "@mui/x-date-pickers": "^5.0.12",
+    "@reduxjs/toolkit": "^1.8.6",
+    "@types/react-redux": "^7.1.24",
+    "date-fns": "^2.29.3",
+    "firebase": "^9.12.1",
+    "formik": "^2.2.9",
+    "i18next": "^22.4.8",
+    "react": "^18.2.0",
+    "react-big-calendar": "^1.5.2",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^12.1.4",
+    "react-redux": "^8.0.4",
+    "react-router-dom": "6",
+    "sweetalert2": "^11.6.9"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.18.6",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/jest": "^29.2.3",
+    "@types/react": "^18.0.17",
+    "@types/react-big-calendar": "^0.38.3",
+    "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^2.1.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.3.1",
+    "jest-environment-jsdom": "^29.3.1",
+    "typescript": "^4.6.4",
+    "vite": "^3.1.0"
+  }
+}

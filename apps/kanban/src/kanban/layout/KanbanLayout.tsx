@@ -8,7 +8,7 @@ import { useAuthStore } from "../../store";
 import { ColorModeContext } from "../../theme";
 
 
-export const CalendarLayout = ({ children }: any) => {
+export const KanbanLayout = ({ children }: any) => {
   const [openModal, setOpenModal] = useState(false);
 
   const { startLogout } = useAuthStore();
@@ -31,7 +31,7 @@ export const CalendarLayout = ({ children }: any) => {
   return (
     <Box sx={{ display: 'flex'}}>
         <Navbar
-          title="Calendar"
+          title="Kanban"
           openModalMenu={() => setOpenModal(true)}
           onLogout={startLogout}
         />

@@ -21,7 +21,7 @@ export const JournalLayout = ({ children }: any) => {
   const { t, i18n } = useTranslation(['shared']);
   const [language, setLanguage] = useState('es');
   const { selectColorMode  } = useContext(ColorModeContext);
-  const [themeColor, setThemeColor] = useState('dark');
+  const [themeColor, setThemeColor] = useState('light');
   const analytics = getAnalytics();
   const dispatch = useAppDispatch();
 

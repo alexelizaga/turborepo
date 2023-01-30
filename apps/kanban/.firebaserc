@@ -1,0 +1,25 @@
+{
+  "projects": {
+    "default": "brocodeappsprod",
+    "dev": "brocodeappsdev",
+    "prod": "brocodeappsprod",
+    "test": "brocodeappstest"
+  },
+  "targets": {
+    "brocodeappsdev": {
+      "hosting": {
+        "kanban": [
+          "brocodekanbandev"
+        ]
+      }
+    },
+    "brocodeappsprod": {
+      "hosting": {
+        "kanban": [
+          "brocodekanbanprod"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
