@@ -9,7 +9,7 @@ import { DarkBackground } from '../helpers';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'NAVIGATION/LoginForm',
+  title: 'INPUTS/LoginForm',
   component: LoginForm
 } as ComponentMeta<typeof LoginForm>;
 
