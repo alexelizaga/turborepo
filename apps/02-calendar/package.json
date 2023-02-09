@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite --port 3001",
+    "dev": "vite --port 3002",
     "build-prod": "tsc && vite build",
     "build-dev": "tsc && vite build -m development",
     "deploy-prod": "tsc && vite build && firebase use prod && firebase deploy",
