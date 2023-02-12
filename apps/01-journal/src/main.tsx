@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { store } from './store';
 import { BrocodeApps } from './BrocodeApps';
 import "./i18n";
-import './styles.css';
+import 'ui/styles/styles.css';
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
