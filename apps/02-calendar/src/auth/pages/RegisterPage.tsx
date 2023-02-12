@@ -1,8 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { FormValidations, useForm, RegisterForm } from 'ui';
-import { AuthLayout } from '../layout';
+import { AuthLayout, FormValidations, useForm, RegisterForm } from 'ui';
 import { useAuthStore } from '../../store';
 
 
