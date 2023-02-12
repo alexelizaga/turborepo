@@ -6,12 +6,11 @@ import {
   RegisterUserWithEmailPasswordProps,
   signInWithGoogle
 } from "../../firebase/providers";
-import { onCheckingCredentials, onLogin, onLogout, useAppSelector, useAppDispatch, useCalendarStore } from "../"
+import { onCheckingCredentials, onLogin, onLogout, useAppSelector, useAppDispatch } from "../"
 
 
 export const useAuthStore = () => {
   const dispatch = useAppDispatch();
-  const { logoutCalendar } = useCalendarStore();
   const { displayName, email, errorMessage, photoURL, status, uid } = useAppSelector( store => store.auth );
 
   const startGoogleSignIn = async () => {
@@ -45,7 +44,6 @@ export const useAuthStore = () => {
 
   const startLogout = async () => {
     await logoutFirebase();
-    logoutCalendar()
     logout({});
   }
 
