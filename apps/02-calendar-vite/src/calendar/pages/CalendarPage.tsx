@@ -3,7 +3,7 @@ import { addHours } from 'date-fns';
 import { Calendar, View } from 'react-big-calendar';
 import { getAnalytics, logEvent } from "firebase/analytics";
 
-import { CalendarLayout, localizer,  getMessagesEs, CalendarEvent, Event, CalendarModal } from '../';
+import { CalendarLayout, localizer,  getMessagesEs, CalendarEvent, Event, CalendarModal } from '..';
 import { useAuthStore, useCalendarStore } from '../../store';
 import { BcFabAddNew, BcFabDelete } from '../../shared';
 

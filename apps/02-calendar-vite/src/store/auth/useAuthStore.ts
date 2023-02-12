@@ -6,7 +6,7 @@ import {
   RegisterUserWithEmailPasswordProps,
   signInWithGoogle
 } from "../../firebase/providers";
-import { onCheckingCredentials, onLogin, onLogout, useAppSelector, useAppDispatch, useCalendarStore } from "../"
+import { onCheckingCredentials, onLogin, onLogout, useAppSelector, useAppDispatch, useCalendarStore } from ".."
 
 
 export const useAuthStore = () => {

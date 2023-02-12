@@ -14,7 +14,7 @@ import {
   onDeleteEvent,
   onLoadEvents,
   onLogoutCalendar
-} from '../';
+} from '..';
 
 
 export const useCalendarStore = () => {

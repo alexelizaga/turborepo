@@ -1,4 +1,4 @@
-import { Event } from "../";
+import { Event } from "..";
 
 export const CalendarEvent = ({ event }: { event: Event}) => {
   const { title, user } = event;

@@ -1,4 +1,4 @@
-import { BcFab, BcDeleteTwoToneIcon } from '../../';
+import { BcFab, BcDeleteTwoToneIcon } from '../..';
 
 
 type BcFabDeleteProps = {

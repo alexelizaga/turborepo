@@ -1,4 +1,4 @@
-import { BcFab, BcAddIcon } from "../../";
+import { BcFab, BcAddIcon } from "../..";
 
 
 type BcFabAddNewProps = {
