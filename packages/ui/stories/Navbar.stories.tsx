@@ -1,8 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ThemeProvider } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material';
 
-import { darkTheme, lightTheme } from '../';
-import { Navbar } from '../components';
+import { getDesignTokens, Navbar } from '../';
 import { DarkBackground } from '../helpers';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -12,14 +11,14 @@ export default {
 } as ComponentMeta<typeof  Navbar>;
 
 export const Light: ComponentStory<typeof Navbar> = (args) => (
-  <ThemeProvider theme={lightTheme}>
+  <ThemeProvider theme={createTheme(getDesignTokens('light'))}>
     <Navbar {...args}/>
   </ThemeProvider>
 );
 
 export const Dark: ComponentStory<typeof Navbar> = (args) => (
   <DarkBackground>
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={createTheme(getDesignTokens('dark'))}>
       <Navbar {...args}/>
     </ThemeProvider>
   </DarkBackground>

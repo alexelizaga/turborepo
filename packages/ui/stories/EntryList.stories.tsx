@@ -1,9 +1,8 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ThemeProvider } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
 
-import { darkTheme, lightTheme } from '../';
-import { EntryList } from '../components';
+import { getDesignTokens, EntryList } from '../';
 import { DarkBackground } from '../helpers';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -13,14 +12,14 @@ export default {
 } as ComponentMeta<typeof EntryList>;
 
 export const Light: ComponentStory<typeof EntryList> = (args) => (
-  <ThemeProvider theme={lightTheme}>
+  <ThemeProvider theme={createTheme(getDesignTokens('light'))}>
     <EntryList {...args}/>
   </ThemeProvider>
 );
 
 export const Dark: ComponentStory<typeof EntryList> = (args) => (
   <DarkBackground>
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={createTheme(getDesignTokens('dark'))}>
       <EntryList {...args}/>
     </ThemeProvider>
   </DarkBackground>

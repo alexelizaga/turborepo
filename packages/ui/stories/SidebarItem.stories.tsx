@@ -1,8 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ThemeProvider } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material';
 
-import { darkTheme, lightTheme } from '../';
-import { SidebarItem } from '../components';
+import { getDesignTokens, SidebarItem } from '../';
 import { DarkBackground } from '../helpers';
 
 
@@ -13,14 +12,14 @@ export default {
 } as ComponentMeta<typeof SidebarItem>;
 
 export const Light: ComponentStory<typeof SidebarItem> = (args) => (
-  <ThemeProvider theme={lightTheme}>
+  <ThemeProvider theme={createTheme(getDesignTokens('light'))}>
     <SidebarItem {...args} />
   </ThemeProvider>
 );
 
 export const Dark: ComponentStory<typeof SidebarItem> = (args) => (
   <DarkBackground>
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={createTheme(getDesignTokens('dark'))}>
       <SidebarItem {...args} />
     </ThemeProvider>
   </DarkBackground>

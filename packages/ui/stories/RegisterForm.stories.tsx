@@ -1,9 +1,8 @@
 import { MemoryRouter } from 'react-router-dom'
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ThemeProvider } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material';
 
-import { darkTheme, lightTheme } from '../';
-import { RegisterForm } from '../components';
+import { getDesignTokens, RegisterForm } from '../';
 import { DarkBackground } from '../helpers';
 
 
@@ -14,7 +13,7 @@ export default {
 } as ComponentMeta<typeof RegisterForm>;
 
 export const Light: ComponentStory<typeof RegisterForm> = (args) => (
-  <ThemeProvider theme={lightTheme}>
+  <ThemeProvider theme={createTheme(getDesignTokens('light'))}>
     <MemoryRouter>
       <RegisterForm {...args} />
     </MemoryRouter>
@@ -23,7 +22,7 @@ export const Light: ComponentStory<typeof RegisterForm> = (args) => (
 
 export const Dark: ComponentStory<typeof RegisterForm> = (args) => (
   <DarkBackground>
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={createTheme(getDesignTokens('dark'))}>
       <MemoryRouter>
         <RegisterForm {...args} />
       </MemoryRouter>

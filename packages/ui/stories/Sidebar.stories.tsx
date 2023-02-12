@@ -1,10 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ThemeProvider } from '@mui/material';
-import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import InboxOutlinedIcon from '@mui/icons-material/InboxOutlined';
+import { createTheme, ThemeProvider } from '@mui/material';
 
-import { darkTheme, lightTheme } from '../';
-import { Sidebar } from '../components';
+import { getDesignTokens, Sidebar } from '../';
 import { DarkBackground } from '../helpers';
 
 
@@ -15,14 +12,14 @@ export default {
 } as ComponentMeta<typeof  Sidebar>;
 
 export const Light: ComponentStory<typeof Sidebar> = (args) => (
-  <ThemeProvider theme={lightTheme}>
+  <ThemeProvider theme={createTheme(getDesignTokens('light'))}>
     < Sidebar {...args} />
   </ThemeProvider>
 );
 
 export const Dark: ComponentStory<typeof Sidebar> = (args) => (
   <DarkBackground>
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={createTheme(getDesignTokens('dark'))}>
       < Sidebar {...args} />
     </ThemeProvider>
   </DarkBackground>
