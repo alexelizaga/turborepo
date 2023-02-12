@@ -2,7 +2,7 @@ import { AppRouter } from './router';
 import { AppTheme } from './theme';
 import { EntriesProvider, UIProvider } from './kanban';
 
-export const BrocodeApps = () => {
+export const App = () => {
 
   return (
     <EntriesProvider>

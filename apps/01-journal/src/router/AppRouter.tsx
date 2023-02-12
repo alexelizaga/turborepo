@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { getAnalytics, logEvent } from "firebase/analytics";
+import { CheckingAuth } from 'ui';
 
 import { AuthRoutes } from '../auth';
-import { CheckingAuth } from '../ui';
 import { JournalRoutes } from '../journal';
 import { useCheckAuth } from '../hooks';
 

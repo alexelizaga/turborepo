@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
 import { store } from './store';
-import { BrocodeApps } from './BrocodeApps';
+import { App } from './App';
 import "./i18n";
 import './styles.css';
 
@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <BrocodeApps />
+        <App />
       </BrowserRouter>
     </Provider>
   </React.StrictMode>

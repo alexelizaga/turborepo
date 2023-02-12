@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { getAnalytics, logEvent } from "firebase/analytics";
+import { CheckingAuth } from 'ui';
 
 import { AuthRoutes } from '../auth';
 import { KanbanRoutes } from '../kanban';
-import { CheckingAuth } from '../ui';
 import { useCheckAuth } from '../hooks';
 
 export const AppRouter = () => {

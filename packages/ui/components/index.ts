@@ -1,3 +1,4 @@
+export * from './CheckingAuth';
 export * from './EntryCard';
 export * from './EntryKanban';
 export * from './EntryList';
