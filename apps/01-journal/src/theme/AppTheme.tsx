@@ -1,7 +1,7 @@
 import { createContext, useMemo, useState } from 'react';
 import { CssBaseline, ThemeProvider, createTheme, PaletteMode } from '@mui/material';
 
-import { getDesignTokens } from './helpers/getDesignTokens';
+import { getDesignTokens } from 'ui';
 
 export const ColorModeContext = createContext({
   toggleColorMode: () => {},

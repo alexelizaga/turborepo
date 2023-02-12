@@ -8,7 +8,6 @@ interface AuthLayoutProps {
 export const AuthLayout = ({ children, title = '' }: AuthLayoutProps ) => {
   return (
     <Grid
-      
       container
       spacing={0}
       direction="column"
