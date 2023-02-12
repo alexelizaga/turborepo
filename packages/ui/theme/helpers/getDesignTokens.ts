@@ -1,12 +1,12 @@
 import { PaletteMode } from "@mui/material";
 
-import { purpleTheme, darkTheme } from "../themes";
+import { lightTheme, darkTheme } from "../";
 
 export const getDesignTokens = (mode: PaletteMode) => ({
   palette: {
     mode,
     ...(mode === "light"
-      ? purpleTheme()
+      ? lightTheme()
       : darkTheme()),
   },
 });

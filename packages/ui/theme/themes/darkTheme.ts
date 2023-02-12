@@ -1,7 +1,7 @@
-export const purpleTheme = () => {
+export const darkTheme = () => {
   return {
     // primary: {
-    //   main: "#039be5",
+    //   main: "#262254",
     // },
     // secondary: {
     //   main: "#543884",
