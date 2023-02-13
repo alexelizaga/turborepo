@@ -1,7 +1,8 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { EntryKanban, EntryList, NewEntry } from 'ui';
 
 import { KanbanLayout, EntriesContext, UIContext } from '../';
+import { useEntriesContext } from '../context/entries/useEntriesContext';
 
 export const KanbanPage = () => {
   const {
@@ -11,6 +12,11 @@ export const KanbanPage = () => {
     setIsDraggingEntry
   } = useContext(UIContext);
   const { entries, addNewEntry, updateEntry } = useContext(EntriesContext);
+  const { startLoadingEntries } = useEntriesContext();
+
+  useEffect(() => {
+    startLoadingEntries();
+  }, []);
 
   const onEntrySave = ( description: string ) => {
     addNewEntry(description);

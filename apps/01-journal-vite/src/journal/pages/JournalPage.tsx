@@ -12,7 +12,7 @@ export const JournalPage = () => {
 
   useEffect(() => {
     startLoadingNotes();
-  }, [])
+  }, []);
 
   const onClickNewNote = () => {
     logEvent(analytics, 'journal_onClickNewNote');
