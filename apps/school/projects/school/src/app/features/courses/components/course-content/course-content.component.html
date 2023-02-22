@@ -1,9 +1,0 @@
-<div *ngIf="markdownMode; else reveal" class="markdown">
-	<markdown [src]="src" (load)="onLoad()"></markdown>
-</div>
-
-<ng-template class="reveal-container" #reveal>
-	<div class="reveal">
-		<div class="slides"></div>
-	</div>
-</ng-template>
