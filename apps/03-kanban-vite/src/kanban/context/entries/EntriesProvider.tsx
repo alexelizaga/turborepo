@@ -1,4 +1,4 @@
-import { FC, useReducer } from 'react';
+import { FC, useMemo, useReducer } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import { EntriesContext, entriesReducer } from './';
@@ -34,12 +34,14 @@ export const EntriesProvider: FC<EntriesProviderProps> = ({ children }) => {
     dispatch({ type: '[Entry] - Update-Entry', payload: entry });
   }
 
+  const providerValue = useMemo(() => ({
+    ...state,
+    addNewEntry,
+    updateEntry
+  }), [state]);
+
   return (
-    <EntriesContext.Provider value={{
-      ...state,
-      addNewEntry,
-      updateEntry
-    }}>
+    <EntriesContext.Provider value={providerValue}>
       { children }
     </EntriesContext.Provider>
   )
