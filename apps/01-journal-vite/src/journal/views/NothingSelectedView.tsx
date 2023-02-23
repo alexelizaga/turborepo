@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { BcGrid, BcTypography, BcStarOutline } from '../../shared';
 
 export const NothingSelectedView = () => {
-    const { t, i18n } = useTranslation(['journal']);
+    const { t } = useTranslation(['journal']);
 
     return (
         <BcGrid

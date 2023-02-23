@@ -36,7 +36,6 @@ export const EntryList:FC<Props> = ({ status }) => {
 
       
     return (
-        //   TODO: aquí haremos drop
         <div
             onDrop={ onDropEntry }
             onDragOver={ allowDrop }

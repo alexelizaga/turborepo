@@ -6,7 +6,6 @@ import { worker } from './mocks/browser'
 
 import App from './App'
 import { store } from './store'
-import './index.css'
 
 // Just for dev
 worker.start()

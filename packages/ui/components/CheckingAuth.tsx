@@ -1,4 +1,4 @@
-import { CircularProgress, Grid, SxProps, Theme } from '@mui/material';
+import { CircularProgress, Grid } from '@mui/material';
 import { FC } from 'react';
 
 type Props = {
