@@ -18,7 +18,7 @@ const formValidations: FormValidations = {
 }
 
 export const RegisterPage = () => {
-  const { t, i18n } = useTranslation(['auth']);
+  const { t } = useTranslation(['auth']);
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   const { status, errorMessage, startGoogleSignIn, startCreatingUserWithEmailPassword } = useAuthStore();

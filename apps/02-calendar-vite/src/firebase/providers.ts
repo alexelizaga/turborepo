@@ -7,7 +7,6 @@ const googleProvider = new GoogleAuthProvider();
 export const signInWithGoogle = async(): Promise<Record<string, any>> => {
     try {
         const resp = await signInWithPopup(FirebaseAuth, googleProvider);
-        // const credentials = GoogleAuthProvider.credentialFromResult( resp );
         const { displayName, email, photoURL, uid  } = resp.user;
 
         return {
