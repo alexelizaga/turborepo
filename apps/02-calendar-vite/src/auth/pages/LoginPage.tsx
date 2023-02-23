@@ -16,7 +16,7 @@ const formValidations: FormValidations = {
 }
 
 export const LoginPage = () => {
-  const { t, i18n } = useTranslation(['auth']);
+  const { t } = useTranslation(['auth']);
   const { status, errorMessage, startGoogleSignIn, startLoginWithEmailPassword } = useAuthStore();
 
   const [formSubmitted, setFormSubmitted] = useState(false);
