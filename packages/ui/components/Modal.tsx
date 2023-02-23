@@ -37,8 +37,8 @@ export const Modal: FC<Props> = ({
         justifyContent="center"
         alignItems="center"
       >
-        { header?.icon && header?.icon }
-        { header?.title && <DialogTitle>{header?.title}</DialogTitle>}
+        { header?.icon }
+        { header?.title ? <DialogTitle>{header?.title}</DialogTitle> : <></>}
       </Box>
       <DialogContent>
         { children }
