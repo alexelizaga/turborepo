@@ -1,4 +1,4 @@
-import { FC, useReducer } from 'react';
+import { FC, useMemo, useReducer } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Entry } from '../../interfaces';
@@ -59,15 +59,14 @@ export const EntriesProvider:FC<Props> = ({ children }) => {
 
     }
 
+    const providerValue = useMemo(() => ({
+        ...state,
+        addNewEntry,
+        updateEntry
+      }), [state]);
 
     return (
-        <EntriesContext.Provider value={{
-            ...state,
-
-            // Methods
-            addNewEntry,
-            updateEntry,
-        }}>
+        <EntriesContext.Provider value={providerValue}>
             { children }
         </EntriesContext.Provider>
     )
