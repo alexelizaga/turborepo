@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useSelector } from "react-redux";
-import { useGetHeroByIdQuery, useGetHeroesQuery, useLazyGetHeroByIdQuery } from "../services"
+import { useGetHeroesQuery, useLazyGetHeroByIdQuery } from "../services"
 import { heroesApi } from '../services/heroesApi';
 import { HeroType } from '../interfaces';
 
@@ -15,7 +15,7 @@ export const QueryPage = () => {
     // skip: true // isUninitialized = true
   });
 
-  const [trigger, { data: hero }] = useLazyGetHeroByIdQuery();
+  const [_, { data: hero }] = useLazyGetHeroByIdQuery();
 
   return (
     <>
@@ -34,7 +34,7 @@ export const QueryPage = () => {
 }
 
 const Hero: FC<{hero: HeroType}> = ({ hero }) => {
-  const [trigger, { data: selectedHero }] = useLazyGetHeroByIdQuery();
+  const [trigger] = useLazyGetHeroByIdQuery();
   const { isSuccess } = useSelector(heroesApi.endpoints.getHeroById.select(+hero.id!))
 
   return (

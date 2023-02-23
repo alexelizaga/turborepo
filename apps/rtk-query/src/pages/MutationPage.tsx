@@ -3,7 +3,7 @@ import { HeroType } from '../interfaces';
 
 
 export const MutationPage = () => {
-  const [trigger, { data: heroes, isLoading, isError, isSuccess }] = useAddNewHeroMutation();
+  const [trigger, { data: heroes, isSuccess }] = useAddNewHeroMutation();
 
   const handleSubmit = () => {
     trigger({

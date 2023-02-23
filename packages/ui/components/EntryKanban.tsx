@@ -16,7 +16,7 @@ export const EntryKanban: FC<Props> = ({ boards }) => {
     <Grid container spacing={2}>
       {
         boards.map( (board, index) => (
-          <Grid key={index} item xs={12} sm={cols}>
+          <Grid key={`${index}- ${board?.title}`} item xs={12} sm={cols}>
             <Card sx={{ height: 'calc(100vh - 100px)', display: 'flex', flexDirection: 'column' }}>
               <CardHeader title={board.title} />
               { board.actions ?? <></> }

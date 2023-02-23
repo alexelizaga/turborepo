@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import SettingsTwoToneIcon from '@mui/icons-material/SettingsTwoTone';
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent, useTheme } from "@mui/material";
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 
 import { ColorModeContext } from "../../../theme";
 

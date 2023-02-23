@@ -58,10 +58,10 @@ export const calendarSlice = createSlice({
         })
       },
       onLogoutCalendar: ( state ) => {
-        state.isLoadingEvents = true,
-        state.isDateModalOpen = false,
-        state.events = [],
-        state.activeEvent = null
+        state.isLoadingEvents = true;
+        state.isDateModalOpen = false;
+        state.events = [];
+        state.activeEvent = null;
       }
     }
 });
