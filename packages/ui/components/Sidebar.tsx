@@ -43,9 +43,9 @@ export const Sidebar: FC<Props> = ({
       >
         <Box sx={{ width: anchor === 'left' || anchor === 'right' ? width : '100%' }}>
           <Box sx={{ p: '5px 10px' }}>
-            <Typography variant="h4" >{ header?.title &&  header?.title }</Typography>
+            <Typography variant="h4" >{ header?.title }</Typography>
           </Box>
-          { children && children }
+          { children ?? <></> }
         </Box>
       </Drawer>
     </Box>
