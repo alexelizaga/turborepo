@@ -1,5 +1,4 @@
-import NextLink from 'next/link';
-import { Avatar, Button, Link, Navbar, Text } from "@nextui-org/react";
+import { Button, Link, Navbar, Text } from "@nextui-org/react";
 import Image from 'next/image';
 import { FC } from 'react';
 

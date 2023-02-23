@@ -1,14 +1,11 @@
-import { useNavigate } from "react-router-dom";
 import CalendarMonthTwoToneIcon from '@mui/icons-material/CalendarMonthTwoTone';
-import ListAltTwoToneIcon from '@mui/icons-material/ListAltTwoTone';
 import { LoginOutlined } from "@mui/icons-material";
 
 import { useAuthStore } from "../../store";
-import { BcAppBar, BcBox, BcContainer, BcGrid, BcIconButton, BcModalSetup, BcToolbar, BcTypography, useBcTheme } from "../../shared";
+import { BcAppBar, BcBox, BcContainer, BcGrid, BcIconButton, BcModalSetup, BcToolbar, BcTypography } from "../../shared";
 
 
 export const Navbar = () => {
-  const navigate = useNavigate();
   const { displayName, startLogout } = useAuthStore();
 
   const onLogout = () => {

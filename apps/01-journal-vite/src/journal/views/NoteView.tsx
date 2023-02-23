@@ -11,7 +11,7 @@ import { useJournalStore } from '../../store';
 
 
 export const NoteView = () => {
-	const { t, i18n } = useTranslation(['journal']);
+	const { t } = useTranslation(['journal']);
 	const { active: note, messageSaved, isSaving, startDeletingNote, startSavingNote, startUploadingFiles, setActiveNote } = useJournalStore();
 
   const { body, title, date, onChange, formState } = useForm( note ?? {} );

@@ -49,7 +49,7 @@ const validate = (values: Record<string, string | any>) => {
 }
 
 export const CalendarModal = () => {
-  const { t, i18n } = useTranslation(['calendar']);
+  const { t } = useTranslation(['calendar']);
   const { isDateModalOpen, closeDateModal, activeEvent, startSavingEvent } = useCalendarStore();
 
   const onSubmit = async (
