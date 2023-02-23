@@ -1,4 +1,4 @@
-import { FC, useReducer } from 'react';
+import { FC, useMemo, useReducer } from 'react';
 import { UIContext, uiReducer } from './';
 
 export interface UIState {
@@ -41,20 +41,18 @@ export const UIProvider:FC<Props> = ({ children }) => {
         dispatch({ type: 'UI - End Dragging' });
     }
 
+    const providerValue = useMemo(() => ({
+        ...state,
+        // Methods
+        closeSideMenu,
+        openSideMenu,
+        setIsAddingEntry,
+        endDragging,
+        startDragging,
+      }), [state]);
 
     return (
-        <UIContext.Provider value={{
-            ...state,
-
-            // Methods
-            closeSideMenu,
-            openSideMenu,
-            
-            setIsAddingEntry,
-
-            endDragging,
-            startDragging,
-        }}>
+        <UIContext.Provider value={providerValue}>
             { children }
         </UIContext.Provider>
     )
