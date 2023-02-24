@@ -22,3 +22,10 @@ Llamara:
 ```
 http://localhost:3000/api/seed
 ```
+
+## Populate the database with test information
+
+call: 
+```
+http://127.0.0.1:3005/api/seed
+```
