@@ -1,14 +1,20 @@
 # Turborepo starter
 
-## What's inside?
+## 04 Pokedex
+[Preview](https://turborepo-04-pokedex-next-git-preview-alexelizaga.vercel.app/)
+[Production](https://turborepo-04-pokedex-next-9bzlja8j8-alexelizaga.vercel.app/)
 
-This turborepo uses [Yarn](https://classic.yarnpkg.com/) as a package manager. It includes the following packages/apps:
+## 05 OpenJira
+[Preview](https://turborepo-05-openjira-next-git-preview-alexelizaga.vercel.app/)
+[Production](https://turborepo-05-openjira-next-aaoslsvvd-alexelizaga.vercel.app/)
+
+## UI Package
+[StoryBook](https://alexelizaga.github.io/turborepo/?path=/story/get-started-introduction--page)
+
 
 ### Apps and Packages
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `ui`: a stub React component library shared by both `web` and `docs` applications
+- `ui`: a stub React component library shared by all applications
 - `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
 - `tsconfig`: `tsconfig.json`s used throughout the monorepo
 
