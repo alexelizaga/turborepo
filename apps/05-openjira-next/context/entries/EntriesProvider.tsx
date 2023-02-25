@@ -1,7 +1,8 @@
-import { FC, useMemo, useReducer } from 'react';
+import { FC, useEffect, useMemo, useReducer } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Entry } from '../../interfaces';
+import { Entry } from '@/interfaces';
+import { entriesApi } from '@/apis';
 
 import { EntriesContext, entriesReducer } from './';
 
@@ -39,6 +40,16 @@ export const EntriesProvider:FC<Props> = ({ children }) => {
         dispatch({ type: '[Entry] Entry-Updated', payload: entry });
 
     }
+
+    const refreshEntries = async() => {
+        const { data } = await entriesApi.get<Entry[]>('/entries');
+        dispatch({ type: '[Entry] Refresh-Entries', payload: data });
+    }
+
+    useEffect(() => {
+        refreshEntries();
+    }, []);
+    
 
     const providerValue = useMemo(() => ({
         ...state,
