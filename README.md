@@ -1,11 +1,15 @@
 # Turborepo starter
 
 ## 04 Pokedex
+
 [Preview](https://turborepo-04-pokedex-next-git-preview-alexelizaga.vercel.app/)
+
 [Production](https://turborepo-04-pokedex-next-9bzlja8j8-alexelizaga.vercel.app/)
 
 ## 05 OpenJira
+
 [Preview](https://turborepo-05-openjira-next-git-preview-alexelizaga.vercel.app/)
+
 [Production](https://turborepo-05-openjira-next-aaoslsvvd-alexelizaga.vercel.app/)
 
 ## UI Package
