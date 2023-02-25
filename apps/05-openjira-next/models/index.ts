@@ -1,1 +1,1 @@
-export { default as EntryModel } from './EntryModel';
+export { default as EntryModel, type EntryInterface } from './EntryModel';

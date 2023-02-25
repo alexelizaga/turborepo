@@ -2,7 +2,7 @@ import moongose, { Model, Schema } from 'mongoose';
 
 import { Entry } from '../interfaces';
 
-interface EntryInterface extends Entry {};
+export interface EntryInterface extends Entry {};
 
 const entrySchema = new Schema({
   description: { type: String, require: true},
