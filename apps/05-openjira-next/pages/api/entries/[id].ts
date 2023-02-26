@@ -6,7 +6,8 @@ import { EntryModel, EntryInterface } from "@/models";
 
 type Data =
   | { message: string; }
-  | EntryInterface;
+  | EntryInterface
+  | null;
 
 export default function handler(
   req: NextApiRequest,
@@ -51,7 +52,7 @@ const updateEntry = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       { runValidators: true, new: true }
     );
     await db.disconnect();
-    return res.status(200).json(updateEntry!);
+    return res.status(200).json(updateEntry);
   } catch (error: any) {
     console.log({error});
     await db.disconnect();
