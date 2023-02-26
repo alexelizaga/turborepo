@@ -1,11 +1,10 @@
-import { FC } from "react";
 import { Card, Grid, Row, Text } from "@nextui-org/react";
 
 import { SmallPokemon } from '../../interfaces/pokemon-list';
 import { useRouter } from "next/router";
 
 
-export const PokemonCard: FC<SmallPokemon> = ({ id, img, name}) => {
+export const PokemonCard = ({ id, img, name}: SmallPokemon) => {
 
   const router = useRouter();
 
