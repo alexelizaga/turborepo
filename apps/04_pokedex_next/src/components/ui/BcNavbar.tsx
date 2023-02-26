@@ -1,12 +1,11 @@
 import { Button, Link, Navbar, Text } from "@nextui-org/react";
 import Image from 'next/image';
-import { FC } from 'react';
 
 type Props = {
   logo?: string;
 }
 
-export const BcNavbar: FC<Props> = ({logo}) => {
+export const BcNavbar = ({logo}: Props) => {
   return (
     <Navbar>
       <Navbar.Brand as={Link} href='/'>

@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { Grid } from "@nextui-org/react";
 import { BcFavoriteCardPokemon } from "./BcFavoriteCardPokemon";
 
@@ -7,7 +6,7 @@ type Props = {
   pokemons: number[]
 }
 
-export const BcFavoritePokemons: FC<Props> = ({ pokemons }) => {
+export const BcFavoritePokemons = ({ pokemons }: Props) => {
 
   
 

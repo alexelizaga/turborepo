@@ -1,5 +1,5 @@
-import { FC } from 'react';
 import Head from 'next/head';
+
 import { BcNavbar } from '../ui';
 
 
@@ -11,7 +11,7 @@ type Props = {
 
 const origin = (typeof window === 'undefined') ? '' : window.location.origin;
 
-export const Layout: FC<Props> = ({ children, title, logo }) => {
+export const Layout = ({ children, title, logo }: Props) => {
   
   return (
     <>
