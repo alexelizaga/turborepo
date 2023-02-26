@@ -1,59 +1,63 @@
-import { FC, useEffect, useMemo, useReducer } from 'react';
+import { FC, useEffect, useMemo, useReducer } from "react";
 
-import { Entry } from '@/interfaces';
-import { entriesApi } from '@/apis';
+import { Entry } from "@/interfaces";
+import { entriesApi } from "@/apis";
 
-import { EntriesContext, entriesReducer } from './';
+import { EntriesContext, entriesReducer } from "./";
 
 export interface EntriesState {
-    entries: Entry[];
+  entries: Entry[];
 }
-
 
 const Entries_INITIAL_STATE: EntriesState = {
-    entries: [],
-}
+  entries: [],
+};
 
 type Props = {
-    children: JSX.Element | JSX.Element[];
-}
+  children: JSX.Element | JSX.Element[];
+};
 
-export const EntriesProvider:FC<Props> = ({ children }) => {
+export const EntriesProvider: FC<Props> = ({ children }) => {
+  const [state, dispatch] = useReducer(entriesReducer, Entries_INITIAL_STATE);
 
-    const [state, dispatch] = useReducer( entriesReducer , Entries_INITIAL_STATE );
+  const addNewEntry = async (description: string) => {
+    const { data } = await entriesApi.post<Entry>("/entries", { description });
+    dispatch({ type: "[Entry] Add-Entry", payload: data });
+  };
 
-    const addNewEntry = async( description: string ) => {
-
-        const { data } = await entriesApi.post<Entry>('/entries', { description })
-
-        dispatch({ type: '[Entry] Add-Entry', payload: data });
+  const updateEntry = async ({_id, description, status}: Entry) => {
+    try {
+      const { data } = await entriesApi.put<Entry>(`/entries/${_id}`, {
+        description,
+        status
+      });
+      dispatch({ type: "[Entry] Entry-Updated", payload: data });
+    } catch (error) {
+      console.log({error});
     }
+  };
 
-    const updateEntry = ( entry: Entry ) => {
+  const refreshEntries = async () => {
+    const { data } = await entriesApi.get<Entry[]>("/entries");
+    dispatch({ type: "[Entry] Refresh-Entries", payload: data });
+  };
 
-        dispatch({ type: '[Entry] Entry-Updated', payload: entry });
+  useEffect(() => {
+    refreshEntries();
+  }, []);
 
-    }
+  const providerValue = useMemo(
+    () => ({
+      ...state,
+      addNewEntry,
+      updateEntry,
+    }),
+    [state]
+  );
 
-    const refreshEntries = async() => {
-        const { data } = await entriesApi.get<Entry[]>('/entries');
-        dispatch({ type: '[Entry] Refresh-Entries', payload: data });
-    }
-
-    useEffect(() => {
-        refreshEntries();
-    }, []);
-    
-
-    const providerValue = useMemo(() => ({
-        ...state,
-        addNewEntry,
-        updateEntry
-      }), [state]);
-
-    return (
-        <EntriesContext.Provider value={providerValue}>
-            { children }
-        </EntriesContext.Provider>
-    )
+  return (
+    <EntriesContext.Provider value={providerValue}>
+      {children}
+    </EntriesContext.Provider>
+  );
 };
