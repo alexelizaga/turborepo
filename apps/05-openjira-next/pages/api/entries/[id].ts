@@ -32,7 +32,7 @@ const updateEntry = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
   await db.connect();
 
-  const entryToUpdate = await EntryModel.findById(id);
+  const entryToUpdate = await EntryModel.findById(`${id}`);
 
   if (!entryToUpdate) {
     await db.disconnect();
@@ -46,8 +46,8 @@ const updateEntry = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
   try {
     const updateEntry = await EntryModel.findByIdAndUpdate(
-      id,
-      { description, status },
+      `${id}`,
+      { description: `${description}`, status: `${status}` },
       { runValidators: true, new: true }
     );
     await db.disconnect();
