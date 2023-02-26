@@ -15,6 +15,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
       return getEntries(res);
     case 'POST':
       return postEntry(req, res);
+    case 'PUT':
+      return postEntry(req, res);
   
     default:
       return res.status(400).json({ message: 'Invalid Endpoint' });
@@ -49,7 +51,7 @@ const postEntry = async(req: NextApiRequest, res: NextApiResponse<Data>) => {
 
   } catch (error) {
     await db.disconnect();
-    console.log(error);
+    console.log({error});
 
     return res.status(500).json({ message: 'Something went wrong' });
   }
