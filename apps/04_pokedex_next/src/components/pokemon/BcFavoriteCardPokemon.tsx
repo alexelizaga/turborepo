@@ -1,4 +1,3 @@
-import { FC } from "react"
 import { useRouter } from "next/router"
 import { Card, Grid } from "@nextui-org/react"
 
@@ -7,7 +6,7 @@ type Props = {
   pokemonId: number
 }
 
-export const BcFavoriteCardPokemon: FC<Props> = ({ pokemonId }) => {
+export const BcFavoriteCardPokemon = ({ pokemonId }: Props) => {
   const router = useRouter();
 
   const onClick = (id: number) => {
