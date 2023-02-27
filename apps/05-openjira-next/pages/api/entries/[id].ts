@@ -55,7 +55,7 @@ const updateEntry = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
   if (!entryToUpdate) {
     await db.disconnect();
-    return res.status(400).json({ message: "Entry not found: " + id });
+    return res.status(400).json({ message: `Entry not found: ${id}`});
   }
 
   const {
@@ -88,11 +88,11 @@ const deleteEntry = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
   if (!entryToUpdate) {
     await db.disconnect();
-    return res.status(400).json({ message: "Entry not found: " + id });
+    return res.status(400).json({ message: `Entry not found: ${id}`});
   }
 
   try {
-    await EntryModel.deleteOne({ _id: id });
+    await EntryModel.deleteOne({ _id: `${id}` });
     return res.status(200).json({ message: `Entry deleted successfully`});
   } catch (error: any) {
     console.log({error});
