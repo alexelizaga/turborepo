@@ -12,8 +12,6 @@ export default function handler(
   res: NextApiResponse<Data>
 ) {
 
-  console.log(process.env);
-
   res.status(200).json({
     ok: true,
     message: 'Todo correcto',
