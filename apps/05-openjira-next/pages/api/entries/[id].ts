@@ -24,6 +24,8 @@ export default function handler(
       return getEntry(req, res);
     case "PUT":
       return updateEntry(req, res);
+    case "DELETE":
+      return deleteEntry(req, res);
 
     default:
       return res.status(400).json({ message: "Invalid method" });
@@ -68,6 +70,30 @@ const updateEntry = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       { runValidators: true, new: true }
     );
     return res.status(200).json(updateEntry);
+  } catch (error: any) {
+    console.log({error});
+    return res.status(400).json({ message: error.errors.status.message });
+  } finally {
+    await db.disconnect();
+  }
+  
+};
+
+const deleteEntry = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
+  const { id } = req.query;
+
+  await db.connect();
+
+  const entryToUpdate = await EntryModel.findById(`${id}`);
+
+  if (!entryToUpdate) {
+    await db.disconnect();
+    return res.status(400).json({ message: "Entry not found: " + id });
+  }
+
+  try {
+    await EntryModel.deleteOne({ _id: id });
+    return res.status(200).json({ message: `Entry deleted successfully`});
   } catch (error: any) {
     console.log({error});
     return res.status(400).json({ message: error.errors.status.message });

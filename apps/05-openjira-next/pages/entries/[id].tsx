@@ -1,45 +1,64 @@
-import { ChangeEvent, FC, useMemo, useState } from 'react';
+import { ChangeEvent, FC, useMemo, useState, useContext } from 'react';
 import { GetServerSideProps } from 'next';
-import { isValidObjectId } from 'mongoose';
+import { useRouter } from 'next/router'
 import { capitalize, Button, Card, CardActions, CardContent, CardHeader, FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup, TextField, IconButton } from "@mui/material";
 import SaveIcon from '@mui/icons-material/SaveOutlined';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 
 import { Layout } from "@/components";
-import { EntryStatus } from "@/interfaces";
+import { Entry, EntryStatus } from '@/interfaces';
+import { dbEntries } from '@/database';
+import { EntryInterface } from '@/models';
+import { EntriesContext } from '@/context';
 
 
 const validStatus: EntryStatus[] = ['pending', 'in-progress', 'finished'];
 
 type Props = {
-
+  entry: EntryInterface;
 }
 
-const EntryPage: FC<Props> = (props) => {
+const EntryPage: FC<Props> = ({ entry }) => {
+  const { updateEntry, deleteEntry } = useContext(EntriesContext);
+  const router = useRouter();
 
-  console.log({ props });
-
-  const [inputValue, setInputValue] = useState("");
-  const [status, setStatus] = useState<EntryStatus>("pending");
+  const [inputValue, setInputValue] = useState(entry.description);
+  const [status, setStatus] = useState<EntryStatus>(entry.status);
   const [touched, setTouched] = useState(false);
 
-  const isNotValid = useMemo(() => !inputValue.length && touched, [inputValue, touched])
+  const isNotValid = useMemo(() => !inputValue.length && touched, [inputValue, touched]);
+  const isDisabled = useMemo(
+    () => (entry.status === status && entry.description === inputValue)
+  , [inputValue, status]);
 
   const onInputValueChange = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   }
 
   const onStatusChange = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value);
     setStatus(event.target.value as EntryStatus);
   }
 
   const onSave = () => {
+    if (!inputValue.trim().length) return;
 
+    const updatedEntry: Entry = {
+      ...entry,
+      description: inputValue,
+      status
+    }
+    
+    updateEntry(updatedEntry, true);
+    router.push('/');
+  }
+
+  const onDelete = () => {
+    deleteEntry(entry._id);
+    router.push('/');
   }
 
   return (
-    <Layout title="... ... ...">
+    <Layout title={inputValue.substring(0,17) + '...'}>
       <Grid
         container
         justifyContent="center"
@@ -48,8 +67,8 @@ const EntryPage: FC<Props> = (props) => {
         <Grid item xs={ 12 } sm={ 8 } md={ 6 }>
           <Card>
             <CardHeader
-              title={`Entrada: ${inputValue}`}
-              subheader={`Created ${'30 min'} ago`}
+              title={`Entrada:`}
+              subheader={`Created ${entry.createdAt} ago`}
             />
             <CardContent>
               <TextField
@@ -94,7 +113,7 @@ const EntryPage: FC<Props> = (props) => {
                 variant={"contained"}
                 fullWidth
                 onClick={ onSave }
-                disabled={!inputValue.length}
+                disabled={isDisabled}
               >
                 Save
               </Button>
@@ -104,12 +123,15 @@ const EntryPage: FC<Props> = (props) => {
         </Grid>
       </Grid>
 
-      <IconButton sx={{
-        position: 'fixed',
-        bottom: 30,
-        right: 30,
-        backgroundColor: 'error.dark'
-      }}>
+      <IconButton
+        onClick={onDelete}
+        sx={{
+          position: 'fixed',
+          bottom: 30,
+          right: 30,
+          backgroundColor: 'error.dark'
+        }}
+      >
         <DeleteIcon />
       </IconButton>
     </Layout>
@@ -122,7 +144,9 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
   const { id } = params as { id: string };
 
-  if (!isValidObjectId(id)) {
+  const entry = await dbEntries.getEntryById(id);
+
+  if (!entry) {
     return {
       redirect: {
         destination: "/",
@@ -133,7 +157,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
   return {
     props: {
-      id
+      entry
     }
   }
 }
