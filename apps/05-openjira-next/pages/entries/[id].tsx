@@ -5,12 +5,12 @@ import { capitalize, Button, Card, CardActions, CardContent, CardHeader, FormCon
 import SaveIcon from '@mui/icons-material/SaveOutlined';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 
+import { dateFunctions } from '@/utils';
 import { Layout } from "@/components";
 import { Entry, EntryStatus } from '@/interfaces';
 import { dbEntries } from '@/database';
 import { EntryInterface } from '@/models';
 import { EntriesContext } from '@/context';
-
 
 const validStatus: EntryStatus[] = ['pending', 'in-progress', 'finished'];
 
@@ -68,7 +68,7 @@ const EntryPage: FC<Props> = ({ entry }) => {
           <Card>
             <CardHeader
               title={`Entrada:`}
-              subheader={`Created ${entry.createdAt} ago`}
+              subheader={`Created ${dateFunctions.getFormatDistanceToNow(entry.createdAt)}`}
             />
             <CardContent>
               <TextField

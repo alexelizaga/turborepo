@@ -7,20 +7,20 @@ import mongoose from 'mongoose';
  * 3 = disconnecting
  */
 
-const mongooConnection = {
+const mongoConnection = {
   isConnected: 0
 }
 
 export const connect = async() => {
-  if (mongooConnection.isConnected) {
+  if (mongoConnection.isConnected) {
     console.log('We were connected');
     return;
   }
 
   if (mongoose.connections.length > 0) {
-    mongooConnection.isConnected = mongoose.connections[0].readyState;
+    mongoConnection.isConnected = mongoose.connections[0].readyState;
 
-    if (mongooConnection.isConnected === 1) {
+    if (mongoConnection.isConnected === 1) {
       console.log('Using last connection');
       return;
     }
@@ -29,14 +29,16 @@ export const connect = async() => {
   }
 
   await mongoose.connect(process.env.MONGODB_URI || '');
-  mongooConnection.isConnected = 1;
+  mongoConnection.isConnected = 1;
   console.log('MongoDB connected:', process.env.MONGODB_URI);
 }
 
 export const disconnect = async() => {
   if (process.env.NODE_ENV === 'development') return;
-  if (process.env.NODE_ENV === 'production') return;
-  if (!mongooConnection.isConnected) return;
+  if (!mongoConnection.isConnected) return;
+
   await mongoose.disconnect();
+  mongoConnection.isConnected = 0;
+
   console.log('MongoDB disconnected');
 }
