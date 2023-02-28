@@ -1,9 +1,8 @@
 import { NextPage } from 'next';
 import { Typography } from '@mui/material';
 
-import { ShopLayout } from '@/components';
+import { ShopLayout, ProductList } from '@/components';
 import { initialData } from '@/database';
-import { ProductList } from '@/components';
 import { IProduct } from '@/interfaces';
 
 const HomePage: NextPage = () => {
