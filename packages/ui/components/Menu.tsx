@@ -47,7 +47,7 @@ export const Menu: FC<Props> = ({ app, children }) => {
         }}
       >
         { app !== 'Calendar' && (
-          <MenuItem onClick={() => window.location.href = 'https://brocodecalendarprod.firebaseapp.com'}>
+          <MenuItem onClick={() => window.location.href = 'https://brocodecalendarprod.web.app'}>
             <ListItemIcon>
               <CalendarMonthIcon fontSize="small" />
             </ListItemIcon>
@@ -55,7 +55,7 @@ export const Menu: FC<Props> = ({ app, children }) => {
           </MenuItem>
         )}
         { app !== 'Journal' && (
-          <MenuItem onClick={() => window.location.href =  'https://brocodejournalprod.firebaseapp.com'}>
+          <MenuItem onClick={() => window.location.href =  'https://brocodejournalprod.web.app'}>
             <ListItemIcon>
               <ListAltIcon fontSize="small" />
             </ListItemIcon>
@@ -63,7 +63,7 @@ export const Menu: FC<Props> = ({ app, children }) => {
           </MenuItem>
         )}
         { app !== 'Kanban' && (
-          <MenuItem onClick={() => window.location.href =  'https://brocodejiraprod.firebaseapp.com'}>
+          <MenuItem onClick={() => window.location.href =  'https://brocodekanbanprod.web.app'}>
             <ListItemIcon>
               <ViewKanbanIcon fontSize="small" />
             </ListItemIcon>
