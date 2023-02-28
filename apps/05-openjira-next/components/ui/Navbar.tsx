@@ -1,15 +1,8 @@
-import { useContext } from "react";
+import { useContext } from 'react';
+import { AppBar, Box, IconButton, Toolbar, Typography } from '@mui/material';
+import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 
-import {
-  AppBar,
-  Box,
-  IconButton,
-  Toolbar,
-  Typography,
-} from "@mui/material";
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-
-import { UIContext } from "../../context/ui";
+import { UIContext } from '@/context';
 
 const origin = typeof window === "undefined" ? "" : window.location.origin;
 
