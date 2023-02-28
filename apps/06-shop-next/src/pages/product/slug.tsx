@@ -1,7 +1,7 @@
-import { ProductSlideshow, ShopLayout } from "@/components"
-
 import { initialData } from "@/database"
 import { Box, Button, Grid, Typography } from "@mui/material";
+
+import { ItemCounter, ProductSlideshow, ShopLayout } from "@/components"
 
 const product = initialData.products[0];
 
@@ -22,7 +22,7 @@ const ProductPage = () => {
             {/* Amount */}
             <Box sx={{ my: 2 }}>
               <Typography variant="subtitle2">Amount</Typography>
-              {/* Item counter */}
+              <ItemCounter />
             </Box>
 
             {/* Add to basket */}
