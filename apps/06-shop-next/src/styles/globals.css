@@ -25,6 +25,12 @@
 }
 
 .circular-btn:hover {
+  color: white;
+  background-color: #274494;
+}
+
+.selector-btn:hover {
+  color: white;
   background-color: #274494;
 }
 
