@@ -37,7 +37,9 @@ export const Navbar: FC<Props> = ({
       elevation={0}
       sx={sx}
     >
-      <Toolbar>
+      <Toolbar
+        sx={{ color: "white" }}
+      >
         <Grid
             container
             direction="row"
@@ -58,8 +60,17 @@ export const Navbar: FC<Props> = ({
             )
           }
           <Menu app={title}>
-            <ViewKanbanIcon sx={{ mr: 1 }} />
-            <Typography variant='h6'>{ title }</Typography>
+            <ViewKanbanIcon fontSize='medium' sx={{ mr: 1 }} />
+            <Box
+              sx={{
+                flexGrow: 1,
+                textTransform: "uppercase",
+                fontWeight: "600",
+                fontSize: "h6.fontSize"
+              }}
+            >
+              <Typography variant="inherit">{ title }</Typography>
+            </Box>
           </Menu>
           <Box>
             { openModalMenu && (
