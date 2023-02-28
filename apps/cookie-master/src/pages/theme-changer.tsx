@@ -15,10 +15,12 @@ import cookies from 'js-cookie';
 
 import { Layout } from "@/components";
 
-const ThemeChangerPage: FC = (props) => {
-  console.log({ props });
+type Props = {
+  theme: string;
+}
 
-  const [currentTheme, setCurrentTheme] = useState("light");
+const ThemeChangerPage: FC<Props> = ({ theme }) => {
+  const [currentTheme, setCurrentTheme] = useState(theme);
 
   const onThemeChange = (event: ChangeEvent<HTMLInputElement>) => {
     const selectedTheme = event.target.value;
@@ -77,9 +79,11 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
   const { theme = 'light' } = req.cookies;
 
+  const validThemes = ['light', 'dark', 'custom'];
+
   return {
     props: {
-      theme
+      theme: validThemes.includes(theme) ? theme : 'light'
     }
   }
 }
