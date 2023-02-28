@@ -1,13 +1,9 @@
 import type { AppProps } from 'next/app';
 import { CssBaseline, ThemeProvider } from '@mui/material';
-
-import { UIProvider } from '../context/ui';
-import { EntriesProvider } from '../context/entries';
-
-import { darkTheme } from '../themes';
 import { SnackbarProvider } from 'notistack';
 
-
+import { UIProvider, EntriesProvider } from '@/context';
+import { darkTheme } from '@/themes';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
