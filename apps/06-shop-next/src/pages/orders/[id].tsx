@@ -1,12 +1,27 @@
 import NextLink from 'next/link';
-import { Box, Button, Card, CardContent, Divider, Grid, Link, Typography } from "@mui/material";
+import { Box, Card, CardContent, Chip, Divider, Grid, Link, Typography } from "@mui/material";
+import { CreditCardOffOutlined, CreditScoreOutlined } from "@mui/icons-material";
 
 import { ShopLayout, CartList, OrderSummary } from "@/components";
 
-const SummaryPage = () => {
+const OrderPage = () => {
   return (
-    <ShopLayout title="Purchase summary" pageDescription="purchase summary">
-      <Typography variant="h1" component="h1">Purchase</Typography>
+    <ShopLayout title="Order" pageDescription="order summary">
+      <Typography variant="h1" component="h1">Order: 123456789</Typography>
+      <Chip
+        sx={{ my: 2 }}
+        label="Pending"
+        variant="outlined"
+        color="error"
+        icon={<CreditCardOffOutlined />}
+      />
+      <Chip
+        sx={{ my: 2 }}
+        label="Payment complete"
+        variant="outlined"
+        color="success"
+        icon={<CreditScoreOutlined />}
+      />
       <Grid container spacing={2} sx={{ pt: 2 }}>
         <Grid item xs={12} sm={7}>
           <CartList />
@@ -52,9 +67,15 @@ const SummaryPage = () => {
               <OrderSummary />
 
               <Box sx={{ mt: 3 }}>
-                <Button color="secondary" className="circular-btn" fullWidth>
-                  Confirm order
-                </Button>
+                {/* Pay */}
+                <h1>Pay</h1>
+                <Chip
+                  sx={{ my: 2 }}
+                  label="Payment complete"
+                  variant="outlined"
+                  color="success"
+                  icon={<CreditScoreOutlined />}
+                />
               </Box>
             </CardContent>
           </Card>
@@ -64,4 +85,4 @@ const SummaryPage = () => {
   )
 }
 
-export default SummaryPage;
+export default OrderPage;
