@@ -1,6 +1,6 @@
 import { Box, Button, Card, CardContent, Divider, Grid, Typography } from "@mui/material";
 
-import { ShopLayout, CartList } from "@/components";
+import { ShopLayout, CartList, OrderSummary } from "@/components";
 
 const CartPage = () => {
   return (
@@ -8,15 +8,15 @@ const CartPage = () => {
       <Typography variant="h1" component="h1">Cart</Typography>
       <Grid container spacing={2} sx={{ pt: 2 }}>
         <Grid item xs={12} sm={7}>
-          <CartList />
+          <CartList editable />
         </Grid>
         <Grid item xs={12} sm={5}>
           <Card className="summary-card">
             <CardContent>
               <Typography variant="h2">Order</Typography>
-              <Divider sx={{ my: 1 }} />
+              <Divider sx={{ my: 1.5 }} />
 
-              {/* OrderSummary */}
+              <OrderSummary />
 
               <Box sx={{ mt: 3 }}>
                 <Button color="secondary" className="circular-btn" fullWidth>
