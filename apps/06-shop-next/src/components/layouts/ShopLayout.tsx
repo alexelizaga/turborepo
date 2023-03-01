@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Head from "next/head";
 
-import { Navbar, Sidebar } from "../ui";
+import { Navbar, Sidebar } from "@/components";
 
 type Props = {
   children: JSX.Element | JSX.Element[];

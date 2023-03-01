@@ -26,9 +26,9 @@ const ProductPage = () => {
               <SizeSelector sizes={product.sizes} />
             </Box>
 
-            {/* Add to basket */}
+            {/* Add to cart */}
             <Button color="secondary" className="circular-btn">
-              Add to basket
+              Add to cart
             </Button>
 
             {/* <Chip label="Out of stock" color="error" variant="outlined"/> */}
