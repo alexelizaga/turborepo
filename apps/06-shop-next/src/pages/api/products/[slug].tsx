@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import mongoose from "mongoose";
 
 import { db } from "@/database";
 import { IProduct } from "@/interfaces";
@@ -13,14 +12,12 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  switch (req.method) {
-    case "GET":
-      return getEntry(req, res);
-
-    default:
-      return res.status(400).json({
-        message: "Bad request"
-      });
+  if( req.method === 'GET') {
+    return getEntry(req, res);
+  } else {
+    return res.status(400).json({
+      message: "Bad request"
+    });
   }
 }
 

@@ -13,14 +13,12 @@ export default function handler(
   res: NextApiResponse<Data>
 ) {
 
-  switch (req.method) {
-    case 'GET':
-      return getProducts( req, res );
-  
-    default:
-      return res.status(400).json({
-        message: "Bad request"
-      });
+  if(req.method === 'GET'){
+    return getProducts( req, res );
+  } else {
+    return res.status(400).json({
+      message: "Bad request"
+    });
   }
 
 }
