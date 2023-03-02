@@ -35,7 +35,7 @@ const productSchema = new Schema({
   timestamps: true
 });
 
-// Create Mongo index
+productSchema.index({ title: 'text', tags: 'text' });
 
 const Product: Model<IProduct> = moongose.models.Product || model('Product', productSchema);
 
