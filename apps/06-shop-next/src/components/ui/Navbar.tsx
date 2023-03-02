@@ -2,8 +2,12 @@
 import NextLink from 'next/link';
 import { AppBar, Badge, Box, Button, IconButton, Link, Toolbar, Typography } from '@mui/material';
 import { SearchOutlined, ShoppingCartOutlined } from '@mui/icons-material';
+import { useRouter } from 'next/router';
 
 export const Navbar = () => {
+
+  const { asPath } = useRouter();
+
   return (
     <AppBar>
       <Toolbar>
@@ -14,36 +18,35 @@ export const Navbar = () => {
           display="flex"
           alignItems="center"
         >
-          <Typography variant='h6'>Maersk |</Typography>
+          <Typography variant="h6">Maersk |</Typography>
           <Typography sx={{ ml: 0.5 }}>Shop</Typography>
         </Link>
 
         <Box flex="1" />
 
-        <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-          <Link
-            href="/category/men"
-            component={NextLink}
-            color="text.primary"
-            sx={{ ml:0.5 }}
-          >
-            <Button>Men</Button>
+        <Box sx={{ display: { xs: "none", sm: "block" } }}>
+          <Link href="/category/men" component={NextLink} sx={{ ml: 0.5 }}>
+            <Button color={asPath === "/category/men" ? "primary" : "info"}>
+              Men
+            </Button>
           </Link>
           <Link
             href="/category/women"
             component={NextLink}
-            color="text.primary"
-            sx={{ ml:0.5 }}
+            sx={{ ml: 0.5 }}
           >
-            <Button>Women</Button>
+            <Button color={asPath === "/category/women" ? "primary" : "info"}>
+              Women
+            </Button>
           </Link>
           <Link
             href="/category/kids"
             component={NextLink}
-            color="text.primary"
-            sx={{ ml:0.5 }}
+            sx={{ ml: 0.5 }}
           >
-            <Button>Kids</Button>
+            <Button color={asPath === "/category/kids" ? "primary" : "info"}>
+              Kids
+            </Button>
           </Link>
         </Box>
 
@@ -57,7 +60,7 @@ export const Navbar = () => {
           href="/cart"
           component={NextLink}
           color="text.primary"
-          sx={{ ml:0.5 }}
+          sx={{ ml: 0.5 }}
         >
           <IconButton>
             <Badge badgeContent={2} color="secondary">
@@ -66,11 +69,8 @@ export const Navbar = () => {
           </IconButton>
         </Link>
 
-        <Button>
-          Menu
-        </Button>
-
+        <Button>Menu</Button>
       </Toolbar>
     </AppBar>
-  )
+  );
 }
