@@ -30,7 +30,7 @@ export const ProductCard: FC<Props> = ({ product }) => {
     >
       <Card>
         <Link
-          href="/product/slug"
+          href={`/product/${product.slug}`}
           component={NextLink}
           color="text.primary"
           sx={{ ml:0.5 }}
