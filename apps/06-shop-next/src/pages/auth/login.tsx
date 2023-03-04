@@ -33,7 +33,7 @@ const LoginPage = () => {
               color="text.primary"
               underline='always'
             >
-              don't you have an account?
+              do not you have an account?
             </Link>
           </Grid>
         </Grid>
