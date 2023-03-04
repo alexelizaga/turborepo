@@ -59,7 +59,7 @@ export const Sidebar = () => {
             <Input
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" ? onSearchTerm() : null}
+              onKeyUp={(e) => e.key === "Enter" ? onSearchTerm() : null}
               type="text"
               placeholder="Buscar..."
               endAdornment={

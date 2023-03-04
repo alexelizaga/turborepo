@@ -26,3 +26,17 @@ export const getAllProductsSlugs = async(): Promise<ProductSlug[]> => {
 
   return slugs;
 }
+
+export const getProductsByTerm = async( term: string ): Promise<IProduct[]> => {
+  term = term.toString().toLowerCase();
+
+  db.connect();
+  const products = await Product.find({
+    $text: { $search: `${term}` }
+  })
+  .select("title images price inStock slug -_id")
+  .lean();
+  db.disconnect();
+
+  return products;
+}
