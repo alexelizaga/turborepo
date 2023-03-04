@@ -16,8 +16,7 @@ export const SizeSelector: FC<Props> = ({ selectSize, sizes }) => {
           <Button
             key={ size }
             size='small'
-            color={ selectSize !== size ? 'primary' : 'secondary' }
-            className={selectSize === size ? "selector-btn" : ""}
+            color={ selectSize === size ? 'primary' : 'info' }
           >
             { size }
           </Button>

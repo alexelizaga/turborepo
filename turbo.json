@@ -1,6 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalEnv": ["NEXT_PUBLIC_CLIENT_KEY"],
+  "globalEnv": ["MONGODB_URI"],
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],

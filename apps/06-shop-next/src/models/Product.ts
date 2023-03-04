@@ -1,4 +1,4 @@
-import moongose, { model, Model, Schema } from 'mongoose';
+import mongoose, { model, Model, Schema } from 'mongoose';
 
 import { IProduct } from '@/interfaces';
 
@@ -37,6 +37,6 @@ const productSchema = new Schema({
 
 productSchema.index({ title: 'text', tags: 'text' });
 
-const Product: Model<IProduct> = moongose.models.Product || model('Product', productSchema);
+const Product: Model<IProduct> = mongoose?.models?.Product || model('Product', productSchema);
 
 export default Product;

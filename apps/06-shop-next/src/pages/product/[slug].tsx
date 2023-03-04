@@ -1,11 +1,16 @@
-import { initialData } from "@/database"
+import { NextPage, GetStaticPaths, GetStaticProps } from "next";
 import { Box, Button, Grid, Typography } from "@mui/material";
 
 import { ItemCounter, ProductSlideshow, ShopLayout, SizeSelector } from "@/components"
+import { IProduct } from '@/interfaces';
+import { dbProducts } from "@/database";
 
-const product = initialData.products[0];
+type Props = {
+  product: IProduct;
+}
 
-const ProductPage = () => {
+const ProductPage: NextPage<Props> = ({ product }) => {
+
   return (
     <ShopLayout title={product.title} pageDescription={product.description}>
       <Grid container spacing={3}>
@@ -45,6 +50,41 @@ const ProductPage = () => {
       </Grid>
     </ShopLayout>
   )
+}
+
+// 1. GET STATIC PATHS
+export const getStaticPaths: GetStaticPaths = async (ctx) => {
+  const productSlugs = await dbProducts.getAllProductsSlugs();
+
+  return {
+    paths: productSlugs.map((slug) => ({
+      params: slug
+    })),
+    // fallback: false
+    fallback: 'blocking'
+  }
+}
+
+// 2. GET STATIC PROPS
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { slug = '' } = params as { slug: string };
+  const product = await dbProducts.getProductBySlug(slug);
+
+  if (!product) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
+
+  return {
+    props: {
+      product
+    },
+    revalidate: 86400
+  }
 }
 
 export default ProductPage

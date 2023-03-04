@@ -13,7 +13,7 @@ export default function handler(
   res: NextApiResponse<Data>
 ) {
   if( req.method === 'GET') {
-    return getEntry(req, res);
+    return getProductBySlug(req, res);
   } else {
     return res.status(400).json({
       message: "Bad request"
@@ -21,7 +21,7 @@ export default function handler(
   }
 }
 
-const getEntry = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
+const getProductBySlug = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   const { slug } = req.query;
 
   await db.connect();

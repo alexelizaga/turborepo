@@ -4,14 +4,16 @@ import { Typography } from '@mui/material';
 import { ShopLayout, ProductList, FullScreenLoader } from '@/components';
 import { useProducts } from '@/hooks';
 
-const HomePage: NextPage = () => {
+const KidsPage: NextPage = () => {
 
-  const { products, isLoading } = useProducts('/products');
+  const { products, isLoading } = useProducts('/products?gender=kid');
+
+  console.log({products});
 
   return (
-    <ShopLayout title={'Shop - Home'} pageDescription={'Find the best products'}>
+    <ShopLayout title={'Shop - Kids'} pageDescription={'Find the best men products'}>
       <Typography variant='h1' component='h1'>Shop</Typography>
-      <Typography variant='h2' sx={{ mb: 1 }}>All the products</Typography>
+      <Typography variant='h2' sx={{ mb: 1 }}>Kids</Typography>
 
       {
         isLoading
@@ -23,4 +25,4 @@ const HomePage: NextPage = () => {
   )
 }
 
-export default HomePage;
+export default KidsPage;
