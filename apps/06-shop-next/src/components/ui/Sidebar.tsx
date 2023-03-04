@@ -33,7 +33,7 @@ export const Sidebar = () => {
   const router = useRouter();
   const { isMenuOpen, toggleSideMenu } = useContext(UIContext)
   
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");  
 
   const onSearchTerm = () => {
     if(!searchTerm.trim().length ) return;
@@ -57,6 +57,7 @@ export const Sidebar = () => {
         <List>
           <ListItem>
             <Input
+              autoFocus
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               onKeyUp={(e) => e.key === "Enter" ? onSearchTerm() : null}
