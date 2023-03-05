@@ -5,6 +5,7 @@ import { Box, Button, CardActionArea, CardMedia, Grid, Link, Typography } from "
 import { ItemCounter } from '@/components';
 import { CartContext } from '@/context';
 import { ICartProduct } from '@/interfaces';
+import { currency } from '@/utils';
 
 type Props = {
   editable?: boolean;
@@ -62,7 +63,7 @@ export const CartList: FC<Props> = ({ editable = false }) => {
               </Box>
             </Grid>
             <Grid item xs={2} display='flex' alignItems='center' flexDirection='column'>
-              <Typography variant='subtitle1'>{`$${product.price}`}</Typography>
+              <Typography variant='subtitle1'>{currency.format(product.price)}</Typography>
               {
                 editable && (
                   <Button
