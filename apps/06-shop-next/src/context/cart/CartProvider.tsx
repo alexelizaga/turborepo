@@ -73,11 +73,19 @@ export const CartProvider: FC<Props> = ({ children }) => {
     })
   }
 
+  const removeCartProduct = (product: ICartProduct) => {
+    dispatch({
+      type: '[CART] - Remove product in cart',
+      payload: product
+    })
+  }
+
   const providerValue = useMemo(
     () => ({
       ...state,
       // Methods
       addProductToCart,
+      removeCartProduct,
       updateCartQuantity
     }),
     [state]
