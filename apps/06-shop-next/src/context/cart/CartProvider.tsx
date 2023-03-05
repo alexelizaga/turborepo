@@ -66,11 +66,19 @@ export const CartProvider: FC<Props> = ({ children }) => {
     dispatch({ type: '[CART] - Update products in cart', payload: updatedProducts })
   }
 
+  const updateCartQuantity = (product: ICartProduct) => {
+    dispatch({
+      type: '[CART] - Change product cart quantity',
+      payload: product
+    })
+  }
+
   const providerValue = useMemo(
     () => ({
       ...state,
       // Methods
-      addProductToCart
+      addProductToCart,
+      updateCartQuantity
     }),
     [state]
   );

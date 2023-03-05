@@ -4,19 +4,25 @@ import { Box, Button, CardActionArea, CardMedia, Grid, Link, Typography } from "
 
 import { ItemCounter } from '@/components';
 import { CartContext } from '@/context';
+import { ICartProduct } from '@/interfaces';
 
 type Props = {
   editable?: boolean;
 }
 
 export const CartList: FC<Props> = ({ editable = false }) => {
-  const { cart } = useContext(CartContext);
+  const { cart, updateCartQuantity } = useContext(CartContext);
+
+  const onNewCartQuantityValue = (product: ICartProduct, newQuantityValue: number) => {
+    product.quantity = newQuantityValue;
+    updateCartQuantity(product);
+  }
 
   return (
     <>
       {
         cart.map( product => (
-          <Grid container spacing={2} key={product.slug} sx={{ mb: 1 }} alignItems='center'>
+          <Grid container spacing={2} key={product.slug + product.size} sx={{ mb: 1 }} alignItems='center'>
             <Grid item xs={3}>
               {/* Go to product page */}
               <Link
@@ -44,7 +50,7 @@ export const CartList: FC<Props> = ({ editable = false }) => {
                       <ItemCounter
                         currentValue={product.quantity}
                         maxValue={product.inStock}
-                        updateQuantity={() => ({})}
+                        updateQuantity={(value) => onNewCartQuantityValue(product, value)}
                       />
                     )
                     : (
