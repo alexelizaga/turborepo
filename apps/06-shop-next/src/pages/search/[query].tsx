@@ -49,19 +49,29 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     }
   }
 
-  let products = await dbProducts.getProductsByTerm(query);
-  const foundProducts = !!products.length;
+  try {
+    let products = await dbProducts.getProductsByTerm(query);
+    const foundProducts = products.length > 0;
 
-  if (!foundProducts) {
-    products = await dbProducts.getAllProducts();
-  }
+    if (!foundProducts) {
+      products = await dbProducts.getAllProducts();
+    }
 
-
-  return {
-    props: {
-      products,
-      foundProducts,
-      query
+    return {
+      props: {
+        products,
+        foundProducts,
+        query
+      }
+    }
+  } catch (error) {
+    const products = await dbProducts.getAllProducts();
+    return {
+      props: {
+        products,
+        foundProducts: false,
+        query
+      }
     }
   }
 }
