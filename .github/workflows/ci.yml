@@ -12,7 +12,9 @@ jobs:
       timeout-minutes: 15
       runs-on: ubuntu-latest
       # To use Remote Caching, uncomment the next lines and follow the steps below.
-      # env:
+      env:
+        MONGODB_URI: mongodb+srv://github-admin-user:UW3AX3p2WVAi1shO@turborepo.pzvcrtj.mongodb.net/shopdb?retryWrites=true&w=majority
+        NEXT_PUBLIC_TAX_RATE: 0.15
       #  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       #  TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
  
