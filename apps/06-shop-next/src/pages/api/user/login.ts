@@ -54,4 +54,3 @@ const loginUser = async(req: NextApiRequest, res: NextApiResponse<Data>) => {
     }
   });
 }
-
