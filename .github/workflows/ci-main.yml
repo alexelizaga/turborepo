@@ -1,21 +1,20 @@
-name: CI
- 
+name: CI-Main
+
 on:
   push:
-    branches: ["main", "preview"]
+    branches: ["main"]
   pull_request:
     types: [opened, synchronize]
  
 jobs:
   build:
-      name: Build and Test
+      name: Build
       timeout-minutes: 15
       runs-on: ubuntu-latest
       # To use Remote Caching, uncomment the next lines and follow the steps below.
       env:
-        MONGODB_URI: mongodb+srv://github-admin-user:UW3AX3p2WVAi1shO@turborepo.pzvcrtj.mongodb.net/shopdb?retryWrites=true&w=majority
-        JWT_SECRET_SEED: Th1s1sAs3cr3tS33d0fMyT0k3n5
-        NEXT_PUBLIC_TAX_RATE: 0.15
+      #  MONGODB_URI: mongodb+srv://github-admin-user:UW3AX3p2WVAi1shO@turborepo.pzvcrtj.mongodb.net/shopdb?retryWrites=true&w=majority
+      #  NEXT_PUBLIC_TAX_RATE: 0.15
       #  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       #  TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
  
@@ -35,7 +34,7 @@ jobs:
           run: yarn
  
         - name: Build
-          run: yarn build
+          run: yarn build-prod
  
         # - name: Test
         #  run: yarn test

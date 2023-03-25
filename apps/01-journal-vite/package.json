@@ -4,10 +4,10 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --port 3001",
-    "build-prod": "tsc && vite build",
     "build-dev": "tsc && vite build -m development",
-    "deploy-prod": "tsc && vite build && firebase use prod && firebase deploy",
+    "build-prod": "tsc && vite build",
     "deploy-dev": "tsc && vite build -m development && firebase use dev && firebase deploy",
+    "deploy-prod": "tsc && vite build && firebase use prod && firebase deploy",
     "preview": "vite preview",
     "test": "jest --watchAll",
     "server": "firebase emulators:start"
