@@ -3,6 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Box, Button, Grid, Link, TextField, Typography } from "@mui/material";
 
 import { AuthLayout } from "@/components";
+import { validations } from '@/utils';
 
 type FormData = {
   email   : string,
@@ -12,6 +13,7 @@ type FormData = {
 const LoginPage = () => {
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
+  console.log({ errors });
 
   const onLoginUser: SubmitHandler<FormData> = ( data ) => {
     console.log({ data });
@@ -19,7 +21,7 @@ const LoginPage = () => {
 
   return (
     <AuthLayout title="Login">
-      <form onSubmit={ handleSubmit(onLoginUser) }>
+      <form onSubmit={ handleSubmit(onLoginUser) } noValidate>
         <Box sx={{ width: 350, p: '10px 20px'}}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -32,7 +34,12 @@ const LoginPage = () => {
                 label="Email"
                 variant="filled"
                 fullWidth
-                { ...register('email') }
+                { ...register('email', {
+                  required: 'This field is required',
+                  validate: validations.isEmail
+                })}
+                error={ !!errors.email }
+                helperText={ errors.email?.message }
               />
             </Grid>
 
@@ -42,7 +49,12 @@ const LoginPage = () => {
                 type="password"
                 variant="filled"
                 fullWidth
-                { ...register('password') }
+                { ...register('password', {
+                  required: 'This field is required',
+                  minLength: { value: 6, message: 'Min 6 characters' }
+                })}
+                error={ !!errors.password }
+                helperText={ errors.password?.message }
               />
             </Grid>
 
