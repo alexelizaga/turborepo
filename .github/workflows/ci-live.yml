@@ -2,9 +2,7 @@ name: CI-Live
 
 on:
   push:
-    branches:
-      - '!main'
-      - '!preview'
+    branches: ["!main", "!preview"]
   # pull_request:
   #   types: [opened, synchronize]
 
