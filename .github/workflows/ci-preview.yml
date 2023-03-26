@@ -3,8 +3,8 @@ name: CI-Preview
 on:
   push:
     branches: ["preview"]
-  pull_request:
-    types: [opened, synchronize]
+  # pull_request:
+  #   types: [opened, synchronize]
 
 jobs:
   build:
