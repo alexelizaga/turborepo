@@ -17,15 +17,11 @@ type Data =
   }
 
 export default function handler (req: NextApiRequest, res: NextApiResponse<Data>) {
-
-  switch ( req.method ) {
-    case 'POST':
-      return registerUser(req, res);
-  
-    default:
-      res.status(400).json({ message: 'Bad request' });
+  if ( req.method === 'POST' ) {
+    return registerUser(req, res);
+  } else {
+    res.status(400).json({ message: 'Bad request' });
   }
-
 };
 
 const registerUser = async(req: NextApiRequest, res: NextApiResponse<Data>) => {

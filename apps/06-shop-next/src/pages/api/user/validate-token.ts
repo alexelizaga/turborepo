@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import bcryptjs from 'bcryptjs';
 
 import { db } from '@/database';
 import { User } from '@/models';
@@ -17,15 +16,11 @@ type Data =
   }
 
 export default function handler (req: NextApiRequest, res: NextApiResponse<Data>) {
-
-  switch ( req.method ) {
-    case 'GET':
-      return checkJWT(req, res);
-  
-    default:
-      res.status(400).json({ message: 'Bad request' });
+  if ( req.method === 'GET' ) {
+    return checkJWT(req, res);
+  } else {
+    res.status(400).json({ message: 'Bad request' });
   }
-
 };
 
 const checkJWT = async(req: NextApiRequest, res: NextApiResponse<Data>) => {
