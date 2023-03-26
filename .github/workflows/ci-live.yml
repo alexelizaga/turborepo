@@ -2,7 +2,7 @@ name: CI-Live
 
 on:
   push:
-    branches: ["!main", "!preview"]
+    branches-ignore: ["main", "preview"]
   # pull_request:
   #   types: [opened, synchronize]
 
