@@ -4,6 +4,7 @@ import { Box, Button, Grid, Link, TextField, Typography } from "@mui/material";
 
 import { AuthLayout } from "@/components";
 import { validations } from '@/utils';
+import { shopApi } from '@/api';
 
 type FormData = {
   email   : string,
@@ -13,10 +14,15 @@ type FormData = {
 const LoginPage = () => {
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
-  console.log({ errors });
 
-  const onLoginUser: SubmitHandler<FormData> = ( data ) => {
-    console.log({ data });
+  const onLoginUser: SubmitHandler<FormData> = async ({ email, password }) => {
+    try {
+      const { data } = await shopApi.post('/user/login', { email, password });
+      const { token, user } = data;
+      console.log({ token, user });
+    } catch (error) {
+      console.log('Credentials error');
+    }
   }
 
   return (
