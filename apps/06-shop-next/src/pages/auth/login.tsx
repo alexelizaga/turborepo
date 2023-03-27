@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import NextLink from 'next/link';
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Box, Button, Grid, Link, TextField, Typography } from "@mui/material";
+import { Box, Button, Chip, Grid, Link, TextField, Typography } from "@mui/material";
+import { ErrorOutline } from '@mui/icons-material';
 
 import { AuthLayout } from "@/components";
 import { validations } from '@/utils';
@@ -14,14 +16,18 @@ type FormData = {
 const LoginPage = () => {
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
+  const [showError, setShowError] = useState(false);
 
   const onLoginUser: SubmitHandler<FormData> = async ({ email, password }) => {
+    setShowError(false);
     try {
       const { data } = await shopApi.post('/user/login', { email, password });
       const { token, user } = data;
       console.log({ token, user });
     } catch (error) {
       console.log('Credentials error');
+      setShowError(true);
+      setTimeout(() => setShowError(false), 3000);
     }
   }
 
@@ -32,6 +38,13 @@ const LoginPage = () => {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <Typography variant="h1" component="h1">Login</Typography>
+              <Chip
+                label="We don't recognize that user/password"
+                color="error"
+                icon={<ErrorOutline />}
+                className="fadeIn"
+                sx={{ display: showError ? 'flex' : 'none', mt: 1 }}
+              />
             </Grid>
 
             <Grid item xs={12}>
