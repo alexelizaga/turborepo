@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import type { AppProps } from 'next/app';
+import Cookies from 'js-cookie';
 import { CssBaseline, Theme, ThemeProvider } from '@mui/material';
 
 import { lightTheme, darkTheme, customTheme } from '@/themes';
 
 import '@/styles/globals.css';
-import cookies from 'js-cookie';
 
 interface Props extends AppProps {
   theme: string
@@ -16,7 +16,7 @@ const App = ({ Component, pageProps, theme = 'dark' }: Props) => {
   const [currentTheme, setCurrentTheme] = useState(lightTheme);
 
   useEffect(() => {
-    const cookieTheme = cookies.get('theme') || 'light';
+    const cookieTheme = Cookies.get('theme') || 'light';
     const selectedTheme: Theme = cookieTheme === 'light'
       ? lightTheme
       : (cookieTheme === 'dark')
