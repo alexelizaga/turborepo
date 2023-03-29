@@ -1,5 +1,7 @@
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import { GetServerSideProps } from 'next';
+import axios from "axios";
+import Cookies from 'js-cookie';
 import {
   Button,
   Card,
@@ -10,8 +12,6 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
-import axios from "axios";
-import cookies from 'js-cookie';
 
 import { Layout } from "@/components";
 
@@ -28,7 +28,7 @@ const ThemeChangerPage: FC<Props> = ({ theme }) => {
     setCurrentTheme(selectedTheme);
 
     localStorage.setItem("theme", selectedTheme);
-    cookies.set('theme', selectedTheme);
+    Cookies.set('theme', selectedTheme);
   };
 
   const onClick = async() => {
@@ -39,7 +39,7 @@ const ThemeChangerPage: FC<Props> = ({ theme }) => {
 
   useEffect(() => {
     console.log("LocalStorage: ", localStorage.getItem("theme"));
-    console.log("Cookies: ", cookies.get("theme"));
+    console.log("Cookies: ", Cookies.get("theme"));
   }, []);
 
   return (
