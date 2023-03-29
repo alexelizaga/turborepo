@@ -1,5 +1,6 @@
 import { FC, useReducer, ReactNode } from 'react';
 import Cookies from 'js-cookie';
+import axios from 'axios';
 
 import { AuthContext, authReducer } from '@/context';
 import { IUser } from '@/interfaces';
@@ -30,13 +31,37 @@ export const AuthProvider: FC<{children: ReactNode}> = ({ children }) => {
     }
   }
 
+  const registerUser = async ( name: string, email: string, password: string ): Promise<{ hasError: boolean, message?: string }> => {
+    try {
+      const { data } = await shopApi.post('/user/register', { name, email, password });
+      const { user, token } = data;
+      Cookies.set('token', token);
+      dispatch({ type: '[Auth] - Login', payload: user });
+
+      return {
+        hasError: false
+      }
+    } catch (error) {
+      if ( axios.isAxiosError(error) ) {
+        return {
+          hasError: true,
+          message: error.response?.data.message
+        }
+      }
+      return {
+        hasError: true,
+        message: 'Failed to create user'
+      }
+    }
+  }
+
   return (
     <AuthContext.Provider
       value={{
         ...state,
         // Methods
         loginUser,
-        
+        registerUser
       }}
     >
       { children }
