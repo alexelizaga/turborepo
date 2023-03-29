@@ -32,7 +32,8 @@ const LoginPage = () => {
       return;
     }
 
-    router.replace('/');
+    const destionation = router.query.p?.toString() || '/';
+    router.replace(destionation);
   }
 
   return (
