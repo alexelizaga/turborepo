@@ -33,7 +33,8 @@ const RegisterPage = () => {
       return;
     }
 
-    router.replace('/');
+    const destionation = router.query.p?.toString() || '/';
+    router.replace(destionation);
   }
 
   return (
@@ -111,7 +112,7 @@ const RegisterPage = () => {
 
             <Grid item xs={12} display='flex' justifyContent='end'>
               <Link
-                href="/auth/login"
+                href={ router.query.p ? `/auth/login?p=${ router.query.p }` : '/auth/login' }
                 component={NextLink}
                 color="text.primary"
                 underline='always'
