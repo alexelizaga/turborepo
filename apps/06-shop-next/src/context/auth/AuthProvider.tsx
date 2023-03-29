@@ -1,4 +1,4 @@
-import { FC, useReducer, ReactNode, useEffect } from 'react';
+import { FC, useReducer, ReactNode, useEffect, useMemo } from 'react';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
@@ -71,14 +71,19 @@ export const AuthProvider: FC<{children: ReactNode}> = ({ children }) => {
     }
   }
 
+  const providerValue = useMemo(
+    () => ({
+      ...state,
+      // Methods
+      loginUser,
+      registerUser
+    }),
+    [state]
+  );
+
   return (
     <AuthContext.Provider
-      value={{
-        ...state,
-        // Methods
-        loginUser,
-        registerUser
-      }}
+      value={providerValue}
     >
       { children }
     </AuthContext.Provider>

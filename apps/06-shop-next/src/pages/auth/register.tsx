@@ -6,7 +6,6 @@ import { Box, Button, Chip, Grid, Link, TextField, Typography } from "@mui/mater
 import { ErrorOutline } from '@mui/icons-material';
 
 import { AuthContext } from '@/context';
-import { shopApi } from '@/api';
 import { AuthLayout } from "@/components"
 import { validations } from '@/utils';
 
@@ -29,7 +28,7 @@ const RegisterPage = () => {
     const { hasError, message } = await registerUser( name, email, password );
     if ( hasError ) {
       setShowError(true);
-      setErrorMessage( message! );
+      setErrorMessage( message || '' );
       setTimeout(() => setShowError(false), 3000);
       return;
     }
