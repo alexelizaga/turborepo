@@ -1,9 +1,21 @@
+import { useContext } from 'react';
 import NextLink from 'next/link';
 import { Box, Button, Card, CardContent, Divider, Grid, Link, Typography } from "@mui/material";
 
+import { CartContext } from '@/context';
 import { ShopLayout, CartList, OrderSummary } from "@/components";
+import { countries } from '@/utils';
 
 const SummaryPage = () => {
+
+  const { shippingAddress, numberOfItems } = useContext(CartContext);
+
+  if ( !shippingAddress ) {
+    return (<></>);
+  };
+
+  const { firstName, lastName, address, address2 = '', city, country, phone, zip } = shippingAddress;
+
   return (
     <ShopLayout title="Purchase summary" pageDescription="purchase summary">
       <Typography variant="h1" component="h1">Purchase</Typography>
@@ -14,7 +26,7 @@ const SummaryPage = () => {
         <Grid item xs={12} sm={5}>
           <Card className="summary-card">
             <CardContent>
-              <Typography variant="h2">Summary (3 products)</Typography>
+              <Typography variant="h2">Summary ({numberOfItems} {numberOfItems === 1 ? 'product' : 'products'})</Typography>
               <Divider sx={{ my: 1.5 }} />
 
               <Box display="flex" justifyContent="space-between" alignItems="baseline">
@@ -30,11 +42,11 @@ const SummaryPage = () => {
               </Box>
 
               
-              <Typography>Alex Elízaga</Typography>
-              <Typography>26 Some place</Typography>
-              <Typography>Madrid, 29550</Typography>
-              <Typography>Country</Typography>
-              <Typography>+34 918591122</Typography>
+              <Typography>{firstName} {lastName}</Typography>
+              <Typography>{ address }{ address2 ? `, ${address2}` : '' }</Typography>
+              <Typography>{ city }, { zip }</Typography>
+              <Typography>{ countries.find( c => c.code === country)?.name }</Typography>
+              <Typography>{ phone }</Typography>
 
               <Divider sx={{ my: 1.5 }} />
 

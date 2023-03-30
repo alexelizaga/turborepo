@@ -1,16 +1,40 @@
 # Turborepo starter
 
+## 01 Journal
+
+[Preview](https://journal-dev.brocodejs.com/)
+
+[Production](https://journal.brocodejs.com/)
+
+## 02 Calendar
+
+[Preview](https://calendar-dev.brocodejs.com/)
+
+[Production](https://calendar.brocodejs.com/)
+
+## 02 Kanban
+
+[Preview](https://kanban-dev.brocodejs.com/)
+
+[Production](https://kanban.brocodejs.com/)
+
 ## 04 Pokedex
 
 [Preview](https://turborepo-04-pokedex-next-git-preview-alexelizaga.vercel.app/)
 
-[Production](https://turborepo-04-pokedex-next-9bzlja8j8-alexelizaga.vercel.app/)
+[Production](https://pokedex.brocodejs.com/)
 
 ## 05 OpenJira
 
 [Preview](https://turborepo-05-openjira-next-git-preview-alexelizaga.vercel.app/)
 
 [Production](https://turborepo-05-openjira-next-aaoslsvvd-alexelizaga.vercel.app/)
+
+## 06 Shop
+
+[Preview](https://turborepo-06-shop-next-git-preview-alexelizaga.vercel.app/)
+
+[Production] (https://shop.brocodejs.com/)
 
 ## UI Package
 [StoryBook](https://alexelizaga.github.io/turborepo/?path=/story/get-started-introduction--page)

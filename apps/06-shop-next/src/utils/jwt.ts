@@ -19,8 +19,12 @@ export const signToken = ( _id: string, email: string ) => {
 
 export const isValidToken = ( token: string ): Promise<string> => {
   if ( !process.env.JWT_SECRET_SEED ) {
-    throw new Error('No jwt seed - check environment variables')
-  }
+    throw new Error('No jwt seed - check environment variables');
+  };
+
+  if ( token.length <= 10 ) {
+    return Promise.reject('JWT is invalid');
+  };
 
   return new Promise( (resolve, reject) => {
     try {
