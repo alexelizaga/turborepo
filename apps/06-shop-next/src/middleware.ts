@@ -1,8 +1,6 @@
 import { NextResponse, NextFetchEvent  } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-// import { jwt } from '@/utils';
-
 export function middleware(req: NextRequest, ev: NextFetchEvent) {
   const token = req.cookies.get('token')?.value || '';
   
