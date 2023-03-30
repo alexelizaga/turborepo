@@ -1,10 +1,12 @@
+import { useContext } from "react";
 import { useRouter } from "next/router";
 import { useForm, SubmitHandler } from "react-hook-form";
+import Cookies from "js-cookie";
 import { Box, Button, FormControl, Grid, MenuItem, TextField, Typography } from "@mui/material";
 
+import { CartContext } from "@/context";
 import { ShopLayout } from "@/components";
 import { countries } from '@/utils';
-import Cookies from "js-cookie";
 
 type FormData = {
   firstName : string;
@@ -27,12 +29,14 @@ const getAddressFromCookies = (): FormData => {
 const AddressPage = () => {
 
   const router = useRouter();
+  const { updateShippingAddress } = useContext(CartContext)
+
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
     defaultValues: getAddressFromCookies()
   });
 
   const onSubmitAddress: SubmitHandler<FormData> = async (data) => {
-    Cookies.set( 'shippingAddress', JSON.stringify(data) );
+    updateShippingAddress(data);
     router.push('/checkout/summary');
   }
 

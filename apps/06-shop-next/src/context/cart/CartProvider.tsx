@@ -136,13 +136,19 @@ export const CartProvider: FC<Props> = ({ children }) => {
     })
   }
 
+  const updateShippingAddress = ( address: ShippingAddress ) => {
+    Cookies.set( 'shippingAddress', JSON.stringify(address) );
+    dispatch({ type: '[CART] - Update shipping address', payload: address});
+  }
+
   const providerValue = useMemo(
     () => ({
       ...state,
       // Methods
       addProductToCart,
       removeCartProduct,
-      updateCartQuantity
+      updateCartQuantity,
+      updateShippingAddress
     }),
     [state]
   );
