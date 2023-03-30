@@ -113,7 +113,7 @@ const AddressPage = () => {
                 required: 'This field is required'
               })}
               error={ !!errors.city }
-              // helperText={ errors.city?.message }
+              helperText={ errors.city?.message }
             />
           </Grid>
 
@@ -123,7 +123,7 @@ const AddressPage = () => {
                 select
                 label="Country"
                 variant="filled"
-                defaultValue={countries[0].code}
+                defaultValue={getAddressFromCookies().country || countries[0].code}
                 { ...register('country', {
                   required: 'This field is required'
                 })}
