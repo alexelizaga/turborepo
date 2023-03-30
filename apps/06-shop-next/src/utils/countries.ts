@@ -1,4 +1,9 @@
-export const countries = [{
+export const countries = [
+{
+  name:'España',
+  code: 'ESP'
+},
+{
   name:'Costa Rica',
   code: 'CRI'
 },
@@ -61,10 +66,6 @@ export const countries = [{
 {
   name:'Republica Dominicana',
   code: 'DOM'
-},
-{
-  name:'España',
-  code: 'ESP'
 },
 {
   name:'Paraguay',

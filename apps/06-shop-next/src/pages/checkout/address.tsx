@@ -1,8 +1,10 @@
+import { useRouter } from "next/router";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
+import { Box, Button, FormControl, Grid, MenuItem, TextField, Typography } from "@mui/material";
 
 import { ShopLayout } from "@/components";
 import { countries } from '@/utils';
+import Cookies from "js-cookie";
 
 type FormData = {
   firstName : string;
@@ -17,15 +19,38 @@ type FormData = {
 
 const AddressPage = () => {
 
-  const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
+  const router = useRouter();
+  const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+    defaultValues: {
+      firstName: '',
+      lastName: '',
+      address: '',
+      address2: '',
+      zip: '',
+      city: '',
+      country: countries[0].code,
+      phone: ''
+    }
+  });
 
-  const onSubmit: SubmitHandler<FormData> = async (data) => {
+  const onSubmitAddress: SubmitHandler<FormData> = async (data) => {
     console.log({ data });
+    Cookies.set( 'userAddress', JSON.stringify(data) );
+    Cookies.set( 'firstName', data.firstName );
+    Cookies.set('lastName', data.lastName );
+    Cookies.set('address', data.address );
+    Cookies.set('address2', data.address2 || '' );
+    Cookies.set('zip', data.zip );
+    Cookies.set('city', data.city );
+    Cookies.set('country', data.country );
+    Cookies.set('phone', data.phone );
+
+    router.push('/checkout/summary');
   }
 
   return (
     <ShopLayout title="Address" pageDescription="Confirm shipping address" >
-      <form onSubmit={ handleSubmit(onSubmit) } noValidate>
+      <form onSubmit={ handleSubmit(onSubmitAddress) } noValidate>
         <Typography variant="h1" component="h1">Address</Typography>
 
         <Grid container spacing={2} sx={{ pt: 2 }}>
@@ -35,8 +60,7 @@ const AddressPage = () => {
               variant="filled"
               fullWidth
               { ...register('firstName', {
-                required: 'This field is required',
-                minLength: { value: 2, message: 'Min 2 characters' }
+                required: 'This field is required'
               })}
               error={ !!errors.firstName }
               helperText={ errors.firstName?.message }
@@ -48,8 +72,7 @@ const AddressPage = () => {
               variant="filled"
               fullWidth
               { ...register('lastName', {
-                required: 'This field is required',
-                minLength: { value: 2, message: 'Min 2 characters' }
+                required: 'This field is required'
               })}
               error={ !!errors.lastName }
               helperText={ errors.lastName?.message }
@@ -62,8 +85,7 @@ const AddressPage = () => {
               variant="filled"
               fullWidth
               { ...register('address', {
-                required: 'This field is required',
-                minLength: { value: 3, message: 'Min 3 characters' }
+                required: 'This field is required'
               })}
               error={ !!errors.address }
               helperText={ errors.address?.message }
@@ -74,11 +96,7 @@ const AddressPage = () => {
               label='Address 2 (optional)'
               variant="filled"
               fullWidth
-              { ...register('address2', {
-                minLength: { value: 3, message: 'Min 3 characters' }
-              })}
-              error={ !!errors.address2 }
-              helperText={ errors.address2?.message }
+              { ...register('address2') }
             />
           </Grid>
 
@@ -95,20 +113,30 @@ const AddressPage = () => {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField label='City' variant="filled" fullWidth />
+            <TextField 
+              label='City' 
+              variant="filled" 
+              fullWidth
+              { ...register('city', {
+                required: 'This field is required'
+              })}
+              error={ !!errors.city }
+              // helperText={ errors.city?.message }
+            />
           </Grid>
 
           <Grid item xs={12} sm={6}>
             <FormControl fullWidth>
-              <InputLabel id="select-country" variant="filled">Country</InputLabel>
-              <Select
-                labelId="select-country"
+              <TextField
+                select
                 label="Country"
                 variant="filled"
-                value={'ESP'}
+                defaultValue={countries[0].code}
                 { ...register('country', {
                   required: 'This field is required'
                 })}
+                error={ !!errors.country }
+                helperText={ errors.country?.message }
               >
                 {
                   countries.map( country => (
@@ -120,7 +148,7 @@ const AddressPage = () => {
                     </MenuItem>
                   ))
                 }
-              </Select>
+              </TextField>
             </FormControl>
           </Grid>
           <Grid item xs={12} sm={6}>
