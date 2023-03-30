@@ -17,34 +17,22 @@ type FormData = {
   phone     : string;
 }
 
+const getAddressFromCookies = (): FormData => {
+  const cookiesAddress = JSON.parse(Cookies.get('shippingAddress') || '[]') as FormData;
+  return {
+    ...cookiesAddress
+  }
+}
+
 const AddressPage = () => {
 
   const router = useRouter();
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
-    defaultValues: {
-      firstName: '',
-      lastName: '',
-      address: '',
-      address2: '',
-      zip: '',
-      city: '',
-      country: countries[0].code,
-      phone: ''
-    }
+    defaultValues: getAddressFromCookies()
   });
 
   const onSubmitAddress: SubmitHandler<FormData> = async (data) => {
-    console.log({ data });
-    Cookies.set( 'userAddress', JSON.stringify(data) );
-    Cookies.set( 'firstName', data.firstName );
-    Cookies.set('lastName', data.lastName );
-    Cookies.set('address', data.address );
-    Cookies.set('address2', data.address2 || '' );
-    Cookies.set('zip', data.zip );
-    Cookies.set('city', data.city );
-    Cookies.set('country', data.country );
-    Cookies.set('phone', data.phone );
-
+    Cookies.set( 'shippingAddress', JSON.stringify(data) );
     router.push('/checkout/summary');
   }
 

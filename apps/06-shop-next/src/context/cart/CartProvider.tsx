@@ -12,6 +12,18 @@ export interface CartState {
   subTotal: number;
   tax: number;
   total: number;
+  shippingAddress?: ShippingAddress;
+}
+
+export interface ShippingAddress {
+  firstName : string;
+  lastName  : string;
+  address   : string;
+  address2? : string;
+  zip       : string;
+  city      : string;
+  country   : string;
+  phone     : string;
 }
 
 const CART_INITIAL_STATE: CartState = {
@@ -20,7 +32,8 @@ const CART_INITIAL_STATE: CartState = {
   numberOfItems: 0,
   subTotal: 0,
   tax: 0,
-  total: 0
+  total: 0,
+  shippingAddress: undefined
 };
 
 type Props = {
@@ -32,10 +45,27 @@ export const CartProvider: FC<Props> = ({ children }) => {
 
   useEffect(() => {
     try {
-        const cookieProducts = Cookies.get('cart') ? JSON.parse( Cookies.get('cart')! ): []
-        dispatch({ type: '[CART] - Load cart from cookie | storage', payload: cookieProducts });
+      const cookieProducts = Cookies.get('cart') ? JSON.parse( Cookies.get('cart')! ): [];
+      dispatch({ type: '[CART] - Load cart from cookie | storage', payload: cookieProducts });
     } catch (error) {
-        dispatch({ type: '[CART] - Load cart from cookie | storage', payload: [] });
+      dispatch({ type: '[CART] - Load cart from cookie | storage', payload: [] });
+    }
+  }, []);
+
+  useEffect(() => {
+
+    if (Cookies.get('shippingAddress')) {
+      const cookieAddress = (Cookies.get('shippingAddress') ? JSON.parse( Cookies.get('shippingAddress')! ): {
+        firstName: '',
+        lastName: '',
+        address: '',
+        address2: '',
+        zip: '',
+        city: '',
+        country: '',
+        phone: '',
+      }) as ShippingAddress;
+      dispatch({ type: '[CART] - Load address from cookies', payload: cookieAddress });
     }
   }, []);
 
