@@ -1,6 +1,7 @@
-import NextAuth from "next-auth"
-import GithubProvider from "next-auth/providers/github"
-import Credentials from "next-auth/providers/credentials"
+import NextAuth from "next-auth";
+import GithubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
+import Credentials from "next-auth/providers/credentials";
 
 import { dbUser } from "@/database";
 
@@ -23,20 +24,23 @@ export const authOptions = {
       clientId: process.env.GITHUB_ID || '',
       clientSecret: process.env.GITHUB_SECRET || '',
     }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID || '',
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || ''
+    }),
     // ...add more providers here
   ],
 
   // Callbacks
   callbacks: {
     async jwt({ token, account, user }: any) {
-      // console.log({ token, account, user });
 
       if (account) {
         token.accessToken = account.access_token;
 
         switch (account.type) {
           case 'oauth':
-            // TODO: user verification
+            token.user = await dbUser.oAuthToDbUser( user.email, user.name )
             break;
           case 'credentials':
             token.user = user;
