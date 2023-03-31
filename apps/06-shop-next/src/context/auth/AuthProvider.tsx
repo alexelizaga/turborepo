@@ -82,6 +82,7 @@ export const AuthProvider: FC<{children: ReactNode}> = ({ children }) => {
   const logout = () => {
     Cookies.remove('token');
     Cookies.remove('cart');
+    Cookies.remove('shippingAddress');
     router.reload();
   }
 
