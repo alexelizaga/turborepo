@@ -96,8 +96,6 @@ export const AuthProvider: FC<{children: ReactNode}> = ({ children }) => {
     Cookies.remove('shippingAddress');
 
     signOut();
-    // Cookies.remove('token');
-    // router.reload();
   }
 
   const providerValue = useMemo(

@@ -15,9 +15,7 @@ export const authOptions: NextAuthOptions = {
         password: { label: 'Password', type: 'password', placeholder: 'Password' }
       },
       async authorize(credentials): Promise<any> {
-        console.log({ credentials });
-
-        return await dbUser.checkUserEmailPassword( credentials!.email, credentials!.password );
+        return await dbUser.checkUserEmailPassword(credentials?.email || '', credentials?.password || '');
       }
     }),
     GithubProvider({
