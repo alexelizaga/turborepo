@@ -1,11 +1,13 @@
 import { FC, useReducer, ReactNode, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router';
+import { useSession, signOut } from 'next-auth/react';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
 import { AuthContext, authReducer } from '@/context';
 import { IUser } from '@/interfaces';
 import { shopApi } from '@/api';
+
 
 export interface AuthState {
   isLoggedIn: boolean;
@@ -20,7 +22,17 @@ const AUTH_INITIAL_STATE: AuthState = {
 export const AuthProvider: FC<{children: ReactNode}> = ({ children }) => {
 
   const [state, dispatch] = useReducer(authReducer, AUTH_INITIAL_STATE);
+  const { data, status } = useSession();
+
   const router = useRouter();
+
+  useEffect(() => {
+    if ( status === 'authenticated') {
+      console.log({ user: data.user })
+      dispatch({ type: '[Auth] - Login', payload: data?.user as IUser });
+    };
+  }, [ status, data])
+  
 
   useEffect(() => {
     checkToken();
@@ -80,9 +92,10 @@ export const AuthProvider: FC<{children: ReactNode}> = ({ children }) => {
   }
 
   const logout = () => {
-    Cookies.remove('token');
     Cookies.remove('cart');
-    router.reload();
+    Cookies.remove('shippingAddress');
+
+    signOut();
   }
 
   const providerValue = useMemo(

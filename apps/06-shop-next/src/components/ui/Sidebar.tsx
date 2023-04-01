@@ -25,6 +25,7 @@ import {
   MaleOutlined,
   SearchOutlined,
   VpnKeyOutlined,
+  AppRegistrationOutlined,
 } from "@mui/icons-material";
 
 import { AuthContext, UIContext } from '@/context';
@@ -135,14 +136,24 @@ export const Sidebar = () => {
                 </ListItemButton>
               )
               : (
-                <ListItemButton
-                  onClick={() => navigateTo(`/auth/login?p=${ router.asPath }`)}
-                >
-                  <ListItemIcon>
-                    <VpnKeyOutlined />
-                  </ListItemIcon>
-                  <ListItemText primary={"Login"} />
-                </ListItemButton>
+                <>
+                  <ListItemButton
+                    onClick={() => navigateTo(`/auth/login?p=${ router.asPath }`)}
+                  >
+                    <ListItemIcon>
+                      <VpnKeyOutlined />
+                    </ListItemIcon>
+                    <ListItemText primary={"Login"} />
+                  </ListItemButton>
+                  <ListItemButton
+                    onClick={() => navigateTo(`/auth/register?p=${ router.asPath }`)}
+                  >
+                    <ListItemIcon>
+                      <AppRegistrationOutlined />
+                    </ListItemIcon>
+                    <ListItemText primary={"Register"} />
+                  </ListItemButton>
+                </>
               )
           }
 
