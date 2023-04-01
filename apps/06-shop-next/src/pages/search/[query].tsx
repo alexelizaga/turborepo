@@ -38,14 +38,15 @@ const SearchPage: NextPage<Props> = ({ products, foundProducts, query }) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+
   const { query = '' } = params as { query: string };
 
   if ( !query.length ) {
     return {
-      redirect: {
-        destination: '/',
-        permanent: true
-      }
+        redirect: {
+            destination: '/',
+            permanent: true
+        }
     }
   }
 
@@ -55,7 +56,6 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   if (!foundProducts) {
     products = await dbProducts.getAllProducts();
   }
-
 
   return {
     props: {

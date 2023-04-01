@@ -150,7 +150,7 @@ export const CartProvider: FC<Props> = ({ children }) => {
       updateCartQuantity,
       updateShippingAddress
     }),
-    [state]
+    [addProductToCart, state]
   );
 
   return (
