@@ -39,7 +39,6 @@ const SearchPage: NextPage<Props> = ({ products, foundProducts, query }) => {
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
-  // const { id } = params as { id: string };
   const { query = '' } = params as { query: string };
   console.log({ query });
 
@@ -59,7 +58,6 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     products = await dbProducts.getAllProducts();
   }
 
-
   return {
     props: {
       products,
@@ -70,3 +68,6 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 }
 
 export default SearchPage;
+
+// .../_next/data/TCnqVuY-B3kdFkfW8wLQg/search/h.json?query=cybertruck
+// .../_next/data/TCnqVuY-B3kdFkfW8wLQg/product/men_chill_quarter_zip_pullover_-_white.json?slug=men_chill_quarter_zip_pullover_-_white
