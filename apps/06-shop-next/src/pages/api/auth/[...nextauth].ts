@@ -1,11 +1,11 @@
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 
 import { dbUser } from "@/database";
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
   providers: [
     Credentials({
@@ -38,9 +38,17 @@ export const authOptions = {
   },
 
   // Callbacks
+  jwt: {
+
+  },
+  session: {
+    maxAge: 2592000, // 30 Days
+    strategy: "jwt",
+    updateAge: 86400, // each day
+  },
+
   callbacks: {
     async jwt({ token, account, user }: any) {
-
       if (account) {
         token.accessToken = account.access_token;
 
@@ -56,7 +64,6 @@ export const authOptions = {
             break;
         }
       }
-
       return token;
     },
     async session({ session, token, user }: any) {

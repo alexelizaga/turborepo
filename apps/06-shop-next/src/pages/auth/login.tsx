@@ -26,7 +26,7 @@ const LoginPage = () => {
   const onLoginUser: SubmitHandler<FormData> = async ({ email, password }) => {
     setShowError(false);
 
-    await signIn('credentials', { email, password })
+    await signIn('credentials', { email, password });
   }
 
   return (
@@ -108,8 +108,6 @@ const LoginPage = () => {
 // - Only if you need to pre-render a page whose data must be fetched at request time
 export const getServerSideProps: GetServerSideProps = async ({ req, query }) => {
   const session = await getSession({ req });
-  console.log({ session });
-
   const { p = '/' } = query;
 
   if ( session ) {
