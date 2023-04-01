@@ -40,9 +40,8 @@ const SearchPage: NextPage<Props> = ({ products, foundProducts, query }) => {
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
   const { query = '' } = params as { query: string };
-  console.log({ query });
 
-  if ( query.length === 0 ) {
+  if ( !query.length ) {
     return {
         redirect: {
             destination: '/',
@@ -52,7 +51,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   }
 
   let products = await dbProducts.getProductsByTerm(query);
-  const foundProducts = products.length > 0;
+  const foundProducts = !!products.length;
 
   if (!foundProducts) {
     products = await dbProducts.getAllProducts();
@@ -68,6 +67,3 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 }
 
 export default SearchPage;
-
-// .../_next/data/TCnqVuY-B3kdFkfW8wLQg/search/h.json?query=cybertruck
-// .../_next/data/TCnqVuY-B3kdFkfW8wLQg/product/men_chill_quarter_zip_pullover_-_white.json?slug=men_chill_quarter_zip_pullover_-_white
