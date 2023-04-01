@@ -31,6 +31,12 @@ export const authOptions = {
     // ...add more providers here
   ],
 
+  // Custom Pages
+  pages: {
+    signIn: '/auth/login',
+    newUser: '/auth/register'
+  },
+
   // Callbacks
   callbacks: {
     async jwt({ token, account, user }: any) {
@@ -54,8 +60,6 @@ export const authOptions = {
       return token;
     },
     async session({ session, token, user }: any) {
-      // console.log({ session, token, user })
-
       session.accessToken = token.access_token;
       session.user = token.user;
 
