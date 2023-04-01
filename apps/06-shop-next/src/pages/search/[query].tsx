@@ -38,19 +38,22 @@ const SearchPage: NextPage<Props> = ({ products, foundProducts, query }) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const { query = '' } = params as { query: string };
 
-  if ( !query.length ) {
+  // const { id } = params as { id: string };
+  const { query = '' } = params as { query: string };
+  console.log({ query });
+
+  if ( query.length === 0 ) {
     return {
-      redirect: {
-        destination: '/',
-        permanent: true
-      }
+        redirect: {
+            destination: '/',
+            permanent: true
+        }
     }
   }
 
   let products = await dbProducts.getProductsByTerm(query);
-  const foundProducts = !!products.length;
+  const foundProducts = products.length > 0;
 
   if (!foundProducts) {
     products = await dbProducts.getAllProducts();
