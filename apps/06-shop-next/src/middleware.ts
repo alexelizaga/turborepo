@@ -1,25 +1,21 @@
 import { NextResponse, NextFetchEvent  } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { getToken } from 'next-auth/jwt';
 
-export function middleware(req: NextRequest, ev: NextFetchEvent) {
-  const token = req.cookies.get('token')?.value || '';
-  
-  try {
-    // await jwt.isValidToken( token );
-    // [Error: The edge runtime does not support Node.js 'crypto' module. Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime]
+export async function middleware(req: NextRequest) {
+  const session = await getToken({ req, secret: process.env.NEXTAUTH_SECRET })
+  console.log({ session });
 
-    if (!token) throw new Error();
-
-    return NextResponse.next();
-  } catch (error) {
+  if (!session) {
+    const requestedPage = req.nextUrl.pathname;
     const url = req.nextUrl.clone();
-    url.pathname = '/auth/login';
-    url.search = `p=${req.nextUrl.pathname}`
-    return NextResponse.redirect(url)
-  }
+    url.pathname = `/auth/login`;
+    url.search = `p=${ requestedPage }`;
 
+    return NextResponse.redirect( url );
+  }
 }
 
 export const config = {
-  matcher: '/checkout/:path*',
+  matcher: ['/checkout/address', '/checkout/summary'],
 }
