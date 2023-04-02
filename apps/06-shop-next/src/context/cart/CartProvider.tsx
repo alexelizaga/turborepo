@@ -133,7 +133,7 @@ export const CartProvider: FC<Props> = ({ children }) => {
     dispatch({ type: '[CART] - Update shipping address', payload: address});
   }
 
-  const createOrder = async(): Promise<{ hasError: boolean; message: string }> => {
+  const createOrderFn = async(): Promise<{ hasError: boolean; message: string }> => {
     if (  !state.shippingAddress) {
       throw new Error('There is no delivery address');
     }
@@ -153,9 +153,8 @@ export const CartProvider: FC<Props> = ({ children }) => {
 
     try {
       const { data } = await shopApi.post<IOrder>('/orders', body);
-      console.log({ data });
 
-      // TODO: dispatch ...
+      dispatch({ type: '[CART] - Order complete' });
       return {
         hasError: false,
         message: data._id!
@@ -173,6 +172,49 @@ export const CartProvider: FC<Props> = ({ children }) => {
       }
     }
   }
+
+  const createOrder = useCallback(
+    async () => {
+      if (  !state.shippingAddress) {
+        throw new Error('There is no delivery address');
+      }
+  
+      const body: IOrder = {
+        orderItems: state.cart.map(p => ({
+          ...p,
+          size: p.size!
+        })),
+        shippingAddress: state.shippingAddress,
+        numberOfItems: state.numberOfItems,
+        subTotal: state.subTotal,
+        tax: state.tax,
+        total: state.total,
+        isPaid: false
+      }
+  
+      try {
+        const { data } = await shopApi.post<IOrder>('/orders', body);
+  
+        dispatch({ type: '[CART] - Order complete' });
+        return {
+          hasError: false,
+          message: data._id!
+        }
+      } catch (error) {
+        if (axios.isAxiosError(error)) {
+          return {
+            hasError: true,
+            message: error.response?.data.message
+          }
+        }
+        return {
+          hasError: true,
+          message: 'Unhandled error talk to administrator'
+        }
+      }
+    },
+    [state],
+  );
 
   const providerValue = useMemo(
     () => ({
