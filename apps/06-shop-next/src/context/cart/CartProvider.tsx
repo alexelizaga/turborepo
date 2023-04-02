@@ -1,9 +1,8 @@
-import { FC, useEffect, useMemo, useReducer } from "react";
+import { FC, useCallback, useEffect, useMemo, useReducer } from "react";
 import Cookies from 'js-cookie';
 
-import { ICartProduct } from "@/interfaces";
-
-import { CartContext, cartReducer } from "./";
+import { ICartProduct, IShippingAddress } from "@/interfaces";
+import { CartContext, cartReducer } from "@/context";
 
 export interface CartState {
   isLoaded: boolean;
@@ -12,18 +11,7 @@ export interface CartState {
   subTotal: number;
   tax: number;
   total: number;
-  shippingAddress?: ShippingAddress;
-}
-
-export interface ShippingAddress {
-  firstName : string;
-  lastName  : string;
-  address   : string;
-  address2? : string;
-  zip       : string;
-  city      : string;
-  country   : string;
-  phone     : string;
+  shippingAddress?: IShippingAddress;
 }
 
 const CART_INITIAL_STATE: CartState = {
@@ -64,7 +52,7 @@ export const CartProvider: FC<Props> = ({ children }) => {
         city: '',
         country: '',
         phone: '',
-      }) as ShippingAddress;
+      }) as IShippingAddress;
       dispatch({ type: '[CART] - Load address from cookies', payload: cookieAddress });
     }
   }, []);
@@ -90,37 +78,39 @@ export const CartProvider: FC<Props> = ({ children }) => {
 
     dispatch({ type: '[CART] - Update order summary', payload: orderSummary });
   }, [state.cart]);
-  
 
-  const addProductToCart = (product: ICartProduct) => {
-    const productInCart = state.cart.some((p) => p._id === product._id);
-    if (!productInCart) {
-      return dispatch({
-        type: "[CART] - Update products in cart",
-        payload: [...state.cart, product],
+  const addProductToCart = useCallback(
+    (product: ICartProduct) => {
+      const productInCart = state.cart.some((p) => p._id === product._id);
+      if (!productInCart) {
+        return dispatch({
+          type: "[CART] - Update products in cart",
+          payload: [...state.cart, product],
+        });
+      }
+      const productInCartButDifferentSize = state.cart.some(
+        (p) => p._id === product._id && p.size === product.size
+      );
+      if (!productInCartButDifferentSize) {
+        return dispatch({
+          type: "[CART] - Update products in cart",
+          payload: [...state.cart, product],
+        });
+      }
+
+      // Accumulate
+      const updatedProducts = state.cart.map( p => {
+        if (p._id !== product._id) return p;
+        if (p.size !== product.size) return p;
+
+        p.quantity += product.quantity;
+
+        return p;
       });
-    }
-    const productInCartButDifferentSize = state.cart.some(
-      (p) => p._id === product._id && p.size === product.size
-    );
-    if (!productInCartButDifferentSize) {
-      return dispatch({
-        type: "[CART] - Update products in cart",
-        payload: [...state.cart, product],
-      });
-    }
-
-    // Accumulate
-    const updatedProducts = state.cart.map( p => {
-      if (p._id !== product._id) return p;
-      if (p.size !== product.size) return p;
-
-      p.quantity += product.quantity;
-
-      return p;
-    });
-    dispatch({ type: '[CART] - Update products in cart', payload: updatedProducts })
-  }
+      dispatch({ type: '[CART] - Update products in cart', payload: updatedProducts })
+    },
+    [state.cart],
+  )
 
   const updateCartQuantity = (product: ICartProduct) => {
     dispatch({
@@ -136,7 +126,7 @@ export const CartProvider: FC<Props> = ({ children }) => {
     })
   }
 
-  const updateShippingAddress = ( address: ShippingAddress ) => {
+  const updateShippingAddress = ( address: IShippingAddress ) => {
     Cookies.set( 'shippingAddress', JSON.stringify(address) );
     dispatch({ type: '[CART] - Update shipping address', payload: address});
   }
