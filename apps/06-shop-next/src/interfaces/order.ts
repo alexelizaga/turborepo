@@ -1,4 +1,4 @@
-import { IShippingAddress, IUser } from '@/interfaces';
+import { IShippingAddress, ISize, IUser } from '@/interfaces';
 
 export interface IOrder {
   _id?           : string;
@@ -19,9 +19,10 @@ export interface IOrder {
 export interface IOrderItem {
   _id     : string;
   title   : string;
-  size    : string;
+  size    : ISize;
   quantity: number;
   slug    : string;
   image   : string;
   price   : number;
+  gender  : string;
 }
