@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 
 import { ICartProduct, IShippingAddress } from "@/interfaces";
 import { CartContext, cartReducer } from "@/context";
+import { shopApi } from "@/api";
 
 export interface CartState {
   isLoaded: boolean;
@@ -131,14 +132,27 @@ export const CartProvider: FC<Props> = ({ children }) => {
     dispatch({ type: '[CART] - Update shipping address', payload: address});
   }
 
+  const createOrder = async() => {
+    try {
+      const { data } = await shopApi.post('/orders');
+      console.log({ data });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const providerValue = useMemo(
     () => ({
       ...state,
+
       // Methods
       addProductToCart,
       removeCartProduct,
       updateCartQuantity,
-      updateShippingAddress
+      updateShippingAddress,
+
+      // Orders
+      createOrder
     }),
     [addProductToCart, state]
   );
