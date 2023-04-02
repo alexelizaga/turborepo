@@ -1,4 +1,5 @@
 import { FC, useCallback, useEffect, useMemo, useReducer } from "react";
+import axios from "axios";
 import Cookies from 'js-cookie';
 
 import { ICartProduct, IOrder, IShippingAddress } from "@/interfaces";
@@ -132,7 +133,7 @@ export const CartProvider: FC<Props> = ({ children }) => {
     dispatch({ type: '[CART] - Update shipping address', payload: address});
   }
 
-  const createOrder = async() => {
+  const createOrder = async(): Promise<{ hasError: boolean; message: string }> => {
     if (  !state.shippingAddress) {
       throw new Error('There is no delivery address');
     }
@@ -151,10 +152,25 @@ export const CartProvider: FC<Props> = ({ children }) => {
     }
 
     try {
-      const { data } = await shopApi.post('/orders', body);
+      const { data } = await shopApi.post<IOrder>('/orders', body);
       console.log({ data });
+
+      // TODO: dispatch ...
+      return {
+        hasError: false,
+        message: data._id!
+      }
     } catch (error) {
-      console.log(error);
+      if (axios.isAxiosError(error)) {
+        return {
+          hasError: true,
+          message: error.response?.data.message
+        }
+      }
+      return {
+        hasError: true,
+        message: 'Unhandled error talk to administrator'
+      }
     }
   }
 
@@ -171,7 +187,7 @@ export const CartProvider: FC<Props> = ({ children }) => {
       // Orders
       createOrder
     }),
-    [addProductToCart, state]
+    [addProductToCart, createOrder, state]
   );
 
   return (
