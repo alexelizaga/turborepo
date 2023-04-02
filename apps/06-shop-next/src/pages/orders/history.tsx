@@ -49,7 +49,7 @@ const rows = [
   { id: 3, paid: true, fullname: 'Laura Elízaga' },
   { id: 4, paid: false, fullname: 'Fernando Elízaga' },
   { id: 5, paid: false, fullname: 'José Manuel Elízaga' },
-  { id: 5, paid: true, fullname: 'Jaime García' }
+  { id: 6, paid: true, fullname: 'Jaime García' }
 ]
 
 const HistoryPage: NextPage = () => {

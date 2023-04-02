@@ -25,4 +25,5 @@ export interface IOrderItem {
   image   : string;
   price   : number;
   gender  : string;
+  inStock?: number;
 }
