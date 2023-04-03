@@ -54,7 +54,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
 
     try {
       
-      const { data } = await shopApi.post(`/orders/pay`, {
+      await shopApi.post(`/orders/pay`, {
         transactionId: details.id,
         orderId: order._id
       });
@@ -175,9 +175,6 @@ const OrderPage: NextPage<Props> = ({ order }) => {
                       onApprove={(data, actions) => {
                         return actions.order!.capture().then((details) => {
                           onOrderCompleted(details)
-
-                          const name = details.payer.name!.given_name;
-                          // alert(`Transaction completed by ${name}`);
                         });
                       }}
                     />
