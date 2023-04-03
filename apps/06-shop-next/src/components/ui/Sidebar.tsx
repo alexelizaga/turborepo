@@ -85,7 +85,10 @@ export const Sidebar = () => {
                   <ListItemText primary={"Perfil"} />
                 </ListItemButton>
 
-                <ListItemButton>
+                <ListItemButton
+                  // button
+                  onClick={() => navigateTo('/orders/history')}
+                >
                   <ListItemIcon>
                     <ConfirmationNumberOutlined />
                   </ListItemIcon>

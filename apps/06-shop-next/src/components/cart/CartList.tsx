@@ -4,14 +4,15 @@ import { Box, Button, CardActionArea, CardMedia, Grid, Link, Typography } from "
 
 import { ItemCounter } from '@/components';
 import { CartContext } from '@/context';
-import { ICartProduct } from '@/interfaces';
+import { ICartProduct, IOrderItem } from '@/interfaces';
 import { currency } from '@/utils';
 
 type Props = {
   editable?: boolean;
+  products?: IOrderItem[];
 }
 
-export const CartList: FC<Props> = ({ editable = false }) => {
+export const CartList: FC<Props> = ({ editable = false, products }) => {
   const { cart, updateCartQuantity, removeCartProduct } = useContext(CartContext);
 
   const onNewCartQuantityValue = (product: ICartProduct, newQuantityValue: number) => {
@@ -19,10 +20,12 @@ export const CartList: FC<Props> = ({ editable = false }) => {
     updateCartQuantity(product);
   }
 
+  const productsToShow = products ?? cart;
+
   return (
     <>
       {
-        cart.map( product => (
+        productsToShow.map( product => (
           <Grid container spacing={2} key={product.slug + product.size} sx={{ mb: 1 }} alignItems='center'>
             <Grid item xs={3}>
               {/* Go to product page */}
@@ -50,8 +53,8 @@ export const CartList: FC<Props> = ({ editable = false }) => {
                     ? (
                       <ItemCounter
                         currentValue={product.quantity}
-                        maxValue={product.inStock}
-                        updateQuantity={(value) => onNewCartQuantityValue(product, value)}
+                        maxValue={product.inStock!}
+                        updateQuantity={(value) => onNewCartQuantityValue(product as ICartProduct, value)}
                       />
                     )
                     : (
@@ -69,7 +72,7 @@ export const CartList: FC<Props> = ({ editable = false }) => {
                   <Button
                     variant='text'
                     color='secondary'
-                    onClick={() => removeCartProduct(product)}
+                    onClick={() => removeCartProduct(product as ICartProduct)}
                   >
                     Remove
                   </Button>
