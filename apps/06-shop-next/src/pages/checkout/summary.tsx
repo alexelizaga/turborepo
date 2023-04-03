@@ -1,7 +1,7 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import NextLink from 'next/link';
-import { Box, Button, Card, CardContent, Divider, Grid, Link, Typography } from "@mui/material";
+import { Box, Button, Card, CardContent, Chip, Divider, Grid, Link, Typography } from "@mui/material";
 import Cookies from 'js-cookie';
 
 import { CartContext } from '@/context';
@@ -11,13 +11,29 @@ import { ShopLayout, CartList, OrderSummary } from "@/components";
 const SummaryPage = () => {
 
   const router = useRouter();
-  const { shippingAddress, numberOfItems } = useContext(CartContext);
+  const { shippingAddress, numberOfItems, createOrder } = useContext(CartContext);
+
+  const [isPosting, setIsPosting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     if ( !Cookies.get('shippingAddress') ) {
       router.push('/checkout/address');
     }
   }, [ router ]);
+
+  const onCreateOrder = async () => {
+    setIsPosting(true);
+    const { hasError, message } = await createOrder();
+
+    if ( hasError ) {
+      setIsPosting(false);
+      setErrorMessage(message);
+      return;
+    }
+
+    router.replace(`/orders/${message}`);
+  }
   
 
   if ( !shippingAddress ) {
@@ -73,10 +89,22 @@ const SummaryPage = () => {
 
               <OrderSummary />
 
-              <Box sx={{ mt: 3 }}>
-                <Button color="secondary" className="circular-btn" fullWidth>
+              <Box sx={{ mt: 3 }} display="flex" flexDirection="column">
+                <Button
+                  color="secondary"
+                  className="circular-btn"
+                  fullWidth
+                  onClick={onCreateOrder}
+                  disabled={isPosting}
+                >
                   Confirm order
                 </Button>
+
+                <Chip
+                  color='error'
+                  label={ errorMessage }
+                  sx={{ mt: 1, display: errorMessage ? 'flex' : 'none' }}
+                />
               </Box>
             </CardContent>
           </Card>
