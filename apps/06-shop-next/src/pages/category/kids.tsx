@@ -8,8 +8,6 @@ const KidsPage: NextPage = () => {
 
   const { products, isLoading } = useProducts('/products?gender=kid');
 
-  console.log({products});
-
   return (
     <ShopLayout title={'Shop - Kids'} pageDescription={'Find the best men products'}>
       <Typography variant='h1' component='h1'>Shop</Typography>
