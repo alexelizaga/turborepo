@@ -1,6 +1,5 @@
 
-import { useContext, useState } from 'react';
-import { useRouter } from 'next/router';
+import { useContext } from 'react';
 import NextLink from 'next/link';
 import { AppBar, Box, Button, Link, Toolbar, Typography } from '@mui/material';
 
