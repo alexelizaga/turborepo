@@ -29,6 +29,7 @@ import {
 } from "@mui/icons-material";
 
 import { AuthContext, UIContext } from '@/context';
+import { DashboardOutlined } from '@mui/icons-material';
 
 export const Sidebar = () => {
   const router = useRouter();
@@ -166,6 +167,15 @@ export const Sidebar = () => {
               <>
                 <Divider />
                 <ListSubheader>Admin Panel</ListSubheader>
+
+                <ListItemButton
+                  onClick={() => navigateTo("/admin/")}
+                >
+                  <ListItemIcon>
+                    <DashboardOutlined />
+                  </ListItemIcon>
+                  <ListItemText primary={"Dashboard"} />
+                </ListItemButton>
 
                 <ListItemButton>
                   <ListItemIcon>
