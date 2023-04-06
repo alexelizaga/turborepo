@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import { PeopleOutline } from '@mui/icons-material';
@@ -11,15 +11,32 @@ import { shopApi } from '@/api';
 const UsersPage = () => {
 
   const { data, error } = useSWR<IUser[]>('/api/admin/users');
+  const [users, setUsers] = useState<IUser[]>([]);
+
+  useEffect(() => {
+    if ( data) {
+      setUsers(data);
+    }
+  }, [data])
+  
 
   if ( !data && !error) return (<></>);
 
   const onRoleUpdated = async ( userId: string, newRole: string ) => {
 
+    const previousUsers = users.map( user => ({...user} ));
+    const updatedUsers = users.map( user => ({
+      ...user,
+      role: userId === user._id ? newRole : user.role
+    }));
+
+    setUsers(updatedUsers);
+
     try {
       await shopApi.put('/admin/users', { userId, role: newRole });
     } catch (error) {
       console.log(error);
+      setUsers(previousUsers);
       alert('Cannot update user role');
     }
 
@@ -50,7 +67,7 @@ const UsersPage = () => {
     },
   ]
 
-  const rows = data!.map(user => ({
+  const rows = users!.map(user => ({
     id: user._id,
     email: user.email,
     name: user.name,
