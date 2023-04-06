@@ -26,10 +26,10 @@ import {
   SearchOutlined,
   VpnKeyOutlined,
   AppRegistrationOutlined,
+  DashboardOutlined
 } from "@mui/icons-material";
 
 import { AuthContext, UIContext } from '@/context';
-import { DashboardOutlined } from '@mui/icons-material';
 
 export const Sidebar = () => {
   const router = useRouter();
