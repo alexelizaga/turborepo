@@ -26,7 +26,7 @@ const getOrders = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   const orders = await Order
     .find()
     .sort({ createdAt: 'desc' })
-    .populate('user', 'name, email')
+    .populate('user', ['email', 'name'])
     .lean();
   db.disconnect();
 
