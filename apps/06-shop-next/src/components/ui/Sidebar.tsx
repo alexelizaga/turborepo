@@ -26,6 +26,7 @@ import {
   SearchOutlined,
   VpnKeyOutlined,
   AppRegistrationOutlined,
+  DashboardOutlined
 } from "@mui/icons-material";
 
 import { AuthContext, UIContext } from '@/context';
@@ -167,20 +168,34 @@ export const Sidebar = () => {
                 <Divider />
                 <ListSubheader>Admin Panel</ListSubheader>
 
+                <ListItemButton
+                  onClick={() => navigateTo("/admin/")}
+                >
+                  <ListItemIcon>
+                    <DashboardOutlined />
+                  </ListItemIcon>
+                  <ListItemText primary={"Dashboard"} />
+                </ListItemButton>
+
                 <ListItemButton>
                   <ListItemIcon>
                     <CategoryOutlined />
                   </ListItemIcon>
                   <ListItemText primary={"Productos"} />
                 </ListItemButton>
-                <ListItemButton>
+
+                <ListItemButton
+                  onClick={() => navigateTo("/admin/orders")}
+                >
                   <ListItemIcon>
                     <ConfirmationNumberOutlined />
                   </ListItemIcon>
                   <ListItemText primary={"Ordenes"} />
                 </ListItemButton>
 
-                <ListItemButton>
+                <ListItemButton
+                  onClick={() => navigateTo("/admin/users")}
+                >
                   <ListItemIcon>
                     <AdminPanelSettings />
                   </ListItemIcon>
