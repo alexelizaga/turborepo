@@ -2,7 +2,7 @@
 import { useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 import NextLink from 'next/link';
-import { AppBar, Badge, Box, Button, IconButton, Input, InputAdornment, Link, Toolbar, Typography } from '@mui/material';
+import { AppBar, Badge, Box, Button, Chip, IconButton, Input, InputAdornment, Link, Toolbar, Typography } from '@mui/material';
 import { ClearOutlined, SearchOutlined, ShoppingCartOutlined } from '@mui/icons-material';
 
 import { CartContext, UIContext } from '@/context';
@@ -31,6 +31,11 @@ export const Navbar = () => {
           display="flex"
           alignItems="center"
         >
+          {
+            process.env.NODE_ENV === 'development' && (
+              <Chip sx={{ mr: 1 }} label="DEV" size="small" color="primary" variant="outlined" />
+            )
+          } 
           <Typography variant="h6">BroCode |</Typography>
           <Typography sx={{ ml: 0.5 }}>Shop</Typography>
         </Link>

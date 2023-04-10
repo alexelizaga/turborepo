@@ -2,9 +2,10 @@ import { FC, useCallback, useEffect, useMemo, useReducer } from "react";
 import axios from "axios";
 import Cookies from 'js-cookie';
 
-import { ICartProduct, IOrder, IShippingAddress } from "@/interfaces";
+import { ICartProduct, IOrder, ISession, IShippingAddress } from "@/interfaces";
 import { CartContext, cartReducer } from "@/context";
 import { shopApi } from "@/api";
+import { useSession } from "next-auth/react";
 
 export interface CartState {
   isLoaded: boolean;
@@ -32,6 +33,7 @@ type Props = {
 
 export const CartProvider: FC<Props> = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, CART_INITIAL_STATE);
+  const { data: session } = useSession();
 
   useEffect(() => {
     try {
@@ -139,7 +141,7 @@ export const CartProvider: FC<Props> = ({ children }) => {
         throw new Error('There is no delivery address');
       }
   
-      const body: IOrder = {
+      const body: IOrder & ISession = {
         orderItems: state.cart.map(p => ({
           ...p,
           size: p.size!
@@ -149,7 +151,8 @@ export const CartProvider: FC<Props> = ({ children }) => {
         subTotal: state.subTotal,
         tax: state.tax,
         total: state.total,
-        isPaid: false
+        isPaid: false,
+        user: session?.user as any
       }
   
       try {
@@ -173,7 +176,7 @@ export const CartProvider: FC<Props> = ({ children }) => {
         }
       }
     },
-    [state],
+    [session?.user, state],
   );
 
   const providerValue = useMemo(
