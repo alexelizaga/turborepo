@@ -1,7 +1,8 @@
 import React from 'react';
 import { NextPage } from 'next';
+import NextLink from 'next/link';
 import useSWR from 'swr';
-import { CardMedia, Grid } from '@mui/material';
+import { CardMedia, Grid, Link } from '@mui/material';
 import { CategoryOutlined } from '@mui/icons-material';
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 
@@ -26,7 +27,18 @@ const columns: GridColDef[] = [
       )
     }
   },
-  { field: 'title', headerName: 'Title', width: 250 },
+  {
+    field: 'title',
+    headerName: 'Title',
+    width: 250,
+    renderCell: ({ row }: GridRenderCellParams) => {
+      return (
+        <Link underline='always' href={`/admin/products/${row.slug}`} component={NextLink}>
+          { row.title }
+        </Link>
+      )
+    }
+  },
   { field: 'gender', headerName: 'Gender' },
   { field: 'inStock', headerName: 'stock' },
   { field: 'price', headerName: 'Price' },
