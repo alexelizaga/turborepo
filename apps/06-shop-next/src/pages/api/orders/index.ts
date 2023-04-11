@@ -22,6 +22,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
 const createOrder = async(req: NextApiRequest, res: NextApiResponse<Data>) => {
 
   const session: any = await getSession({ req });
+  
+  // FIXME: Session is null in dockers
   console.log('createOrder', session);
   // if (!session) {
   //   return res.status(401).json({ message: 'Must be authenticated'});
