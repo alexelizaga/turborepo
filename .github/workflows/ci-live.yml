@@ -14,7 +14,7 @@ jobs:
 
     env:
       MONGODB_URI: mongodb+srv://vercel-admin-user:8ad0bc1COkrxzgez@brocodecluster.eo9sf5v.mongodb.net/shop?retryWrites=true&w=majority
-      NEXT_PUBLIC_TAX_RATE: 0.15
+      NEXT_PUBLIC_TAX_RATE: 0.08
 
     steps:
       - name: Check out code
