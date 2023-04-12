@@ -2,13 +2,12 @@ import React from 'react';
 import { NextPage } from 'next';
 import NextLink from 'next/link';
 import useSWR from 'swr';
-import { CardMedia, Grid, Link } from '@mui/material';
-import { CategoryOutlined } from '@mui/icons-material';
+import { Box, Button, CardMedia, Grid, Link } from '@mui/material';
+import { AddOutlined, CategoryOutlined } from '@mui/icons-material';
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 
 import { AdminLayout } from '@/components';
 import { IProduct } from '@/interfaces';
-
 
 const columns: GridColDef[] = [
   {
@@ -68,6 +67,15 @@ const ProductsPage: NextPage = () => {
       subTitle={'Products maintenance'}
       icon={<CategoryOutlined />}
     >
+      <Box display="flex" justifyContent="end" sx={{ mb: 2 }}>
+        <Button
+          startIcon={ <AddOutlined /> }
+          color='secondary'
+          href='/admin/products/new'
+        >
+          Create product
+        </Button>
+      </Box>
       <Grid container sx={{ pt: 2 }} className="fadeIn">
         <Grid item xs={12} sx={{ height: 650, width:'100%' }}>
           <DataGrid

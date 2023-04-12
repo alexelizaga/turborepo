@@ -1,36 +1,16 @@
 import React, { FC, useEffect, useState } from "react";
 import { GetServerSideProps } from "next";
-import { AdminLayout } from "../../../components/layouts";
-import { IProduct } from "../../../interfaces";
-import {
-  DriveFileRenameOutline,
-  SaveOutlined,
-  UploadOutlined,
-} from "@mui/icons-material";
-import { dbProducts } from "../../../database";
-import {
-  Box,
-  Button,
-  capitalize,
-  Card,
-  CardActions,
-  CardMedia,
-  Checkbox,
-  Chip,
-  Divider,
-  FormControl,
-  FormControlLabel,
-  FormGroup,
-  FormLabel,
-  Grid,
-  ListItem,
-  Paper,
-  Radio,
-  RadioGroup,
-  TextField,
-} from "@mui/material";
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
+import { Box, Button, capitalize, Card, CardActions, CardMedia, Checkbox, Chip, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, ListItem, Paper, Radio, RadioGroup, TextField } from "@mui/material";
+import { DriveFileRenameOutline, SaveOutlined, UploadOutlined } from "@mui/icons-material";
+
 import { shopApi } from "@/api";
+import { Product } from "@/models";
+import { dbProducts } from "@/database";
+import { AdminLayout } from "@/components";
+import { IProduct } from "@/interfaces";
+
 
 const validTypes = ["shirts", "pants", "hoodies", "hats"];
 const validGender = ["men", "women", "kid", "unisex"];
@@ -55,6 +35,8 @@ interface Props {
 }
 
 const ProductAdminPage: FC<Props> = ({ product }) => {
+
+  const router = useRouter();
 
   const [newTagValue, setNewTagValue] = useState("");
   const [isSaving, setIsSaving] = useState(false);
@@ -107,12 +89,12 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
     try {
       const { data } = await shopApi({
         url: '/admin/products',
-        method: 'PUT',
+        method: form._id ? 'PUT' : 'POST',
         data: form
       });
       console.log({ data });
       if (!form._id) {
-        // TODO: fetch browser
+        router.replace(`/admin/products/${form.slug}`);
       } else {
         setIsSaving(false);
       }
@@ -352,7 +334,16 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { slug = "" } = query;
 
-  const product = await dbProducts.getProductBySlug(slug.toString());
+  let product: IProduct | null;
+
+  if ( slug === 'new' ) {
+    const tempProduct = JSON.parse( JSON.stringify( new Product()));
+    delete tempProduct._id;
+    tempProduct.images = ["img1.jpg", "img2.jpg"];
+    product = tempProduct;
+  } else {
+    product = await dbProducts.getProductBySlug(slug.toString());
+  }
 
   if (!product) {
     return {
