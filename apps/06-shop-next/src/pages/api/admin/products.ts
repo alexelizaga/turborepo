@@ -17,6 +17,7 @@ export default function handler (req: NextApiRequest, res: NextApiResponse<Data>
     case 'PUT':
       return updateProduct(req, res);
     case 'POST':
+      break;
   
     default:
       return res.status(400).json({ message: 'Bad request' })
@@ -42,7 +43,7 @@ const updateProduct = async (req: NextApiRequest, res: NextApiResponse<Data>) =>
     return res.status(400).json({ message: "The product id is invalid"});
   }
 
-  if ( images.length <= 2 ) {
+  if ( images.length < 2 ) {
     return res.status(400).json({ message: "You need at least two images"});
   }
 
@@ -57,7 +58,7 @@ const updateProduct = async (req: NextApiRequest, res: NextApiResponse<Data>) =>
 
     // TODO: delete Cloudinary images
 
-    await Product.updateOne(req.body);
+    await product.updateOne(req.body);
     await db.disconnect();
 
     return res.status(200).json( product );
