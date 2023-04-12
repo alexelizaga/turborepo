@@ -91,12 +91,20 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
         const formData = new FormData();
         formData.append('file', file);
         const { data } = await shopApi.post<{ message: string }>('/admin/upload', formData);
-        console.log(data);
+        setValue('images', [ ...getValues('images'), data.message ], { shouldValidate: true })
       }
     } catch (error) {
       console.log(error);
     }
 
+  }
+
+  const onDeleteImage = (images: string) => {
+    setValue(
+      'images',
+      getValues('images').filter( img => img !== images),
+      {shouldValidate: true}
+    );
   }
 
   const onSubmit = async ( form: FormData ) => {
@@ -307,7 +315,7 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
                 color="secondary"
                 fullWidth
                 startIcon={<UploadOutlined />}
-                sx={{ mb: 3 }}
+                sx={{ mb: 2 }}
                 onClick={ () => fileInputRef.current?.click()}
               >
                 Upload image
@@ -326,20 +334,25 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
                 label="It is necessary to 2 images"
                 color="error"
                 variant="outlined"
+                sx={{ mb: 2, display: getValues('images').length < 2 ? 'flex' : 'none' }}
               />
 
               <Grid container spacing={2}>
-                {product.images.map((img) => (
+                {getValues('images').map((img) => (
                   <Grid item xs={4} sm={3} key={img}>
                     <Card>
                       <CardMedia
                         component="img"
                         className="fadeIn"
-                        image={`/products/${img}`}
+                        image={img}
                         alt={img}
                       />
                       <CardActions>
-                        <Button fullWidth color="error">
+                        <Button
+                          fullWidth
+                          color="error"
+                          onClick={() => onDeleteImage(img)}
+                        >
                           Delete
                         </Button>
                       </CardActions>

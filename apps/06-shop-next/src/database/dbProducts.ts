@@ -12,7 +12,9 @@ export const getProductBySlug = async(slug: string): Promise<IProduct | null> =>
     return null
   };
 
-  // TODO: process pictures for the server
+  product.images = product.images.map( image => {
+    return image.includes('http') ? image : `${process.env.HOST_NAME}/products/${image}`
+  });
 
   return JSON.parse(JSON.stringify(product));
 }
@@ -40,7 +42,15 @@ export const getProductsByTerm = async( term: string ): Promise<IProduct[]> => {
   .lean();
   await db.disconnect();
 
-  return products;
+
+  const updatedProducts = products.map(product => {
+    product.images = product.images.map( image => {
+      return image.includes('http') ? image : `${process.env.HOST_NAME}/products/${image}`
+    });
+    return product;
+  })
+
+  return updatedProducts;
 }
 
 export const getAllProducts = async(): Promise<IProduct[]> => {
@@ -50,5 +60,12 @@ export const getAllProducts = async(): Promise<IProduct[]> => {
     .lean();
   await db.disconnect();
 
-  return products;
+  const updatedProducts = products.map(product => {
+    product.images = product.images.map( image => {
+      return image.includes('http') ? image : `${process.env.HOST_NAME}/products/${image}`
+    });
+    return product;
+  })
+
+  return updatedProducts;
 }
