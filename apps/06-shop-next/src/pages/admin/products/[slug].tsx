@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { ChangeEvent, FC, useEffect, useRef, useState } from "react";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
@@ -37,6 +37,7 @@ interface Props {
 const ProductAdminPage: FC<Props> = ({ product }) => {
 
   const router = useRouter();
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [newTagValue, setNewTagValue] = useState("");
   const [isSaving, setIsSaving] = useState(false);
@@ -81,6 +82,20 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
     const updatedTags = getValues('tags').filter( t => t !== tag );
     setValue("tags", updatedTags, { shouldValidate: true })
   };
+
+  const onFileSelected = ({ target }: ChangeEvent<HTMLInputElement>) => {
+    if (!target.files || target.files?.length === 0) return;
+
+    try {
+      for ( const file of target.files) {
+        const formData = new FormData();
+        console.log( file );
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
 
   const onSubmit = async ( form: FormData ) => {
     if (form.images.length < 2) return alert('Minimum 2 images');
@@ -291,9 +306,19 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
                 fullWidth
                 startIcon={<UploadOutlined />}
                 sx={{ mb: 3 }}
+                onClick={ () => fileInputRef.current?.click()}
               >
                 Upload image
               </Button>
+
+              <input
+                ref={fileInputRef}
+                type="file"
+                multiple
+                accept="image/png, image/gif, image/jpeg"
+                style={{ display: "none" }}
+                onChange={onFileSelected}
+              />
 
               <Chip
                 label="It is necessary to 2 images"
