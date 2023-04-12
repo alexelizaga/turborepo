@@ -55,9 +55,17 @@ interface Props {
 
 const ProductAdminPage: FC<Props> = ({ product }) => {
 
-  const { register, handleSubmit, formState:{ errors } } = useForm<FormData>({
+  const { register, handleSubmit, formState:{ errors }, getValues, setValue } = useForm<FormData>({
     defaultValues: product
   })
+
+  const onChangeSize = (size: string) => {
+    const currentSizes = getValues('sizes');
+    if (currentSizes.includes(size)) {
+      return setValue('sizes', currentSizes.filter(s => s != size), { shouldValidate: true })
+    }
+    setValue("sizes", [...currentSizes, size], { shouldValidate: true })
+  }
 
   const onDeleteTag = (tag: string) => {};
 
@@ -104,6 +112,7 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
               variant="filled"
               fullWidth
               multiline
+              rows={4}
               sx={{ mb: 1 }}
               { ...register('description', {
                 required: 'This field is required'
@@ -146,8 +155,8 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
               <FormLabel>Type</FormLabel>
               <RadioGroup
                 row
-                // value={ status }
-                // onChange={ onStatusChanged }
+                value={ getValues('type') }
+                onChange={ ({ target }) => setValue('type', target.value, { shouldValidate: true }) }
               >
                 {validTypes.map((option) => (
                   <FormControlLabel
@@ -164,8 +173,8 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
               <FormLabel>Gender</FormLabel>
               <RadioGroup
                 row
-                // value={ status }
-                // onChange={ onStatusChanged }
+                value={ getValues('gender') }
+                onChange={ ({ target }) => setValue('gender', target.value, { shouldValidate: true }) }
               >
                 {validGender.map((option) => (
                   <FormControlLabel
@@ -183,8 +192,9 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
               {validSizes.map((size) => (
                 <FormControlLabel
                   key={size}
-                  control={<Checkbox />}
+                  control={<Checkbox checked={ getValues('sizes').includes(size)} />}
                   label={size}
+                  onChange={() => onChangeSize(size)}
                 />
               ))}
             </FormGroup>
