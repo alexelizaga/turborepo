@@ -48,9 +48,9 @@ const ProductsPage: NextPage = () => {
 
   const { data, error } = useSWR<IProduct[]>('/api/admin/products');
 
-  if (!data && !error) return (<></>);
+  if (!data || !error) return (<></>);
 
-  const rows = data!.map( product => ({
+  const rows = data.map( product => ({
     id      : product._id,
     img     : product.images[0],
     title   : product.title,

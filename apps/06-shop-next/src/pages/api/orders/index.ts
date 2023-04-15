@@ -23,8 +23,7 @@ const createOrder = async(req: NextApiRequest, res: NextApiResponse<Data>) => {
 
   const session: any = await getSession({ req });
   
-  // FIXME: Session is null in dockers
-  console.log('createOrder', session);
+  // Session is null in dockers
   // if (!session) {
   //   return res.status(401).json({ message: 'Must be authenticated'});
   // }

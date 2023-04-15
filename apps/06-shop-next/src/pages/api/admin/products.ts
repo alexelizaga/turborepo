@@ -34,7 +34,6 @@ const getProducts = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     .lean();
   await db.disconnect();
 
-  // TODO: Update pictures
   const updatedProducts = products.map(product => {
     product.images = product.images.map( image => {
       return image.includes('http') ? image : `${process.env.HOST_NAME}/products/${image}`
@@ -67,7 +66,7 @@ const updateProduct = async (req: NextApiRequest, res: NextApiResponse<Data>) =>
 
     product.images.forEach( async(image) => {
       if ( !images.includes(image) ) {
-        const [ fileId, extension ] = image.substring( image.lastIndexOf('/') + 1 ).split('.');
+        const [ fileId ] = image.substring( image.lastIndexOf('/') + 1 ).split('.');
         await cloudinary.uploader.destroy(fileId);
       }
     })

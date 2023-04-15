@@ -15,13 +15,11 @@ export const config = {
 
 export default function handler (req: NextApiRequest, res: NextApiResponse<Data>) {
 
-  switch (req.method) {
-    case 'POST':
-      return uploadFile(req, res);
-  
-    default:
-      return res.status(400).json({ message: 'Bad request' });
+  if ( req.method === 'POST') {
+    return uploadFile(req, res);
   }
+
+  return res.status(400).json({ message: 'Bad request' });
   
 }
 
