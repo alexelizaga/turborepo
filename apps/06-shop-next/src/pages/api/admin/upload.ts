@@ -30,7 +30,7 @@ const saveFile = async (file: formidable.File): Promise<string> => {
 
 const parseFiles = async (req: NextApiRequest): Promise<string> => {
   return new Promise( (resolve, reject) => {
-    const form = new formidable.IncomingForm({ maxFileSize: 2042220174 });
+    const form = new formidable.IncomingForm({ maxFileSize: 4000000 });
     form.parse(req, async(err, fields, files) => {
       if (err) return reject(err);
 
