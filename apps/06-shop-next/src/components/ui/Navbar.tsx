@@ -35,7 +35,7 @@ export const Navbar = () => {
             process.env.NODE_ENV === 'development' && (
               <Chip sx={{ mr: 1 }} label="DEV" size="small" color="primary" variant="outlined" />
             )
-          } 
+          }
           <Typography variant="h6">BroCode |</Typography>
           <Typography sx={{ ml: 0.5 }}>Shop</Typography>
         </Link>

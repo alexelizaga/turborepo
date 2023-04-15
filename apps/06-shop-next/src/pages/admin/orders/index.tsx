@@ -57,7 +57,7 @@ const OrdersPage: NextPage = () => {
   return (
     <AdminLayout
       title={'Orders'}
-      subTitle={'Order maintenance'}
+      subTitle={'Orders maintenance'}
       icon={<ConfirmationNumberOutlined />}
     >
       <Grid container sx={{ pt: 2 }} className="fadeIn">
