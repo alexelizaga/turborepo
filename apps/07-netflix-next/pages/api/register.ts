@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { User } from '@prisma/client';
 import bycrypt from "bcrypt";
 
-import { prismadb } from "@/lib";
+import { prismadb } from "@/libs";
 
 type Data =
   | { error: string }
