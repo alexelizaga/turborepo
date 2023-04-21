@@ -1,4 +1,5 @@
 import useSWR from 'swr';
+import { User } from '@prisma/client';
 
 import fetcher from '@/libs/fetcher';
 

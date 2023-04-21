@@ -2,6 +2,8 @@ import React, { FC } from 'react';
 import { Movie } from '@prisma/client';
 import { BsFillPlayFill } from 'react-icons/bs';
 
+import { FavoriteButton } from '@/components';
+
 interface MovieCardProps {
     data: Movie;
 }
@@ -93,6 +95,7 @@ const MovieCard: FC<MovieCardProps> = ({ data }) => {
             >
               <BsFillPlayFill size={30} />
             </div>
+            <FavoriteButton movieId={data?.id} />
           </div>
 
           <p className='text-green-400 font-semibold mt-4'>
