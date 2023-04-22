@@ -1,11 +1,18 @@
-import { FC } from "react";
+import { FC, useCallback } from "react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 
-import { useBillboard } from "@/hooks";
+import { useBillboard, useInfoModal } from "@/hooks";
 import { PlayButton } from "@/components";
 
 const Billboard: FC = () => {
   const { data } = useBillboard();
+  const { openModal } = useInfoModal();
+
+  const handleOpenModal = useCallback(() => {
+    openModal(data?.id);
+  }, [data?.id, openModal]);
+  
+
   return (
     <div className="relative h-[56.25vw]">
       <video
@@ -50,6 +57,7 @@ const Billboard: FC = () => {
         <div className="flex flex-row items-center mt-3 md:mt-4 gap-3">
           <PlayButton movieId={data?.id} />
           <button
+            onClick={handleOpenModal}
             className="
               bg-white
               text-white
