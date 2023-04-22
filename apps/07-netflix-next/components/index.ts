@@ -7,3 +7,4 @@ export { default as MovieCard } from './MovieCard';
 export { default as MovieList } from './MovieList';
 export { default as Navbar } from './Navbar';
 export { default as NavbarItem } from './NavbarItem';
+export { default as PlayButton } from './PlayButton';
