@@ -1,11 +1,19 @@
-import { FC } from 'react';
+import { FC, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import { FaFeather } from 'react-icons/fa';
 
+import { useLoginModal } from '@/hooks';
+
 const SidebarTweetButton: FC = () => {
   const router = useRouter();
+  const loginModal = useLoginModal();
+
+  const onClick = useCallback(() => {
+    loginModal.onOpen()
+  }, [loginModal]);
+  
   return (
-    <div onClick={() => router.push('/')}>
+    <div onClick={onClick}>
       <div
         className='
           mt-6
