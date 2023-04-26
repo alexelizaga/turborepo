@@ -2,7 +2,7 @@ import { FC, useMemo } from 'react';
 import { format } from 'date-fns';
 import { BiCalendar } from 'react-icons/bi';
 
-import { useCurrentUser, useUser } from '@/hooks';
+import { useCurrentUser, useEditModal, useUser } from '@/hooks';
 import { Button } from '@/components';
 
 interface UserBioProps {
@@ -13,6 +13,8 @@ const UserBio: FC<UserBioProps> = ({ userId }) => {
   const { data: currentUser } = useCurrentUser();
   const { data: fetchedUser } = useUser(userId);
 
+  const editModal = useEditModal();
+
   const createdAt = useMemo(() => {
     if(!fetchedUser?.createdAt) return null;
     return format(new Date(fetchedUser.createdAt), 'MMMM yyyy')
@@ -22,7 +24,7 @@ const UserBio: FC<UserBioProps> = ({ userId }) => {
     <div className='border-b-[1px] border-neutral-800 pb-4'>
       <div className='flex justify-end p-2'>
         {currentUser?.id === userId ? (
-          <Button secondary label='Edit' onClick={() => {}} />
+          <Button secondary label='Edit' onClick={editModal.onOpen} />
         ):(
           <Button
             onClick={() => {}}
