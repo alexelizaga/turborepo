@@ -1,5 +1,6 @@
 export * from './layout/index';
 export * from './modals/index';
+export * from './users/index';
 
 export { default as Avatar } from './Avatar';
 export { default as Button } from './Button';

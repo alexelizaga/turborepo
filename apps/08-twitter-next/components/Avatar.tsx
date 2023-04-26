@@ -6,8 +6,8 @@ import { useUser } from '@/hooks';
 
 interface AvatarProps {
   userId: string;
-  isLarge: boolean;
-  hasBorder: boolean;
+  isLarge?: boolean;
+  hasBorder?: boolean;
 }
 
 const Avatar: FC<AvatarProps> = ({ userId, isLarge, hasBorder }) => {
