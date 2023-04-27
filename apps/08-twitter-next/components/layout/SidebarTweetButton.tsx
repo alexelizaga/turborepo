@@ -5,7 +5,6 @@ import { FaFeather } from 'react-icons/fa';
 import { useLoginModal } from '@/hooks';
 
 const SidebarTweetButton: FC = () => {
-  const router = useRouter();
   const loginModal = useLoginModal();
 
   const onClick = useCallback(() => {
