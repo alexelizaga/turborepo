@@ -2,6 +2,7 @@ export { default as useCurrentUser } from './useCurrentUser';
 export { default as useEditModal } from './useEditModal';
 export { default as useLike } from './useLike';
 export { default as useLoginModal } from './useLoginModal';
+export { default as useNotifications } from './useNotifications';
 export { default as usePost } from './usePost';
 export { default as usePosts } from './usePosts';
 export { default as useRegisterModal } from './useRegisterModal';
