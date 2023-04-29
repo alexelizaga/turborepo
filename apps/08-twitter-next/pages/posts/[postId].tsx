@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { ClipLoader } from 'react-spinners';
 
 import { usePost } from '@/hooks';
-import { Form, Header, PostItem } from '@/components';
+import { CommentFeed, Form, Header, PostItem } from '@/components';
 
 const PostView = () => {
   const router = useRouter();
@@ -31,6 +31,7 @@ const PostView = () => {
         isComment
         placeholder='Tweet your reply'
       />
+      <CommentFeed comments={fetchedPost?.comments} />
     </>
   )
 }
