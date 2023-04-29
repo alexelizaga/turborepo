@@ -24,7 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           has: userId
         }
       }
-    });
+    })
 
     return res.status(200).json({
       ...existingUser,
