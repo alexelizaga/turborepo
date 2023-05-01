@@ -9,12 +9,17 @@ export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
   providers: [
     Credentials({
-      name: 'Email',
+      id: 'credentials',
+      name: 'credentials',
       credentials: {
-        email: { label: 'Email', type: 'email', placeholder: '' },
-        password: { label: 'Password', type: 'password', placeholder: '' }
+        email: { label: 'Email', type: 'text'},
+        password: { label: 'Password', type: 'password'}
       },
       async authorize(credentials): Promise<any> {
+        if(!credentials?.email || !credentials?.password) {
+          throw new Error('Invalid credentials')
+        };
+        
         return await dbUser.checkUserEmailPassword(credentials?.email || '', credentials?.password || '');
       }
     }),
