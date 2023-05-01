@@ -66,7 +66,6 @@ const Modal:FC<ModalProps> = ({
             lg:h-auto
           '
         >
-          {/* TODO Content */}
           <div
             className='
               h-full
@@ -83,7 +82,6 @@ const Modal:FC<ModalProps> = ({
               focus:outline-none
             '
           >
-            {/* TODO: Header */}
             <div
               className='
                 flex
@@ -108,7 +106,6 @@ const Modal:FC<ModalProps> = ({
                 <AiOutlineClose size={20} />
               </button>
             </div>
-            {/* TODO: Body */}
             <div className='relative p-10 flex-auto'>
               { body }
             </div>
