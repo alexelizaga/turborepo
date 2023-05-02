@@ -2,7 +2,7 @@
 
 import { FC } from 'react';
 
-import { Container, Logo, Search, UserMenu } from '@/components';
+import { Categories, Container, Logo, Search, UserMenu } from '@/components';
 import { SafeUser } from '@/types';
 
 interface NavbarProps {
@@ -37,6 +37,7 @@ const Navbar: FC<NavbarProps> = ({
           </div>
         </Container>
       </div>
+      <Categories />
     </div>
   )
 }
