@@ -4,7 +4,7 @@ import { FC } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 
 import { CategoryBox, Container } from '@/components';
-import { Const } from '@/constants';
+import { CATEGORIES } from '@/constants/const';
 
 const Categories: FC = () => {
   const params = useSearchParams();
@@ -29,7 +29,7 @@ const Categories: FC = () => {
           overflow-x-auto
         '
       >
-        {Const.categories.map((cat) => (
+        {CATEGORIES.map((cat) => (
           <CategoryBox
             key={cat.label}
             label={cat.label}

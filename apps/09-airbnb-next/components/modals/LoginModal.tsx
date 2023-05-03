@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import {
@@ -57,6 +57,11 @@ const LoginModal: FC = () => {
     })
   }
 
+  const toggle = useCallback(() => {
+      loginModal.onClose();
+      registerModal.onOpen();
+  }, [loginModal, registerModal]);
+
   const bodyContent = (
     <div className='flex flex-col gap-4'>
       <Heading
@@ -108,17 +113,17 @@ const LoginModal: FC = () => {
       >
         <div className='justify-center flex flex-row items-center gap-2'>
           <div>
-            Already have an account?
+            First time using Airbnb?
           </div>
           <div
-            onClick={registerModal.onClose}
+            onClick={toggle}
             className='
               text-neutral-800
               cursor-pointer
               hover:underline
             '
           >
-            Log in
+            Create an account
           </div>
         </div>
       </div>
