@@ -3,6 +3,6 @@ export enum STEPS {
   LOCATION = 1,
   INFO = 2,
   IMAGES = 3,
-  DESCRPTION = 4,
+  DESCRIPTION = 4,
   PRICE = 6
 }
