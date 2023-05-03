@@ -4,7 +4,7 @@ import { FC, useCallback, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { FieldValues, useForm } from 'react-hook-form';
 
-import { CategoryInput, Counter, CountrySelect, Heading, Modal } from '@/components';
+import { CategoryInput, Counter, CountrySelect, Heading, ImageUpload, Modal } from '@/components';
 import { useRentModal } from '@/hooks';
 import { STEPS } from '@/constants/enum';
 import { CATEGORIES } from '@/constants/const';
@@ -42,8 +42,9 @@ const RentModal: FC = () => {
   const guestCount = watch('guestCount');
   const roomCount = watch('roomCount');
   const bathroomCount = watch('bathroomCount');
+  const imageSrc = watch('imageSrc');
 
-  const Map = useMemo(() => dynamic(() => import('@/components/Map'), {
+  const LeafletMap = useMemo(() => dynamic(() => import('@/components/Map'), {
     ssr: false
   }), [location]);
 
@@ -120,7 +121,7 @@ const RentModal: FC = () => {
           value={location}
           onChange={(value) => setCustomValue('location', value)}
         />
-        <Map
+        <LeafletMap
           center={location?.latlng}
         />
       </div>
@@ -153,6 +154,21 @@ const RentModal: FC = () => {
           subtitle='How many bathrooms do you allow?'
           value={bathroomCount}
           onChange={(value) => setCustomValue('bathroomCount', value)}
+        />
+      </div>
+    )
+  }
+
+  if (step === STEPS.IMAGES) {
+    bodyContent = (
+      <div className='flex flex-col gap-8'>
+        <Heading
+          title='Add a photo of your place'
+          subtitle='Show guests what your place looks like?'
+        />
+        <ImageUpload
+          value={imageSrc}
+          onChange={(value) => setCustomValue('imageSrc', value)}
         />
       </div>
     )

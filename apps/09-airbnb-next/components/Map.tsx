@@ -22,7 +22,7 @@ interface MapProps {
 
 }
 
-const Map: FC<MapProps> = ({
+const LeafletMap: FC<MapProps> = ({
   center
 }) => {
   return (
@@ -45,4 +45,4 @@ const Map: FC<MapProps> = ({
   )
 }
 
-export default Map;
+export default LeafletMap;
