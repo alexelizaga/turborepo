@@ -4,5 +4,5 @@ export enum STEPS {
   INFO = 2,
   IMAGES = 3,
   DESCRIPTION = 4,
-  PRICE = 6
+  PRICE = 5
 }

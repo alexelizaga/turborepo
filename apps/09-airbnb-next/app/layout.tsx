@@ -2,9 +2,9 @@ import { Nunito } from 'next/font/google';
 
 import { LoginModal, Navbar, RegisterModal, RentModal } from '@/components';
 import { ToasterProvider } from '@/providers';
+import getCurrentUser from '@/app/actions/getCurrentUser';
 
 import './globals.css';
-import getCurrentUser from './actions/getCurrentUser';
 
 export const metadata = {
   title: 'Airbnb',
