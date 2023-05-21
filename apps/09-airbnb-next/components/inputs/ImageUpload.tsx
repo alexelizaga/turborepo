@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { TbPhotoPlus } from 'react-icons/tb';
 
 declare global {
-  var cloudinary: any;
+  let cloudinary: any;
 }
 
 interface ImageUploadProps {

@@ -1,6 +1,6 @@
 'use client';
 
-import { FC } from 'react';
+import { FC, useCallback } from 'react';
 import Select from 'react-select';
 
 import { CountrySelectValue } from '@/types';
@@ -16,6 +16,22 @@ const CountrySelect: FC<CountrySelectProps> = ({
   onChange
 }) => {
   const { getAll } = useCountries();
+
+  const formatOptionLabel = useCallback(
+    (option: any) => (
+      <div className='flex flex-row items-center gap-3'>
+        <div>{option.flag}</div>
+        <div>
+          {option.label},
+          <span className='text-neutral-500 ml-1'>
+            {option.region}
+          </span>
+        </div>
+      </div>
+    ),
+    [],
+  )
+  
   return (
     <div>
       <Select
@@ -24,17 +40,7 @@ const CountrySelect: FC<CountrySelectProps> = ({
         options={getAll()}
         value={value}
         onChange={(value) => onChange(value as CountrySelectValue)}
-        formatOptionLabel={(option: any) => (
-          <div className='flex flex-row items-center gap-3'>
-            <div>{option.flag}</div>
-            <div>
-              {option.label},
-              <span className='text-neutral-500 ml-1'>
-                {option.region}
-              </span>
-            </div>
-          </div>
-        )}
+        formatOptionLabel={formatOptionLabel}
         classNames={{
           control: () => 'p-3 border-2',
           input: () => 'text-lg',

@@ -34,7 +34,7 @@ const ListingInfo: FC<ListingInfoProps> = ({
   const { getByValue } = useCountries();
   const coordinates = getByValue(locationValue)?.latlng;
 
-  const Map = dynamic(() => import('../Map'), {
+  const MapWidget = dynamic(() => import('../Map'), {
     ssr: false
   })
 
@@ -87,7 +87,7 @@ const ListingInfo: FC<ListingInfoProps> = ({
         { description }
       </div>
       <hr />
-      <Map center={coordinates} />
+      <MapWidget center={coordinates} />
     </div>
   )
 }
