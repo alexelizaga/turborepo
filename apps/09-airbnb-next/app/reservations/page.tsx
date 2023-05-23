@@ -8,23 +8,27 @@ import ReservationsClient from "./ReservationsClient";
 const ReservationsPage = async () => {
   const currentUser = await getCurrentUser();
 
-  if(!currentUser) (
-    <EmptyState
-      title="Unauthorized"
-      subtitle="Please login"
-    />
-  )
+  if(!currentUser) {
+    return (
+      <EmptyState
+        title="Unauthorized"
+        subtitle="Please login"
+      />
+    )
+  }
 
   const reservations = await getReservations({
     authorId: currentUser?.id
   });
 
-  if(reservations.length === 0) (
-    <EmptyState
-      title="Not reservations found"
-      subtitle="Looks like you have no reservations on your properties"
-    />
-  )
+  if(reservations.length === 0) {
+    return (
+      <EmptyState
+        title="Not reservations found"
+        subtitle="Looks like you have no reservations on your properties"
+      />
+    )
+  }
 
   return (
     <ReservationsClient

@@ -11,19 +11,23 @@ const ListingPage = async () => {
   const listings = await getFavoriteListings();
   const currentUser = await getCurrentUser();
 
-  if(!currentUser) (
-    <EmptyState
-      title="Unauthorized"
-      subtitle="Please login"
-    />
-  )
+  if(!currentUser) {
+    return (
+      <EmptyState
+        title="Unauthorized"
+        subtitle="Please login"
+      />
+    )
+  }
 
-  if (!listings.length)(
-    <EmptyState
-      title="No favorites found"
-      subtitle="Looks like you have no favorite listings"
-    />
-  )
+  if (!listings.length){
+    return (
+      <EmptyState
+        title="No favorites found"
+        subtitle="Looks like you have no favorite listings"
+      />
+    )
+  }
 
   return (
     <FavoritesClient
