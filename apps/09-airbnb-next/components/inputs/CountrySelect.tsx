@@ -7,7 +7,7 @@ import { CountrySelectValue } from '@/types';
 import { useCountries } from '@/hooks';
 
 interface CountrySelectProps {
-  value: CountrySelectValue,
+  value?: CountrySelectValue,
   onChange: (value: CountrySelectValue) => void
 }
 
