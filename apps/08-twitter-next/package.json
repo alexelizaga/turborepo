@@ -6,11 +6,12 @@
     "dev": "next dev --port 3008",
     "build": "next build",
     "start": "next start -p ${PORT:=80}",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:generate": "prisma generate"
   },
   "dependencies": {
+    "database": "*",
     "@next-auth/prisma-adapter": "^1.0.6",
-    "@prisma/client": "^4.13.0",
     "@types/node": "18.15.13",
     "@types/react": "18.0.38",
     "@types/react-dom": "18.0.11",
@@ -35,7 +36,6 @@
     "zustand": "^4.3.7"
   },
   "devDependencies": {
-    "@types/bcrypt": "^5.0.0",
-    "prisma": "^4.13.0"
+    "@types/bcrypt": "^5.0.0"
   }
 }
