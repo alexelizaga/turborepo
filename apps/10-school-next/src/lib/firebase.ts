@@ -1,7 +1,6 @@
 import admin from 'firebase-admin';
 
 try {
-  console.log(process.env);
   admin.initializeApp({
     credential: admin.credential.cert({
       clientEmail: process.env.CLIENT_EMAIL,
