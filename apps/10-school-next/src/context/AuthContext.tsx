@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, FC, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, FC, useState, useEffect, ReactNode, useMemo } from 'react';
 import { onAuthStateChanged, getAuth, User } from 'firebase/auth';
 
 import firebase_app from '@/firebase/config';
@@ -43,8 +43,10 @@ export const AuthContextProvider: FC<AuthContextProviderProps> = ({
         return () => unsubscribe();
     }, []);
 
+    const memorizeValue = useMemo(() => ({ user, token }), [token, user]);
+
     return (
-        <AuthContext.Provider value={{ user, token }}>
+        <AuthContext.Provider value={memorizeValue}>
             {loading ? <div>Loading...</div> : children}
         </AuthContext.Provider>
     );

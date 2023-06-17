@@ -1,13 +1,12 @@
 'use client'
 
-import { useEffect, useState } from "react"
 import { useLoginModal } from "@/hooks"
 import { useAuthContext } from "@/context/AuthContext";
 import axios from 'axios';
+import { useEffect } from "react";
 
 export default function Home() {
   const { user, token } = useAuthContext()
-  const loginModal = useLoginModal();
 
   // ADD A DOCUMENT
   // const handleForm = async () => {
