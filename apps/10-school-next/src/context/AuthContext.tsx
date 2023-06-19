@@ -8,11 +8,11 @@ import firebase_app from '@/firebase/config';
 const auth = getAuth(firebase_app);
 
 type createContextProps = {
-    user: User | null;
+    currentUser: User | null;
     token: string | null;
 }
 
-export const AuthContext = createContext<createContextProps>({ user: null, token: null });
+export const AuthContext = createContext<createContextProps>({ currentUser: null, token: null });
 
 export const useAuthContext = () => useContext(AuthContext);
 
@@ -23,19 +23,19 @@ type AuthContextProviderProps = {
 export const AuthContextProvider: FC<AuthContextProviderProps> = ({
     children,
 }) => {
-    const [user, setUser] = useState<User|null>(null);
+    const [currentUser, setCurrentUser] = useState<User|null>(null);
     const [token, setToken] = useState<string|null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                setUser(user);
+                setCurrentUser(user);
                 user.getIdToken().then((token) => {
                     setToken(token)
                 })
             } else {
-                setUser(null);
+                setCurrentUser(null);
             }
             setLoading(false);
         });
@@ -43,7 +43,7 @@ export const AuthContextProvider: FC<AuthContextProviderProps> = ({
         return () => unsubscribe();
     }, []);
 
-    const memorizeValue = useMemo(() => ({ user, token }), [token, user]);
+    const memorizeValue = useMemo(() => ({ currentUser, token }), [token, currentUser]);
 
     return (
         <AuthContext.Provider value={memorizeValue}>

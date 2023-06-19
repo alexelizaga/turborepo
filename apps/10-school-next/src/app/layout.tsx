@@ -1,7 +1,7 @@
 import { Inter } from 'next/font/google';
 
 import { AuthContextProvider } from '@/context/AuthContext';
-import { LoginModal, RegisterModal } from '@/components';
+import { LoginModal, RegisterModal, Navbar } from '@/components';
 import { ToasterProvider } from '@/providers';
 import './globals.css';
 
@@ -21,11 +21,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ToasterProvider />
-        <LoginModal />
-        <RegisterModal />
         <AuthContextProvider>
-          { children }
+          <ToasterProvider />
+          <LoginModal />
+          <RegisterModal />
+          <Navbar />
+          <div className='pb-20 pt-28'>
+            { children }
+          </div>
         </AuthContextProvider>
       </body>
     </html>
