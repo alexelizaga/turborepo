@@ -2,22 +2,30 @@
 
 import { Container, EmptyState, ListingCard } from "@/components";
 import { useAuthContext } from "@/context/AuthContext";
+import { getListings } from "@/firebase/firestore";
+import { IListingsParams } from "@/firebase/firestore/getListings";
 import { Listing } from "@/types";
 import axios from 'axios';
+import { useEffect, useState } from "react";
 
-export default function Home() {
+interface HomeProps {
+  searchParams: IListingsParams;
+}
+
+const Home = ({ searchParams }: HomeProps) => {
   const { token, currentUser } = useAuthContext();
+  const [loading, setLoading] = useState(true);
+  const [listings, setListings] = useState<Listing[]>([])
 
-  const listings: Listing[] = [
-    {
-      id: "64537a77c29ec22a3425f936",
-      title: "Airbnb clone",
-      description: "Descripción",
-      imageSrc: "https://res.cloudinary.com/brocodejs/image/upload/v1683192421/bciehhgbmpu3nzumoxqg.jpg",
-      categories: "Nextjs, Prisma, Tailwind",
-      color: 'bg-blue-400'
-    }
-  ];
+  useEffect(() => {
+    getCourses();
+  }, []);
+  
+
+  const getCourses = async () => {
+    setListings(await getListings(searchParams));
+    setLoading(false);
+  }
 
   // ADD A DOCUMENT
   // const handleForm = async () => {
@@ -32,17 +40,20 @@ export default function Home() {
   //   }
   // }
 
-  const getUser = async () => {
-    await axios.get(`/api/user`, {
-      headers: {
-        Authorization: 'Bearer ' + token
-      }
-    });
-  }
+  // GET USER FROM API
+  // const getUser = async () => {
+  //   return await axios.get(`/api/user`, {
+  //     headers: {
+  //       Authorization: 'Bearer ' + token
+  //     }
+  //   });
+  // }
 
-  if (listings.length === 0) {
+  if (listings.length === 0 && !loading) {
     return (
-      <EmptyState showReset />
+      <div className="m-10" onClick={getCourses}>
+        <EmptyState showReset />
+      </div>
     )
   }
 
@@ -72,3 +83,5 @@ export default function Home() {
     </Container>
   )
 }
+
+export default Home;

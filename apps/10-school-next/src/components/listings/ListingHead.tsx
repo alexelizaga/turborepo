@@ -2,34 +2,29 @@
 
 import React, { FC } from 'react';
 import Image from 'next/image';
+import { User } from "firebase/auth";
 
-import { SafeUser } from '@/types';
-import { useCountries } from '@/hooks';
 import { Heading, HeartButton } from '@/components';
 
 interface ListingHeadProps {
   title: string;
   imageSrc: string;
-  locationValue: string;
   id: string;
-  currentUser?: SafeUser | null;
+  currentUser?: User | null;
 }
 
 const ListingHead: FC<ListingHeadProps> = ({
   title,
   imageSrc,
-  locationValue,
   id,
   currentUser
 }) => {
-  const { getByValue } = useCountries();
-  const location = getByValue(locationValue);
 
   return (
     <>
       <Heading
         title={title}
-        subtitle={`${location?.region}, ${location?.label}`}
+        subtitle={`subtitle`}
       />
       <div
         className='

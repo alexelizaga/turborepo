@@ -1,4 +1,4 @@
-import { SiJavascript, SiAngular, SiReact, SiCreatereactapp, SiNextdotjs, SiTypescript, SiPrisma, SiFirebase, SiTailwindcss } from 'react-icons/si';
+import { SiJavascript, SiAngular, SiReact, SiCreatereactapp, SiNextdotjs, SiTypescript, SiPrisma, SiFirebase, SiTailwindcss, SiMongodb } from 'react-icons/si';
 
 export const CATEGORIES = [
   {
@@ -22,7 +22,7 @@ export const CATEGORIES = [
     description: '',
   },
   {
-    label: 'React Native',
+    label: 'Native',
     icon: SiCreatereactapp,
     description: '',
   },
@@ -32,8 +32,8 @@ export const CATEGORIES = [
     description: '',
   },
   {
-    label: 'Prisma',
-    icon: SiPrisma,
+    label: 'Tailwind',
+    icon: SiTailwindcss,
     description: '',
   },
   {
@@ -42,8 +42,13 @@ export const CATEGORIES = [
     description: '',
   },
   {
-    label: 'Tailwind',
-    icon: SiTailwindcss,
+    label: 'Prisma',
+    icon: SiPrisma,
     description: '',
+  },
+  {
+    label: 'MongoDB',
+    icon: SiMongodb,
+    description: ''
   }
 ]
