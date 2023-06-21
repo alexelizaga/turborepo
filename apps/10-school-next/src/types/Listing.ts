@@ -1,6 +1,6 @@
 export type Listing = {
   id: string,
-  categories: string,
+  categories: string[],
   color?: string,
   description: string,
   github?: string;

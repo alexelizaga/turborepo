@@ -9,22 +9,22 @@ const auth = getAuth(firebase_app);
 
 type createContextProps = {
     currentUser: User | null;
-    token: string | null;
+    token: string;
 }
 
-export const AuthContext = createContext<createContextProps>({ currentUser: null, token: null });
+export const AuthContext = createContext<createContextProps>({ currentUser: null, token: '' });
 
 export const useAuthContext = () => useContext(AuthContext);
 
-type AuthContextProviderProps = {
+type AuthProviderProps = {
     children: ReactNode
 }
 
-export const AuthContextProvider: FC<AuthContextProviderProps> = ({
+export const AuthProvider: FC<AuthProviderProps> = ({
     children,
 }) => {
     const [currentUser, setCurrentUser] = useState<User|null>(null);
-    const [token, setToken] = useState<string|null>(null);
+    const [token, setToken] = useState<string>('');
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {

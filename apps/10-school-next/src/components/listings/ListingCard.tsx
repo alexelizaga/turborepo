@@ -22,7 +22,7 @@ const ListingCard: FC<ListingCardProps> = ({
 
   const icons = useMemo(() => {
     let array: any[] = [];
-    data.categories.split(', ').forEach((tech: any) => {
+    data.categories.forEach((tech: any) => {
       array = [ ...array, ...CATEGORIES.filter((c) => c.label === tech) ]
     });
     return array;
@@ -46,7 +46,7 @@ const ListingCard: FC<ListingCardProps> = ({
             flex
             justify-center
             items-center
-            ${data.color ?? 'bg-neutral-300'}
+            ${data.color ? data.color : 'bg-neutral-300'}
           `}
         >
           { data.imageSrc && <Image

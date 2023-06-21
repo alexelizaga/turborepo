@@ -14,4 +14,4 @@ try {
   }
 }
 
-export default admin
+export default admin;
