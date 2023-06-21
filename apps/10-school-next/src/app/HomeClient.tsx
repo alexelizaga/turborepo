@@ -1,6 +1,5 @@
 'use client';
 
-import { useAuthContext } from '@/context';
 import { Listing } from '@/types';
 import { Container, ListingCard } from '@/components';
 
@@ -10,13 +9,6 @@ interface HomeClientProps {
 }
 
 const HomeClient = ({ listings }: HomeClientProps) => {
-  const { currentUser, token } = useAuthContext();
-
-  console.log({
-    currentUser,
-    token
-  });
-
   return (
     <Container>
       <div className="
