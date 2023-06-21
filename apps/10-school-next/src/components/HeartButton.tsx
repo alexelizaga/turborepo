@@ -1,18 +1,16 @@
 'use client';
 
+import { User } from 'firebase/auth';
+
 import { FC } from 'react';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
 interface HeartButtonProps {
   listingId: string;
-  currentUser?: any | null;
+  currentUser?: User | null;
 }
 
-const HeartButton:FC<HeartButtonProps> = ({
-  listingId,
-  currentUser
-}) => {
-  // const { hasFavorited, toggleFavorite } = useFavorite({listingId, currentUser});
+const HeartButton:FC<HeartButtonProps> = () => {
 
   const hasFavorited = false;
 
