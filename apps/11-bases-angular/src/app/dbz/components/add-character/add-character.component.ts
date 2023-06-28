@@ -3,8 +3,7 @@ import { Character } from '../../interfaces/character.interface';
 
 @Component({
   selector: 'dbz-add-character',
-  templateUrl: './add-character.component.html',
-  styleUrls: ['./add-character.component.css']
+  templateUrl: './add-character.component.html'
 })
 export class AddCharacterComponent {
 
