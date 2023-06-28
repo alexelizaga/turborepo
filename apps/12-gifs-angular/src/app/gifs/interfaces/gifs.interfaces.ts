@@ -42,32 +42,32 @@ export interface Onclick {
 
 export interface Images {
   original:                 { [key: string]: string };
-  downsized:                The480_WStill;
-  downsized_large:          The480_WStill;
-  downsized_medium:         The480_WStill;
+  downsized:                ImagesProps;
+  downsized_large:          ImagesProps;
+  downsized_medium:         ImagesProps;
   downsized_small:          DownsizedSmall;
-  downsized_still:          The480_WStill;
+  downsized_still:          ImagesProps;
   fixed_height:             { [key: string]: string };
   fixed_height_downsampled: { [key: string]: string };
   fixed_height_small:       { [key: string]: string };
-  fixed_height_small_still: The480_WStill;
-  fixed_height_still:       The480_WStill;
+  fixed_height_small_still: ImagesProps;
+  fixed_height_still:       ImagesProps;
   fixed_width:              { [key: string]: string };
   fixed_width_downsampled:  { [key: string]: string };
   fixed_width_small:        { [key: string]: string };
-  fixed_width_small_still:  The480_WStill;
-  fixed_width_still:        The480_WStill;
+  fixed_width_small_still:  ImagesProps;
+  fixed_width_still:        ImagesProps;
   looping:                  { [key: string]: string };
-  original_still:           The480_WStill;
+  original_still:           ImagesProps;
   original_mp4:             DownsizedSmall;
   preview:                  DownsizedSmall;
-  preview_gif:              The480_WStill;
-  preview_webp:             The480_WStill;
+  preview_gif:              ImagesProps;
+  preview_webp:             ImagesProps;
   hd?:                      DownsizedSmall;
-  "480w_still":             The480_WStill;
+  "480w_still":             ImagesProps;
 }
 
-export interface The480_WStill {
+export interface ImagesProps {
   height: string;
   width:  string;
   size:   string;
