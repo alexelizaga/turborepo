@@ -34,7 +34,7 @@ export class GifsService {
   }
 
   private saveLocalStorage(): void {
-    const temp = localStorage.setItem('history', JSON.stringify(this._tagsHistory))
+    localStorage.setItem('history', JSON.stringify(this._tagsHistory))
   }
 
   private loadLocalStorage(): void {
