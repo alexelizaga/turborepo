@@ -29,7 +29,7 @@ export class CountryPageComponent implements OnInit {
       .subscribe(( country ) => {
         if( !country ) return this.router.navigateByUrl('');
         this.country = country;
-        return;
+        return country;
       });
   }
 
