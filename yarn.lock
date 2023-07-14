@@ -9742,21 +9742,8 @@
     "parse-json" "^5.0.0"
     "path-type" "^4.0.0"
 
-"country@file:/Users/aelizaga/Develop/BROCODE/bc-turborepo/apps/country":
-  "resolved" "file:apps/country"
-  "version" "0.0.0"
-  dependencies:
-    "@angular/animations" "^16.1.0"
-    "@angular/common" "^16.1.0"
-    "@angular/compiler" "^16.1.0"
-    "@angular/core" "^16.1.0"
-    "@angular/forms" "^16.1.0"
-    "@angular/platform-browser" "^16.1.0"
-    "@angular/platform-browser-dynamic" "^16.1.0"
-    "@angular/router" "^16.1.0"
-    "rxjs" "~7.8.0"
-    "tslib" "^2.3.0"
-    "zone.js" "~0.13.0"
+"country@file:/Users/aelizaga/Develop/BROCODE/bc-turborepo/apps/13-country-angular":
+  "resolved" "git+ssh://git@github.com/apps/country.git"
 
 "cp-file@^7.0.0":
   "integrity" "sha512-0Cbj7gyvFVApzpK/uhCtQ/9kE9UnYpxMzaq5nQQC/Dh4iaj5fxp7iEFIullrYwzj8nf0qnsI1Qsx34hAeAebvw=="
@@ -12645,7 +12632,7 @@
   "version" "2.0.6"
 
 "gifs@file:/Users/aelizaga/Develop/BROCODE/bc-turborepo/apps/12-gifs-angular":
-  "resolved" "git+ssh://git@github.com/apps/gifs.git"
+  "resolved" "git+ssh://git@github.com/apps/12-gifs-angular.git"
 
 "github-from-package@0.0.0":
   "integrity" "sha512-SyHy3T1v2NUXn29OsWdxmK6RwHD+vkj3v8en8AOBZ1wBQ/hCAQ5bAQTD02kW4W9tUp/3Qh6J8r9EvntiyCmOOw=="
@@ -17840,6 +17827,22 @@
   "integrity" "sha512-MnUuEycAemtSaeFSjXKW/aroV7akBbY+Sv+RkyqFjgAe73F+MR0TBWKBRDkmfWq/HiFmdavfZ1G7h4SPZXaCSg=="
   "resolved" "https://registry.npmjs.org/pinkie/-/pinkie-2.0.4.tgz"
   "version" "2.0.4"
+
+"pipes@file:/Users/aelizaga/Develop/BROCODE/bc-turborepo/apps/pipes":
+  "resolved" "file:apps/pipes"
+  "version" "0.0.0"
+  dependencies:
+    "@angular/animations" "^16.1.0"
+    "@angular/common" "^16.1.0"
+    "@angular/compiler" "^16.1.0"
+    "@angular/core" "^16.1.0"
+    "@angular/forms" "^16.1.0"
+    "@angular/platform-browser" "^16.1.0"
+    "@angular/platform-browser-dynamic" "^16.1.0"
+    "@angular/router" "^16.1.0"
+    "rxjs" "~7.8.0"
+    "tslib" "^2.3.0"
+    "zone.js" "~0.13.0"
 
 "pirates@^4.0.1", "pirates@^4.0.4", "pirates@^4.0.5":
   "integrity" "sha512-8V9+HQPupnaXMA23c5hvl69zXvTwTzyAYasnkb0Tts4XvO4CliqONMOnvlq26rkhLC3nWDFBJf73LU1e1VZLaQ=="
