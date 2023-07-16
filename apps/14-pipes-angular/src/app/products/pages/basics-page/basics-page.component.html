@@ -1,22 +1,21 @@
-<p-panel [showHeader]="false">
-  <h1>Basics Pipes</h1>
+<p-panel header="Basic Pipes" class="p-1">
   <p>Angular Pipes - CommonModule</p>
 </p-panel>
 
-<div class="p-grid">
-  <div class="p-col-4">
+<div class="grid">
+  <div class="col-12 md:col-4">
     <p-card header="uppercase">
       {{ nameLower | uppercase }}
     </p-card>
   </div>
 
-  <div class="p-col-4">
+  <div class="col-12 md:col-4">
     <p-card header="lowercase">
       {{ nameUpper | lowercase }}
     </p-card>
   </div>
 
-  <div class="p-col-4">
+  <div class="col-12 md:col-4">
     <p-card header="titlecase">
       {{ fullName | titlecase }}
     </p-card>
