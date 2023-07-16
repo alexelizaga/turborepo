@@ -23,7 +23,7 @@ export class MenuComponent {
                   icon: 'pi pi-dollar'
                 },
                 {
-                  label: 'Not Commons',
+                  label: 'Uncommons',
                   icon: 'pi pi-globe'
                 }
               ]
