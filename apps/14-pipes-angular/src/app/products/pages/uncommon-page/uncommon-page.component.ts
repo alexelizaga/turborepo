@@ -27,7 +27,14 @@ export class UncommonPageComponent {
     other: 'have # clients waiting',
   };
 
-  onDeleteClient(): void {
+  deleteClient(): void {
     this.clients.shift();
   }
+
+  // KeyValue Pipe
+  public person = {
+    name: 'Alex',
+    age: 35,
+    address: 'Madrid, Spain',
+  };
 }
