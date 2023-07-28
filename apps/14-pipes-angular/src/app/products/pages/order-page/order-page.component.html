@@ -32,7 +32,10 @@
 <div class="grid">
   <div class="col mt-2">
     <p-panel header="Heroes">
-      <p-table [value]="heroes" [tableStyle]="{ 'min-width': '50rem' }">
+      <p-table
+        [value]="heroes | sortBy: 'name'"
+        [tableStyle]="{ 'min-width': '50rem' }"
+      >
         <ng-template pTemplate="header">
           <tr>
             <th>Name</th>
@@ -43,7 +46,7 @@
         <ng-template pTemplate="body" let-hero>
           <tr>
             <td>{{ hero.name }}</td>
-            <td>{{ hero.canFly | canFly }}</td>
+            <td>{{ hero.canFly | canFly | titlecase }}</td>
             <td>{{ hero.color }}</td>
           </tr>
         </ng-template>
