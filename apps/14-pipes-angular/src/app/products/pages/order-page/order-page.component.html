@@ -12,16 +12,19 @@
   </div>
   <div class="p-toolbar-group-end">
     <p-button
+      (click)="changeOrder('name')"
       label="By name"
       icon="pi pi-sort"
       styleClass="p-button-success mr-2"
     ></p-button>
     <p-button
+      (click)="changeOrder('canFly')"
       label="By flight"
       icon="pi pi-sort"
       styleClass="p-button-help mr-2"
     ></p-button>
     <p-button
+      (click)="changeOrder('color')"
       label="By color"
       icon="pi pi-sort"
       styleClass="p-button-danger"
@@ -33,7 +36,7 @@
   <div class="col mt-2">
     <p-panel header="Heroes">
       <p-table
-        [value]="heroes | sortBy: 'name'"
+        [value]="heroes | sortBy: orderBy"
         [tableStyle]="{ 'min-width': '50rem' }"
       >
         <ng-template pTemplate="header">
