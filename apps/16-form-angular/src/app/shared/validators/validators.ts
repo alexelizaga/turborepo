@@ -1,4 +1,9 @@
-import { FormControl, ValidationErrors } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+} from '@angular/forms';
 
 export const firstNameAndLastnamePattern: RegExp = /^([a-zA-Z]+) ([a-zA-Z]+)$/;
 export const emailPattern: RegExp =
@@ -43,4 +48,8 @@ export class MyValidators {
   ): ValidationErrors | null => {
     return pattern(control, firstNameAndLastnamePattern);
   };
+
+  static isValidField(form: FormGroup, field: string): boolean | null {
+    return form.controls[field].errors && form.controls[field].touched;
+  }
 }

@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {
-  MyValidators,
-  emailPattern,
-  firstNameAndLastnamePattern,
-} from '../../../shared/validators/validators';
+
+import { MyValidators } from '../../../shared/validators/validators';
 
 @Component({
   templateUrl: './register-page.component.html',
@@ -21,9 +18,7 @@ export class RegisterPageComponent {
   constructor(private fb: FormBuilder) {}
 
   isValidField(field: string): boolean | null {
-    return (
-      this.myForm.controls[field].errors && this.myForm.controls[field].touched
-    );
+    return MyValidators.isValidField(this.myForm, field);
   }
 
   onSubmit(): void {
