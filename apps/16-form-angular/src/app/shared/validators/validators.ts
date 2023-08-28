@@ -25,8 +25,6 @@ const pattern = (
 };
 
 export class MyValidators {
-  constructor() {}
-
   static cantBeStrider = (control: FormControl): ValidationErrors | null => {
     const value = control.value.trim().toLowerCase();
 
@@ -51,5 +49,20 @@ export class MyValidators {
 
   static isValidField(form: FormGroup, field: string): boolean | null {
     return form.controls[field].errors && form.controls[field].touched;
+  }
+
+  static isFieldOneEqualToFieldTwo(field1: string, field2: string) {
+    return (formGroup: AbstractControl): ValidationErrors | null => {
+      const fieldValue1 = formGroup.get(field1)?.value;
+      const fieldValue2 = formGroup.get(field2)?.value;
+
+      if (fieldValue1 !== fieldValue2) {
+        formGroup.get(field2)?.setErrors({ notEqual: true });
+        return { notEqual: true };
+      }
+
+      formGroup.get(field2)?.setErrors(null);
+      return null;
+    };
   }
 }
