@@ -15,6 +15,7 @@ export class SideMenuComponent {
     { title: 'Basic', route: '/reactive/basic' },
     { title: 'Dynamic', route: '/reactive/dynamic' },
     { title: 'Switches', route: '/reactive/switches' },
+    { title: 'Countries', route: '/countries' },
   ];
 
   public authMenu: MenuItem[] = [{ title: 'Register', route: '/auth/sign-up' }];
