@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Are You sure?</h1>
+<div mat-dialog-content>
+  <p>
+    This process is not reversible, it is about to eliminate
+    {{ data.superhero }}
+  </p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <span class="spacer"></span>
+  <button mat-button color="primary" (click)="onConfirm()" cdkFocusInitial>
+    Ok
+  </button>
+</div>
