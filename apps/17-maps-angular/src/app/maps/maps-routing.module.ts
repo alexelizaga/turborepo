@@ -15,7 +15,7 @@ const routes: Routes = [
     children: [
       { path: 'fullscreen', component: FullScreenPageComponent },
       { path: 'zoom-range', component: ZoomRangePageComponent },
-      { path: 'markets', component: MarkersPageComponent },
+      { path: 'markers', component: MarkersPageComponent },
       { path: 'properties', component: PropertiesPageComponent },
       { path: '**', redirectTo: 'fullscreen' },
     ],
