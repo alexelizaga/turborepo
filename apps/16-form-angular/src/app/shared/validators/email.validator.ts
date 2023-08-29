@@ -4,7 +4,7 @@ import {
   AsyncValidator,
   ValidationErrors,
 } from '@angular/forms';
-import { Observable, delay, map, of } from 'rxjs';
+import { Observable, delay } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class EmailValidator implements AsyncValidator {

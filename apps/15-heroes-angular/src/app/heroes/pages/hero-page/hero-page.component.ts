@@ -23,8 +23,7 @@ export class HeroPageComponent implements OnInit {
       .pipe(switchMap(({ id }) => this.heroesService.getHeroById(id)))
       .subscribe((hero) => {
         if (!hero) return this.router.navigate(['/hero/list']);
-        this.hero = hero;
-        return;
+        return (this.hero = hero);
       });
   }
 

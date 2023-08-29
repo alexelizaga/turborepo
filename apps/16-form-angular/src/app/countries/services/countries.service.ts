@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, combineLatest, map, of, tap } from 'rxjs';
+import { Observable, combineLatest, map, of } from 'rxjs';
 
 import {
   Country,

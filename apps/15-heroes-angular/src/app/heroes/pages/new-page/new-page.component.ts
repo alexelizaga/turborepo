@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { filter, switchMap, tap } from 'rxjs';
+import { filter, switchMap } from 'rxjs';
 
 import { Hero, Publisher } from '../../interfaces/hero.interface';
 import { HeroesService } from '../../services/heroes.service';
@@ -51,8 +51,7 @@ export class NewPageComponent implements OnInit {
       .pipe(switchMap(({ id }) => this.heroService.getHeroById(id)))
       .subscribe((hero) => {
         if (!hero) return this.router.navigateByUrl('/');
-        this.heroForm.reset(hero);
-        return;
+        return this.heroForm.reset(hero);
       });
   }
 
