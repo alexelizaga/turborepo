@@ -1,8 +1,54 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Map } from 'mapbox-gl';
 
 @Component({
   selector: 'maps-zoom-range-page',
   templateUrl: './zoom-range-page.component.html',
-  styles: [],
+  styleUrls: ['./zoom-range-page.component.css'],
 })
-export class ZoomRangePageComponent {}
+export class ZoomRangePageComponent {
+  @ViewChild('map')
+  public divMap?: ElementRef;
+
+  public zoom: number = 10;
+  public map?: Map;
+
+  ngAfterViewInit(): void {
+    if (!this.divMap) throw 'HTML element not found';
+
+    this.map = new Map({
+      container: this.divMap.nativeElement, // container ID
+      style: 'mapbox://styles/mapbox/streets-v12', // style URL
+      center: [-74.5, 40], // starting position [lng, lat]
+      zoom: this.zoom, // starting zoom
+    });
+
+    this.mapListeners();
+  }
+
+  mapListeners(): void {
+    if (!this.map) throw 'uninitialized map';
+
+    this.map.on('zoom', () => {
+      this.zoom = this.map!.getZoom();
+    });
+
+    this.map.on('zoomend', () => {
+      if (this.map!.getZoom() < 18) return;
+      this.map!.zoomTo(18);
+    });
+  }
+
+  zoomIn(): void {
+    this.map?.zoomIn();
+  }
+
+  zoomOut(): void {
+    this.map?.zoomOut();
+  }
+
+  zoomChanged(value: string): void {
+    this.zoom = Number(value);
+    this.map?.zoomTo(this.zoom);
+  }
+}
