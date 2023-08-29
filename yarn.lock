@@ -17124,6 +17124,22 @@
   dependencies:
     "object-visit" "^1.0.0"
 
+"maps@file:/Users/aelizaga/Develop/BROCODE/bc-turborepo/apps/maps":
+  "resolved" "file:apps/maps"
+  "version" "0.0.0"
+  dependencies:
+    "@angular/animations" "^16.1.0"
+    "@angular/common" "^16.1.0"
+    "@angular/compiler" "^16.1.0"
+    "@angular/core" "^16.1.0"
+    "@angular/forms" "^16.1.0"
+    "@angular/platform-browser" "^16.1.0"
+    "@angular/platform-browser-dynamic" "^16.1.0"
+    "@angular/router" "^16.1.0"
+    "rxjs" "~7.8.0"
+    "tslib" "^2.3.0"
+    "zone.js" "~0.13.0"
+
 "markdown-escapes@^1.0.0":
   "integrity" "sha512-8z4efJYk43E0upd0NbVXwgSTQs6cT3T06etieCMEg7dRbzCbxUCK/GHlX8mhHRDcp+OLlHkPKsvqQTCvsRl2cg=="
   "resolved" "https://registry.npmjs.org/markdown-escapes/-/markdown-escapes-1.0.4.tgz"
