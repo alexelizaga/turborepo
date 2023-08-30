@@ -1,0 +1,23 @@
+<p-panel header="Basic Pipes" class="p-1">
+  <p>Number Pipes - CommonModule</p>
+</p-panel>
+
+<div class="grid">
+  <div class="col-12 md:col-4">
+    <p-card header="Net sales" subheader="of the present year">
+      {{ totalSells + 1235 | number: "1.2-2" }}
+    </p-card>
+  </div>
+
+  <div class="col-12 md:col-4">
+    <p-card header="Gross sales" subheader="of the present year">
+      {{ totalSells | currency: "EUR":true }}
+    </p-card>
+  </div>
+
+  <div class="col-12 md:col-4">
+    <p-card header="Percentage gain" subheader="of the present year">
+      {{ percent | percent: "1.2-2" }}
+    </p-card>
+  </div>
+</div>
