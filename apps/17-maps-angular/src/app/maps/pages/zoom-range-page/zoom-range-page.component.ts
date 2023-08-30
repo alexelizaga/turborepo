@@ -24,7 +24,7 @@ export class ZoomRangePageComponent implements AfterViewInit, OnDestroy {
   );
 
   ngAfterViewInit(): void {
-    if (!this.divMap) throw 'HTML element not found';
+    if (!this.divMap) throw Error('HTML element not found');
 
     this.map = new Map({
       container: this.divMap.nativeElement, // container ID

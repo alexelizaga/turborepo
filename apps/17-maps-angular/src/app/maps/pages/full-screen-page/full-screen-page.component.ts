@@ -11,8 +11,8 @@ export class FullScreenPageComponent implements AfterViewInit {
   public divMap?: ElementRef;
 
   ngAfterViewInit(): void {
-    if (!this.divMap) throw 'HTML element not found';
-    const map = new Map({
+    if (!this.divMap) throw Error('HTML element not found');
+    new Map({
       container: this.divMap.nativeElement, // container ID
       style: 'mapbox://styles/mapbox/streets-v12', // style URL
       center: [-74.5, 40], // starting position [lng, lat]
