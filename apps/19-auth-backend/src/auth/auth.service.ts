@@ -52,7 +52,7 @@ export class AuthService {
   async login(loginDto: LoginDto): Promise<LoginResponse> {
     const { email, password } = loginDto;
 
-    const user = await this.userModel.findOne({ email });
+    const user = await this.userModel.findOne({ email: email.toString() });
     if (!user) {
       throw new UnauthorizedException('Not valid credentials - email');
     }
