@@ -48,8 +48,8 @@ export class CustomLabelDirective implements OnInit {
     }
 
     if (errors.includes('minlength')) {
-      const min = this._errors!['minlength']['requiredLength'];
-      const current = this._errors!['minlength']['actualLength'];
+      const min = this._errors!['minlength']['requiredLength'].toString();
+      const current = this._errors!['minlength']['actualLength'].toString();
       this.htmlElement.nativeElement.innerHTML = `Minimum ${current}/${min} characters`;
       return;
     }
@@ -57,7 +57,6 @@ export class CustomLabelDirective implements OnInit {
     if (errors.includes('email')) {
       this.htmlElement.nativeElement.innerHTML =
         'It does not have an email format';
-      return;
     }
   }
 }
