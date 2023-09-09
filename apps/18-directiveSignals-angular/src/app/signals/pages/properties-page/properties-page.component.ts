@@ -1,4 +1,4 @@
-import { Component, OnInit, computed, effect, signal } from '@angular/core';
+import { Component, computed, effect, signal } from '@angular/core';
 
 import { User } from '../../interfaces/user-request.interface';
 
