@@ -41,7 +41,7 @@ export class ZoomRangePageComponent implements AfterViewInit, OnDestroy {
   }
 
   mapListeners(): void {
-    if (!this.map) throw 'uninitialized map';
+    if (!this.map) throw new Error('uninitialized map');
 
     this.map.on('zoom', () => {
       this.zoom = this.map!.getZoom();

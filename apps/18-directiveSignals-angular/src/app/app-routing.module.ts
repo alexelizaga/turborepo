@@ -3,19 +3,18 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'maps',
-    loadChildren: () => import('./maps/maps.module').then((m) => m.MapsModule),
+    path: 'products',
+    loadChildren: () =>
+      import('./products/products.module').then((m) => m.ProductsModule),
   },
   {
-    path: 'alone',
-    loadComponent: () =>
-      import('./alone/pages/alone-page/alone-page.component').then(
-        (m) => m.AlonePageComponent
-      ),
+    path: 'signals',
+    loadChildren: () =>
+      import('./signals/signals.module').then((m) => m.SignalsModule),
   },
   {
     path: '**',
-    redirectTo: 'maps',
+    redirectTo: 'products',
   },
 ];
 
