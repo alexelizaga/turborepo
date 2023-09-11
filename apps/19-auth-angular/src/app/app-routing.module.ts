@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { isAthenticatedGuard } from './auth/guards/is-athenticated.guard';
+import { isAthenticatedGuard, isNotAthenticatedGuard } from './auth/guards';
 
 const routes: Routes = [
   {
     path: 'auth',
-    // guards
+    canActivate: [isNotAthenticatedGuard],
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
