@@ -4,9 +4,6 @@ import { AuthService } from '../services/auth.service';
 import { AuthStatus } from '../interfaces';
 
 export const isNotAthenticatedGuard: CanActivateFn = (route, state) => {
-  // const url = state.url;
-  // localStorage.setItem('url', url);
-
   const authService = inject(AuthService);
   const router = inject(Router);
 
