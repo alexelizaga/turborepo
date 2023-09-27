@@ -7,7 +7,8 @@ import { CounterPageComponent } from './pages/counter-page/counter-page.componen
 import { UserInfoPageComponent } from './pages/user-info-page/user-info-page.component';
 import { PropertiesPageComponent } from './pages/properties-page/properties-page.component';
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
-
+import { UserPageComponent } from './pages/user-page/user-page.component';
+import { UserSignalPageComponent } from './pages/user-signal-page/user-signal-page.component';
 
 @NgModule({
   declarations: [
@@ -15,11 +16,10 @@ import { SideMenuComponent } from './components/side-menu/side-menu.component';
     CounterPageComponent,
     UserInfoPageComponent,
     PropertiesPageComponent,
-    SideMenuComponent
+    SideMenuComponent,
+    UserPageComponent,
+    UserSignalPageComponent,
   ],
-  imports: [
-    CommonModule,
-    SignalsRoutingModule
-  ]
+  imports: [CommonModule, SignalsRoutingModule],
 })
-export class SignalsModule { }
+export class SignalsModule {}

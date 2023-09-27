@@ -2,12 +2,16 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map, tap } from 'rxjs';
 
-import { SingleUserResponse, User } from '../interfaces/user-request.interface';
+import {
+  PaginatedUsersResponse,
+  SingleUserResponse,
+  User,
+} from '../interfaces/user-request.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UsersServiceService {
+export class UsersService {
   private http = inject(HttpClient);
   private baseUrl = 'https://reqres.in/api/users';
 
@@ -16,5 +20,11 @@ export class UsersServiceService {
       map((resp) => resp.data),
       tap((user) => console.log(user))
     );
+  }
+
+  loadPage(page: number): Observable<User[]> {
+    return this.http
+      .get<PaginatedUsersResponse>(this.baseUrl, { params: { page: page } })
+      .pipe(map((response) => response.data));
   }
 }

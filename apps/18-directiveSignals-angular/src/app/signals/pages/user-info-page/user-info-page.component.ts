@@ -1,6 +1,6 @@
 import { Component, OnInit, computed, inject, signal } from '@angular/core';
 
-import { UsersServiceService } from '../../services/users-service.service';
+import { UsersService } from '../../services/users-service.service';
 import { User } from '../../interfaces/user-request.interface';
 
 @Component({
@@ -9,7 +9,7 @@ import { User } from '../../interfaces/user-request.interface';
   styleUrls: ['./user-info-page.component.css'],
 })
 export class UserInfoPageComponent implements OnInit {
-  private usersService = inject(UsersServiceService);
+  private usersService = inject(UsersService);
   public userId = signal(1);
 
   public currentUser = signal<User | undefined>(undefined);
