@@ -15,11 +15,7 @@ export class SideMenuComponent {
     { title: 'Counter', route: 'counter' },
     { title: 'User', route: 'user-info' },
     { title: 'Mutations', route: 'properties' },
+    { title: 'Old List', route: 'user' },
+    { title: 'Signal List', route: 'user-signal' },
   ]);
-
-  // public menuItems: MenuItem[] = [
-  //   { title: 'Counter', route: 'counter' },
-  //   { title: 'User', route: 'user-info' },
-  //   { title: 'Mutations', route: 'properties' },
-  // ];
 }

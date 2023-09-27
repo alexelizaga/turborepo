@@ -1,10 +1,69 @@
-<h1>Counter: {{ counter() }}</h1>
-<hr />
-<h2>Square counter {{ squareCounter() }}</h2>
-<hr />
+<div class="row mt-2">
+  <div class="col">
+    <h3>Signals</h3>
+    <hr />
+    <p>Count: {{ counter() }}</p>
+    <p>Count2: {{ counter2() }}</p>
+    <hr />
+    <p>Square counter {{ squareCounter() }}</p>
+    <p>Count1 + Count2 : {{ count1PlusCount2() }}</p>
+    <p>Count1 + Count2 : {{ count1PlusCount2() }}</p>
+    <p>Count1 + Count2 : {{ count1PlusCount2() }}</p>
+    <p>Count1 + Count2 : {{ count1PlusCount2() }}</p>
+    <p>Count1 + Count2 : {{ count1PlusCount2() }}</p>
+    <p>Count1 + Count2 : {{ count1PlusCount2() }}</p>
+    <p>Count1 + Count2 : {{ count1PlusCount2() }}</p>
+    <p>Count1 + Count2 : {{ count1PlusCount2() }}</p>
 
-<button (click)="increaseBy(1)" class="btn btn-primary">+ 1</button>
-&nbsp;
-<button (click)="increaseBy(-1)" class="btn btn-primary">- 1</button>
-&nbsp;
-<button (click)="counter.set(0)" class="btn btn-primary">Reset</button>
+    <hr />
+
+    <button (click)="increaseBy(1)" class="btn btn-primary">+ 1</button>
+    &nbsp;
+    <button (click)="increaseBy(-1)" class="btn btn-primary">- 1</button>
+    &nbsp;
+    <button (click)="reset()" class="btn btn-primary">Reset</button>
+  </div>
+  <div class="col">
+    <h3>RxJs</h3>
+    <hr />
+    <p>Count: {{ count$ | async }}</p>
+    <!-- <p>Value: {{ count$.value }}</p> -->
+    <!-- <p>getValue: {{ count$.getValue() }}</p> -->
+    <p>Count2: {{ count2$ | async }}</p>
+    <hr />
+    <p>Square counter {{ squareCounter$ | async }}</p>
+    <p>Count1 + Count2 : {{ count1PlusCount2$ | async }}</p>
+    <p>Count1 + Count2 : {{ count1PlusCount2$ | async }}</p>
+    <p>Count1 + Count2 : {{ count1PlusCount2$ | async }}</p>
+    <p>Count1 + Count2 : {{ count1PlusCount2$ | async }}</p>
+    <p>Count1 + Count2 : {{ count1PlusCount2$ | async }}</p>
+    <p>Count1 + Count2 : {{ count1PlusCount2$ | async }}</p>
+    <p>Count1 + Count2 : {{ count1PlusCount2$ | async }}</p>
+    <p>Count1 + Count2 : {{ count1PlusCount2$ | async }}</p>
+
+    <hr />
+    <button (click)="increaseBy$(1)" class="btn btn-primary">+ 1</button>
+    &nbsp;
+    <button (click)="increaseBy$(-1)" class="btn btn-primary">- 1</button>
+    &nbsp;
+    <button (click)="reset$()" class="btn btn-primary">Reset</button>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col">
+    <ul>
+      <li>
+        Si los valores internos de las señales no cambian no emite un nuevo
+        valor.
+      </li>
+      <li>
+        Las señales se limpian solas, no hay que hacer limpiezas manuales.
+      </li>
+      <li>
+        Por cada vez que uso un observable en la plantilla, voy a tener
+        diferentes subscripciones
+      </li>
+    </ul>
+  </div>
+</div>
